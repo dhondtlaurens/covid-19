@@ -1,5 +1,16 @@
+const tailwindcss = require("tailwindcss");
+const autoprefixer = require("autoprefixer");
+const purgecss = require('@fullhuman/postcss-purgecss')
+
 module.exports = {
-  plugins: {
-    autoprefixer: {}
-  }
+  plugins: [
+    tailwindcss("./tailwind.config.js"),
+    autoprefixer({
+      add: true,
+      grid: true
+    }),
+    purgecss({
+      content: ['./**/*.vue']
+    })
+  ]
 }
