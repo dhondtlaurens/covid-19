@@ -27,7 +27,6 @@ export default {
         return response.json()
       })
       .then(function (data) {
-        console.log(data)
         self.$store.dispatch('setAppData', data)
       })
   },

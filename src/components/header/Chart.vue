@@ -1,5 +1,5 @@
 <template>
-  <div class="chart relative h-8 w-full bg-blue-100">
+  <div class="chart relative h-8 w-full bg-blue-200">
     <div class="absolute inset-0 flex justify-start">
       <div
         class="case h-full bg-red-100 transition-900 transition-all transition-in-out"
@@ -27,17 +27,6 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Chart',
-  data () {
-    return {
-
-    }
-  },
-  mounted () {
-    console.log(this.getAppCases)
-    console.log(this.getAppDeaths)
-    console.log(this.getAppCritical)
-    console.log(this.getAppRecovered)
-  },
   computed: {
     ...mapGetters([
       'getAppCases',
@@ -45,11 +34,6 @@ export default {
       'getAppCritical',
       'getAppRecovered'
     ])
-  },
-  watch: {
-    'getAppData': function () {
-      console.log(this.getAppData)
-    }
   }
 }
 
@@ -60,10 +44,6 @@ export default {
  .chart {
    .case {
      width: 0%;
-   }
-
-   .right {
-     justify-self: self-end;
    }
  }
 
