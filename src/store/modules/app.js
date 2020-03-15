@@ -1,6 +1,6 @@
 const state = {
   data: {},
-  active: 'World',
+  active: 'Belgium',
 
   cases: 0,
   deaths: 0,
@@ -32,13 +32,23 @@ const mutations = {
 const actions = {
   setAppData ({ commit }, value) {
     commit('setAppData', value)
+    if (state.active !== '') {
+      let country = value.filter((item) => {
+        return item.country === state.active
+      })[0]
 
-    value.map((country) => {
-      state.cases += parseInt(country.cases)
-      state.deaths += parseInt(country.deaths)
-      state.critical += parseInt(country.critical)
-      state.recovered += parseInt(country.recovered)
-    })
+      state.cases = country.cases
+      state.deaths = country.deaths
+      state.critical = country.critical
+      state.recovered = country.recovered
+    } else {
+      value.map((country) => {
+        state.cases += parseInt(country.cases)
+        state.deaths += parseInt(country.deaths)
+        state.critical += parseInt(country.critical)
+        state.recovered += parseInt(country.recovered)
+      })
+    }
   },
   setAppActive ({ commit }, value) {
     commit('setAppActive', value)

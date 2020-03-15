@@ -1,25 +1,64 @@
 <template>
-  <div class="header h-64 px-32 flex border-b border-gray-100">
+  <div class="header flex flex-wrap">
+
+
     <div
-      class="logo h-full pr-64 flex items-center border-r border-gray-100 cursor-pointer"
+      class="logo w-full sm:w-auto flex flex-shrink-0 items-center h-64 px-32 border-r border-b border-gray-100 cursor-pointer"
       @click="setGlobal"
     >
       <div class="text-blue-300 text-24 font-bold ">
-        covid<span class="text-blue-200">19</span>
+        covid
+
+        <span class="text-blue-200">
+          19
+        </span>
       </div>
     </div>
 
-    <div class="search relative flex-grow text-14 text-blue-300">
-      <input
-        class="w-full h-full px-32 appearance-none outline-none"
+    <div class="relative flex flex-grow h-64 border-b border-gray-100">
+      <div class="search flex flex-grow items-center border-r border-gray-100 text-blue-300">
+        <div class="pl-32 flex-shrink-0">
+          <div
+            class="fill-current w-16 h-16"
+            v-icon-search
+          ></div>
+        </div>
 
-        type="text"
-        v-model="search"
+        <input
+          class="flex-grow flex-shrink min-w-0 h-full px-32 appearance-none outline-none"
 
-        @focus="focus = true"
+          type="text"
+          size="1"
 
-        placeholder="Klik om te zoeken "
-      />
+          v-model="search"
+
+          @focus="focus = true; search = ''"
+          @blur="setBlur"
+
+          placeholder="Zoeken"
+        />
+
+        <div
+          v-if="search !== ''"
+          @click="setGlobal"
+          class="pr-32 flex-shrink-0 cursor-pointer"
+        >
+          <div
+            class="fill-current w-16 h-16"
+            v-icon-times
+          ></div>
+        </div>
+      </div>
+
+      <div
+        class="locale flex-shrink-0 h-64 px-32 border-b border-gray-100 cursor-pointer"
+      >
+        <select class="w-full h-full bg-white appearance-none outline-none text-blue-300 text-14 font-bold cursor-pointer" name="">
+          <option value="NL">
+            NL
+          </option>
+        </select>
+      </div>
 
       <div
         class="results absolute bg-white border-t border-l border-r border-gray-100"
@@ -36,14 +75,6 @@
         </div>
       </div>
     </div>
-
-    <div class="locale pl-64 h-full flex items-center border-l border-gray-100">
-      <select class="w-full h-full bg-white appearance-none outline-none text-blue-300 text-14 font-bold cursor-pointer" name="">
-        <option value="NL">
-          NL
-        </option>
-      </select>
-    </div>
   </div>
 </template>
 
@@ -58,7 +89,7 @@ export default {
   data () {
     return {
       list: [],
-      search: '',
+      search: 'Belgium',
       focus: false
     }
   },
@@ -81,6 +112,9 @@ export default {
     }
   },
   methods: {
+    setBlur () {
+      if (this.search === '') this.setGlobal()
+    },
     setGlobal () {
       this.search = ''
       this.focus = false
@@ -110,12 +144,17 @@ export default {
 <style lang="scss" scoped>
 
  .header {
-   .search {
-     .results {
-       left: -1px;
-       top: 100%;
+   .results {
+     left: -1px;
+     top: 100%;
 
-       width: calc( 100% + 2px);
+     width: calc( 100% + 2px);
+   }
+
+   .locale {
+     .chevron {
+       width: 12px;
+       height: 12px;
      }
    }
  }
