@@ -1,6 +1,11 @@
 <template>
-  <div class="charts">
-
+  <div class="charts pb-32">
+    <div class="row px-16 flex flex-wrap">
+      <curve-component
+        v-if="loading === false"
+        :loading="loading"
+      />
+    </div>
   </div>
 </template>
 
@@ -8,15 +13,18 @@
 
 import { mapGetters } from 'vuex'
 
+import Curve from '@/components/charts/Curve'
+
 export default {
   data () {
     return {
       loading: true,
-      dates: ['14_03_20', '15_03_20']
+      dates: ['01_03_20', '02_03_20', '03_03_20', '04_03_20', '05_03_20', '06_03_20', '07_03_20', '08_03_20', '09_03_20', '10_03_20', '11_03_20', '12_03_20', '13_03_20', '14_03_20', '15_03_20']
     }
   },
   computed: {
     ...mapGetters([
+      'getAppData',
       'getDatesData'
     ])
   },
@@ -26,7 +34,14 @@ export default {
   methods: {
     fetchLocal () {
       let self = this
+
       let date = self.dates[0]
+      let today = new Date()
+
+      let day = today.getDate()
+      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+
+      console.log('/data/date/countries_' +  date + '.json')
 
       fetch('/data/date/countries_' +  date + '.json', {
         method: 'GET',
@@ -48,11 +63,19 @@ export default {
           if (self.dates.length > 0) {
             self.fetchLocal()
           } else {
-            self.loading = false
+            self.$store.dispatch('addDatesData', {
+              key: day + '_' + month + '_20',
+              value: self.getAppData
+            })
+
             console.log(self.getDatesData)
+            self.loading = false
           }
         })
     }
+  },
+  components: {
+    'curve-component': Curve
   }
 }
 

@@ -63,9 +63,7 @@
       </div>
     </div>
 
-    <!--
     <charts-component />
-    -->
   </div>
 </template>
 
@@ -88,6 +86,6 @@ export default {
   components: {
     'charts-component': Charts
   }
-
 }
+
 </script>
