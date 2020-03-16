@@ -6,7 +6,7 @@
         "empty":"Geen resultaten"
       },
       "footer":{
-        "info":"<a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>Laurens D&#39Hondt</a>",
+        "info":"<a class='text-blue-200 appearance-none' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>Laurens D&#39Hondt</a>",
         "refresh": "Update binnen:"
       }
     },
@@ -28,7 +28,7 @@
         "empty":"No results"
       },
       "footer":{
-        "info":"<a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>Laurens D&#39Hondt</a>",
+        "info":"<a class='text-blue-200 appearance-none' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>Laurens D&#39Hondt</a>",
         "refresh": "Update in:"
       }
     },

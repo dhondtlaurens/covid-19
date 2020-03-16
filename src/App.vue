@@ -39,7 +39,11 @@ export default {
           }
         })
         .then(function (data) {
-          self.$store.dispatch('setAppData', data)
+          if (data.length > 0) {
+            self.$store.dispatch('setAppData', data)
+          } else {
+            self.fetchLocal()
+          }
         })
     },
     fetchLocal () {
