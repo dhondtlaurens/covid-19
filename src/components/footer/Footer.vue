@@ -2,7 +2,7 @@
   <div class="footer flex fixed w-full h-64 bottom-0 border-t bg-white border-gray-100">
     <div class="info flex justify-between items-center flex-grow h-full px-32 flex border-r border-gray-100">
       <div
-        class="text-16 text-blue-200"
+        class="hidden sm:flex text-16 text-blue-200"
         v-html="$t('components.footer.info')"
       ></div>
 
@@ -14,7 +14,7 @@
 
     <div class="interval flex items-center flex-shrink-0 h-full px-32">
       <div class="text-blue-300 text-24 font-bold">
-        {{ interval }}S
+        {{ interval }}s
       </div>
     </div>
   </div>
