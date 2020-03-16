@@ -35,7 +35,7 @@
           @focus="focus = true; search = ''"
           @blur="setBlur"
 
-          placeholder="Zoeken"
+          :placeholder="$t('components.header.placeholder')"
         />
 
         <div
@@ -53,16 +53,23 @@
       <div
         class="locale flex-shrink-0 h-64 px-32 border-b border-gray-100 cursor-pointer"
       >
-        <select class="w-full h-full bg-white appearance-none outline-none text-blue-300 text-14 font-bold cursor-pointer" name="">
-          <option value="NL">
-            NL
+        <select
+          class="w-full h-full bg-white appearance-none outline-none text-blue-300 text-14 font-bold uppercase cursor-pointer"
+          v-model="$i18n.locale"
+        >
+          <option
+            v-for="(lang, i) in langs"
+            :key="`Lang${i}`"
+            :value="lang"
+          >
+            {{ lang }}
           </option>
         </select>
       </div>
 
       <div
         class="results absolute bg-white border-t border-l border-r border-gray-100"
-        v-if="focus === true && search !== '' && filteredResults.length > 0 "
+        v-if="focus === true && search !== ''"
       >
         <div
           class="flex items-center px-32 h-64 border-b border-gray-100 hover:bg-blue-100 cursor-pointer"
@@ -72,6 +79,16 @@
           @click="setCountry"
         >
           {{ result.original }}
+        </div>
+
+        <div
+          v-if="filteredResults.length === 0 && search.length >= 2"
+          class="flex items-center px-32 h-64 border-b border-gray-100"
+        >
+          <div
+            class="opacity-50"
+            v-html="$t('components.header.empty')"
+          ></div>
         </div>
       </div>
     </div>
@@ -89,6 +106,7 @@ export default {
   data () {
     return {
       list: [],
+      langs: ['nl', 'en'],
       search: 'Belgium',
       focus: false
     }

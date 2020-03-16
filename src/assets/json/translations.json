@@ -1,0 +1,40 @@
+{
+  "nl":{
+    "components": {
+      "header": {
+        "placeholder": "Zoeken",
+        "empty": "Geen resultaten. Gelieve het land te zoeken op de engelse benaming"
+      }
+    },
+    "views": {
+      "home": {
+        "title": "Blijf gewoon <span class='text-blue-200'>thuis</span>",
+        "description": "Te veel mensen beseffen nog niet hoe ernstig Corona is en dat ze thuis moeten blijven. Deze site moet hen overtuigen.",
+
+        "cases": "gevallen",
+        "deaths": "doden",
+        "critical": "kritiek",
+        "recovered": "hersteld"
+      }
+    }
+  },
+  "en":{
+    "components": {
+      "header": {
+        "placeholder": "Search",
+        "empty": "No results"
+      }
+    },
+    "views": {
+      "home": {
+        "title": "Just stay <span class='text-blue-200'>home</span>",
+        "description": "Too many people don't yet realize how serious Corona is and that they should stay at home. This site should convince them.",
+
+        "cases": "cases",
+        "deaths": "deaths",
+        "critical": "critical",
+        "recovered": "recovered"
+      }
+    }
+  }
+}
