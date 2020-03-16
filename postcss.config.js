@@ -9,12 +9,12 @@ module.exports = {
       add: true,
       grid: true
     }),
-    purgecss({
+    process.env.NODE_ENV === "production" ? purgecss({
       content: [
         './src/**/*.html',
         './src/**/*.vue'
       ],
       defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
-    })
+    }) : ""
   ]
 }

@@ -1,7 +1,5 @@
 <template>
   <div class="header flex flex-wrap">
-
-
     <div
       class="logo w-full sm:w-auto flex flex-shrink-0 items-center h-64 px-32 border-r border-b border-gray-100 cursor-pointer"
       @click="setGlobal"

@@ -1,5 +1,5 @@
 <template>
-  <div class="home px-16 py-32">
+  <div class="home px-16 pt-32 pb-64 ">
     <div class="row flex flex-wrap">
       <div class="w-full lg:w-1/3 px-16 pb-32  text-blue-300">
         <div

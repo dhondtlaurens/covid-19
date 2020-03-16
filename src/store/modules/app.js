@@ -42,6 +42,11 @@ const actions = {
       state.critical = country.critical
       state.recovered = country.recovered
     } else {
+      state.cases = 0
+      state.deaths = 0
+      state.critical = 0
+      state.recovered = 0
+
       value.map((country) => {
         state.cases += parseInt(country.cases)
         state.deaths += parseInt(country.deaths)
