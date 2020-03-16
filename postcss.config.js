@@ -8,6 +8,13 @@ module.exports = {
     autoprefixer({
       add: true,
       grid: true
+    }),
+    purgecss({
+      content: [
+        './src/**/*.html',
+        './src/**/*.vue'
+      ],
+      defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
     })
   ]
 }
