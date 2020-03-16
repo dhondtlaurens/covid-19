@@ -62,12 +62,18 @@
         </div>
       </div>
     </div>
+
+    <!--
+    <charts-component />
+    -->
   </div>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
+
+import Charts from '@/components/charts/Charts'
 
 export default {
   name: 'home',
@@ -78,6 +84,9 @@ export default {
       'getAppCritical',
       'getAppRecovered'
     ])
+  },
+  components: {
+    'charts-component': Charts
   }
 
 }

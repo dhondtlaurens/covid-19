@@ -7,14 +7,22 @@
       ></div>
 
       <div
-        class="text-16 text-blue-300"
+        class="text-16 text-blue-300 no-underline"
         v-html="$t('components.footer.refresh')"
       ></div>
     </div>
 
     <div class="interval flex items-center flex-shrink-0 h-full px-32">
-      <div class="text-blue-300 text-24 font-bold">
-        {{ interval }}s
+      <div class="flex text-blue-300 text-24 font-bold">
+
+        <div
+          class="mr-2"
+          v-if="minutes !== 0"
+        >
+          {{ minutes }}m
+        </div>
+
+        {{ seconds }}s
       </div>
     </div>
   </div>
@@ -28,7 +36,9 @@ export default {
   name: 'Chart',
   data () {
     return {
-      interval: 600
+      interval: 600,
+      minutes: 0,
+      seconds: 0
     }
   },
   beforeMount () {
@@ -37,9 +47,14 @@ export default {
   methods: {
     initInterval () {
       let self = this
+      self.minutes = Math.floor(self.interval / 60)
+      self.seconds = self.interval - self.minutes * 60;
 
       setInterval(() => {
         self.interval--
+
+        self.minutes = Math.floor(self.interval / 60)
+        self.seconds = self.interval - self.minutes * 60;
 
         if (self.interval <= 0) {
           self.interval = 600
