@@ -3,7 +3,7 @@
     "components":{
       "header":{
         "placeholder":"Zoeken",
-        "empty":"Geen resultaten. Gelieve het land te zoeken op de engelse benaming"
+        "empty":"Geen resultaten"
       },
       "footer":{
         "info":"<a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>Laurens D&#39Hondt</a>",

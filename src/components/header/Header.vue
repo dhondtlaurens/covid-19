@@ -48,11 +48,9 @@
         </div>
       </div>
 
-      <div
-        class="locale flex-shrink-0 h-64 px-32 border-b border-gray-100 cursor-pointer"
-      >
+      <div class="locale flex items-center flex-shrink-0 h-full px-32">
         <select
-          class="w-full h-full bg-white appearance-none outline-none text-blue-300 text-14 font-bold uppercase cursor-pointer"
+          class="w-full bg-white appearance-none outline-none text-blue-300 text-14 font-bold uppercase cursor-pointer"
           v-model="$i18n.locale"
         >
           <option
@@ -66,7 +64,7 @@
       </div>
 
       <div
-        class="results absolute bg-white border-t border-l border-r border-gray-100"
+        class="results absolute bg-white border-t border-l border-r border-gray-100 shadow-xl"
         v-if="focus === true && search !== ''"
       >
         <div
@@ -83,10 +81,7 @@
           v-if="filteredResults.length === 0 && search.length >= 2"
           class="flex items-center px-32 h-64 border-b border-gray-100"
         >
-          <div
-            class="opacity-50"
-            v-html="$t('components.header.empty')"
-          ></div>
+          <div v-html="$t('components.header.empty')"></div>
         </div>
       </div>
     </div>
