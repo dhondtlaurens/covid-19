@@ -7,7 +7,7 @@ module.exports = {
     tailwindcss("./tailwind.config.js"),
     autoprefixer({
       add: true,
-      grid: true
+      grid: false
     }),
     process.env.NODE_ENV === "production" ? purgecss({
       content: [

@@ -41,9 +41,7 @@ export default {
       let day = today.getDate()
       let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
 
-      console.log('/data/date/countries_' +  date + '.json')
-
-      fetch('/data/date/countries_' +  date + '.json', {
+      fetch('/data/date/countries_' + date + '.json', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8'
@@ -68,7 +66,6 @@ export default {
               value: self.getAppData
             })
 
-            console.log(self.getDatesData)
             self.loading = false
           }
         })

@@ -37,33 +37,30 @@ export default {
         datasets: [
           {
             label: self.$t('views.home.cases'),
-            borderColor: "rgba(1, 104, 250, 1)",
-            backgroundColor: "rgba(1, 104, 250, 0.08)",
+            borderColor: 'rgba(1, 104, 250, 1)',
+            backgroundColor: 'rgba(1, 104, 250, 0.08)',
             data: []
           },
           {
             label: self.$t('views.home.deaths'),
-            borderColor: "rgba(239, 116, 116, 1)",
-            backgroundColor: "rgba(239, 116, 116, 0.08)",
+            borderColor: 'rgba(239, 116, 116, 1)',
+            backgroundColor: 'rgba(239, 116, 116, 0.08)',
             data: []
           },
           {
             label: self.$t('views.home.critical'),
-            borderColor: "rgba(239, 187, 116, 1)",
-            backgroundColor: "rgba(239, 187, 116, 0.08)",
+            borderColor: 'rgba(239, 187, 116, 1)',
+            backgroundColor: 'rgba(239, 187, 116, 0.08)',
             data: []
           },
           {
             label: self.$t('views.home.recovered'),
-            borderColor: "rgba(149, 230, 139, 1)",
-            backgroundColor: "rgba(149, 230, 139, 0.08)",
+            borderColor: 'rgba(149, 230, 139, 1)',
+            backgroundColor: 'rgba(149, 230, 139, 0.08)',
             data: []
           }
         ]
       }
-
-
-      console.log( self.getDatesData)
 
       for (let date in self.getDatesData) {
         if (self.getAppActive !== '') {
