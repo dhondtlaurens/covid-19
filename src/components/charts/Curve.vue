@@ -1,5 +1,5 @@
 <template>
-  <div class="curve w-full lg:w-2/3 px-16 mb-32 lg:mb-0">
+  <div class="curve w-full md:w-1/2 lg:w-2/3 xl:w-3/4 px-16 mb-32 md:mb-0">
     <div class="p-32 h-full border border-gray-100">
       <line-chart
         :chartData="computedChartData"

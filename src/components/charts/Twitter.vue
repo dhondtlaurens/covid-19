@@ -1,5 +1,5 @@
 <template>
-  <div class="twitter w-full lg:w-1/3 px-16">
+  <div class="twitter w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-16">
     <div class="px-16 h-full border border-gray-100 overflow-scroll">
       <div class="relative w-full h-full">
         <div class="absolute inset-0">
