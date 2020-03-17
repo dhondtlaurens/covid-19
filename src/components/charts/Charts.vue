@@ -41,6 +41,36 @@ export default {
         }
       })
         .then(function (response) {
+          if (response.status === 200) {
+            return response.json()
+          } else {
+            self.fetchLocal()
+          }
+        })
+        .then(function (data) {
+          data.map((date) => {
+            self.$store.dispatch('addDatesData', {
+              key: date.id,
+              value: JSON.parse(date.value)
+            })
+          })
+
+          self.loading = false
+        })
+        .catch(function () {
+          self.fetchLocal()
+        })
+    },
+    fetchLocal () {
+      let self = this
+
+      fetch('/data/history.json', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8'
+        }
+      })
+        .then(function (response) {
           return response.json()
         })
         .then(function (data) {
