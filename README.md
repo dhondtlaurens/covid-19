@@ -4,7 +4,7 @@
 
 ## Just stay home
 
-Too many people don't yet realize how serious Corona is and that they should stay at home. This site should convince them.
+Too many people don't yet realize how serious Corona is and that they should stay at home. This site should convince them. [blijfgewoonthuis.be](blijfgewoonthuis.be)
 
 ### Install dependencies
 ```
