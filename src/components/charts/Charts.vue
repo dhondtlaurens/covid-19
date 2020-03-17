@@ -1,7 +1,11 @@
 <template>
   <div class="charts pb-32">
-    <div class="row px-16 flex flex-wrap">
+    <div class="row flex flex-wrap">
       <curve-component
+        v-if="loading === false"
+      />
+
+      <twitter-component
         v-if="loading === false"
       />
     </div>
@@ -12,6 +16,7 @@
 
 import { mapGetters } from 'vuex'
 
+import Twitter from '@/components/charts/Twitter'
 import Curve from '@/components/charts/Curve'
 
 export default {
@@ -86,6 +91,7 @@ export default {
     }
   },
   components: {
+    'twitter-component': Twitter,
     'curve-component': Curve
   }
 }
@@ -93,5 +99,9 @@ export default {
 </script>
 
 <style lang="scss">
+ .charts {
+   .row {
 
+   }
+ }
 </style>

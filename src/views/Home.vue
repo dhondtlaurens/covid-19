@@ -1,7 +1,7 @@
 <template>
   <div class="home px-16 pt-32 pb-64 ">
     <div class="row flex flex-wrap">
-      <div class="w-full lg:w-1/3 px-16 pb-32  text-blue-300">
+      <div class="w-full lg:w-1/3 px-16 pb-32 text-blue-300">
         <div
           class="mb-16 text-24 font-medium"
           v-html="$t('views.home.title')"

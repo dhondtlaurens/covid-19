@@ -1,9 +1,11 @@
 <template>
-  <div class="curve w-full p-32 border border-gray-100">
-    <line-chart
-      :chartData="computedChartData"
-      :options="options"
-    />
+  <div class="curve w-full lg:w-2/3 px-16 mb-32 lg:mb-0">
+    <div class="p-32 h-full border border-gray-100">
+      <line-chart
+        :chartData="computedChartData"
+        :options="options"
+      />
+    </div>
   </div>
 </template>
 
