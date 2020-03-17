@@ -71,6 +71,7 @@
           class="flex items-center px-32 h-64 border-b border-gray-100 hover:bg-blue-100 cursor-pointer"
 
           v-for="result in filteredResults"
+          :key="result.original"
           :data-country="result.original"
           @click="setCountry"
         >
@@ -142,6 +143,7 @@ export default {
   watch: {
     'getAppData': function () {
       if (this.getAppData.length > 0) {
+        this.list = []
         this.getAppData.map((item) => {
           this.list.push(item.country)
         })
