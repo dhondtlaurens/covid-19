@@ -19,7 +19,7 @@ export default {
   data () {
     return {
       loading: true,
-      dates: ['01_03_20', '02_03_20', '03_03_20', '04_03_20', '05_03_20', '06_03_20', '07_03_20', '08_03_20', '09_03_20', '10_03_20', '11_03_20', '12_03_20', '13_03_20', '14_03_20', '15_03_20']
+      dates: []
     }
   },
   computed: {
@@ -29,6 +29,14 @@ export default {
     ])
   },
   beforeMount () {
+    for (var i = 1; i < 30; i++) {
+      this.dates.push((i < 10 ? '0' + i : i) + '_02_20')
+    }
+
+    for (var j = 1; j < 17; j++) {
+      this.dates.push((j < 10 ? '0' + j : j) + '_03_20')
+    }
+
     this.fetchLocal()
   },
   methods: {
