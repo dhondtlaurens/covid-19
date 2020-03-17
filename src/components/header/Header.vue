@@ -100,7 +100,7 @@ export default {
     return {
       list: [],
       langs: ['en', 'ur'],
-      search: 'Sindh',
+      search: 'Search province',
       focus: false
     }
   },

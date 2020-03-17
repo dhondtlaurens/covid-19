@@ -1,1 +1,51 @@
-[{"country":"Sindh","cases":4,"deaths":0,"recovered":0,"critical":0},{"country":"Punjab","cases":0,"deaths":0,"recovered":0,"critical":0},{"country":"Islamabad","cases":0,"deaths":0,"recovered":0,"critical":0},{"country":"KPK","cases":0,"deaths":0,"recovered":0,"critical":0},{"country":"Balochistan","cases":0,"deaths":0,"recovered":0,"critical":0},{"country":"Gilgit-Baltistan","cases":1,"deaths":0,"recovered":0,"critical":0},{"country":"AJK","cases":0,"deaths":0,"recovered":0,"critical":0}]
+[
+    {
+        "country": "Sindh",
+        "cases": 4,
+        "deaths": 0,
+        "recovered": 0,
+        "critical": 0
+    },
+    {
+        "country": "Punjab",
+        "cases": 0,
+        "deaths": 0,
+        "recovered": 0,
+        "critical": 0
+    },
+    {
+        "country": "Islamabad",
+        "cases": 0,
+        "deaths": 0,
+        "recovered": 0,
+        "critical": 0
+    },
+    {
+        "country": "KPK",
+        "cases": 0,
+        "deaths": 0,
+        "recovered": 0,
+        "critical": 0
+    },
+    {
+        "country": "Balochistan",
+        "cases": 0,
+        "deaths": 0,
+        "recovered": 0,
+        "critical": 0
+    },
+    {
+        "country": "Gilgit-Baltistan",
+        "cases": 1,
+        "deaths": 0,
+        "recovered": 0,
+        "critical": 0
+    },
+    {
+        "country": "AJK",
+        "cases": 0,
+        "deaths": 0,
+        "recovered": 0,
+        "critical": 0
+    }
+]
