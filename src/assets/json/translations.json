@@ -13,7 +13,7 @@
     "views":{
       "home":{
         "title":"Blijf gewoon <span class='text-blue-200'>thuis</span>",
-        "description":"Te veel mensen beseffen nog niet hoe ernstig Corona is en dat ze thuis moeten blijven. Deze site moet hen overtuigen.",
+        "description":"Het SARS-CoV-2-virus, beter bekend als het coronavirus, legt wereldwijd het publieke leven stil. Overheden roepen mensen op om voorzichtig te zijn, en zoveel mogelijk contact te vermijden. Gewoon thuis blijven, dus. Op die manier kunnen we ervoor zorgen dat mensen niet ziek worden en het gezondheidssysteem overbelasten. Deze site probeert aan te tonen dat thuisblijven echt noodzakelijk is. Samen kunnen we de curve met het aantal besmettingen afvlakken. Samen voor #flattenthecurve.<br /><br />Je kan data van België en alle andere landen bekijken en zien hoe de ziekte Covid-19, veroorzaakt door het coronavirus, evolueert.",
         "cases":"gevallen",
         "deaths":"doden",
         "critical":"kritiek",
