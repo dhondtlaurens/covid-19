@@ -99,8 +99,8 @@ export default {
   data () {
     return {
       list: [],
-      langs: ['nl', 'en'],
-      search: 'Belgium',
+      langs: ['en', 'ur'],
+      search: 'Sindh',
       focus: false
     }
   },
