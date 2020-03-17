@@ -19,7 +19,7 @@ import Footer from '@/components/footer/Footer'
 
 export default {
   beforeMount () {
-    this.fetchAPI()
+    this.fetchLocal()
   },
   methods: {
     fetchAPI () {
@@ -43,6 +43,7 @@ export default {
           }
         })
         .then(function (data) {
+          console.log(data[0].value)
           self.$store.dispatch('setAppData', JSON.parse(data[0].value))
         })
     },
