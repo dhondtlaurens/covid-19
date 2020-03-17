@@ -21,10 +21,6 @@ export default {
       }
     }
   },
-  props: [
-    'loading',
-    'datesData'
-  ],
   computed: {
     ...mapGetters([
       'getAppActive',
@@ -32,6 +28,7 @@ export default {
     ]),
     computedChartData () {
       let self = this
+
       let chartData = {
         labels: [],
         datasets: [

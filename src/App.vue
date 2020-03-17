@@ -24,8 +24,12 @@ export default {
   methods: {
     fetchAPI () {
       let self = this
+      let today = new Date()
 
-      fetch('https://coronavirus-19-api.herokuapp.com/countries', {
+      let day = today.getDate()
+      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+
+      fetch('http://covid19-data-api.herokuapp.com/countries/' + day + '_' + month + '_20', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8'
@@ -39,11 +43,7 @@ export default {
           }
         })
         .then(function (data) {
-          if (data.length > 0) {
-            self.$store.dispatch('setAppData', data)
-          } else {
-            self.fetchLocal()
-          }
+          self.$store.dispatch('setAppData', JSON.parse(data[0].value))
         })
     },
     fetchLocal () {
