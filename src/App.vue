@@ -29,7 +29,7 @@ export default {
       let day = today.getDate()
       let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
 
-      fetch('http://covid19-data-api.herokuapp.com/countries/' + day + '_' + month + '_20', {
+      fetch('https://covid19-data-api.herokuapp.com/countries/' + day + '_' + month + '_20', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8'

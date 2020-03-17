@@ -34,7 +34,7 @@ export default {
       let self = this
       self.loading = true
 
-      fetch('http://covid19-data-api.herokuapp.com/countries/', {
+      fetch('https://covid19-data-api.herokuapp.com/countries/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8'
