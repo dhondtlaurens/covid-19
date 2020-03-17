@@ -1,23 +1,23 @@
 {
-  "nl":{
+  "ur":{
     "components":{
       "header":{
-        "placeholder":"Zoeken",
-        "empty":"Geen resultaten"
+        "placeholder":"سرچ",
+        "empty":"موجود نہیں"
       },
       "footer":{
         "info":"<a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>Laurens D&#39Hondt</a>",
-        "refresh": "Update binnen:"
+        "refresh": "ری فریش:"
       }
     },
     "views":{
       "home":{
-        "title":"Blijf gewoon <span class='text-blue-200'>thuis</span>",
-        "description":"Te veel mensen beseffen nog niet hoe ernstig Corona is en dat ze thuis moeten blijven. Deze site moet hen overtuigen.",
-        "cases":"gevallen",
-        "deaths":"doden",
-        "critical":"kritiek",
-        "recovered":"hersteld"
+        "title":"پاکستان <span class='text-blue-200'>کورونا</span>",
+        "description":"پاکستان میں کورونا کی تازہ ترین عدد",
+        "cases":"کل کیس",
+        "deaths":"اموات",
+        "critical":"انتہائی نگھداشت",
+        "recovered":"ٹھیک"
       }
     }
   },
