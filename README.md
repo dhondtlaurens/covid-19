@@ -1,9 +1,9 @@
 # covid19
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0011e96f-0e1a-471f-86a6-f81b79cb266e/deploy-status)](https://app.netlify.com/sites/pakcovid19/deploys)
 
 ## Just stay home
 
-Too many people don't yet realize how serious Corona is and that they should stay at home. This repo is an attempt to show the data in different areas of Pakistan 
+This repo is an attempt to show the data in different areas of Pakistan 
 
 ### Install dependencies
 ```
