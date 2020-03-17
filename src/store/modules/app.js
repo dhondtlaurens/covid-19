@@ -1,6 +1,6 @@
 const state = {
   data: {},
-  active: 'Belgium',
+  active: 'Sindh',
 
   cases: 0,
   deaths: 0,
