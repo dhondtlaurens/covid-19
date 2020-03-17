@@ -25,30 +25,6 @@ export default {
     fetchAPI () {
       let self = this
 
-      fetch('https://coronavirus-19-api.herokuapp.com/countries', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-        }
-      })
-        .then(function (response) {
-          if (response.status === 200) {
-            return response.json()
-          } else {
-            self.fetchLocal()
-          }
-        })
-        .then(function (data) {
-          if (data.length > 0) {
-            self.$store.dispatch('setAppData', data)
-          } else {
-            self.fetchLocal()
-          }
-        })
-    },
-    fetchLocal () {
-      let self = this
-
       fetch('/data/countries.json', {
         method: 'GET',
         headers: {
