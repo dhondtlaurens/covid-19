@@ -30,8 +30,6 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'Chart',
   data () {
@@ -48,13 +46,13 @@ export default {
     initInterval () {
       let self = this
       self.minutes = Math.floor(self.interval / 60)
-      self.seconds = self.interval - self.minutes * 60;
+      self.seconds = self.interval - self.minutes * 60
 
       setInterval(() => {
         self.interval--
 
         self.minutes = Math.floor(self.interval / 60)
-        self.seconds = self.interval - self.minutes * 60;
+        self.seconds = self.interval - self.minutes * 60
 
         if (self.interval <= 0) {
           self.interval = 600
@@ -66,7 +64,3 @@ export default {
 }
 
 </script>
-
-<style lang="scss" scoped>
-
-</style>

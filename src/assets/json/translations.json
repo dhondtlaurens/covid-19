@@ -35,7 +35,7 @@
     "views":{
       "home":{
         "title":"Just stay <span class='text-blue-200'>home</span>",
-        "description":"Too many people don't yet realize how serious Corona is and that they should stay at home. This site should convince them.",
+        "description":"The <a target='_blank' class='text-blue-200' href='https://en.wikipedia.org/wiki/Severe_acute_respiratory_syndrome_coronavirus_2'>SARS-CoV-2 virus</a>, better known as the coronavirus, shuts down public life worldwide. Governments are calling on people to be careful and avoid contact as much as possible. So just stay at home. In this way, we can all work together to ensure that people do not get sick and so overload the health system. Together we can smooth the curve with the number of infections. Together for #flattenthecurve.<br/><br/>You can view data from Belgium and all other countries and see how the disease <a target='_blank' class='text-blue-200' href='https://en.wikipedia.org/wiki/Coronavirus_disease_2019'>Covid-19</a>, caused by the coronavirus, evolves.",
         "cases":"cases",
         "deaths":"deaths",
         "critical":"critical",

@@ -31,13 +31,9 @@ export default {
       'getDatesData'
     ])
   },
-  beforeMount () {
-    this.fetchAPI()
-  },
   methods: {
     fetchAPI () {
       let self = this
-      self.loading = true
 
       fetch('https://covid19-data-api.herokuapp.com/countries/', {
         method: 'GET',
@@ -90,6 +86,11 @@ export default {
         })
     }
   },
+  watch: {
+    'getAppData': function () {
+      this.fetchAPI()
+    }
+  },
   components: {
     'twitter-component': Twitter,
     'curve-component': Curve
@@ -97,11 +98,3 @@ export default {
 }
 
 </script>
-
-<style lang="scss">
- .charts {
-   .row {
-
-   }
- }
-</style>
