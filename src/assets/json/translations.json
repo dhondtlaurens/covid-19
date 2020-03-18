@@ -13,7 +13,7 @@
     "views":{
       "home":{
         "title":"پاکستان <span class='text-blue-200'>کورونا</span>",
-        "description":"پاکستان میں کورونا کی تازہ ترین عدد",
+        "description":"Got flu, fever and 2G internet, won't be maintaining this anymore Last Update 18 March 11:54 Contact on GitHub to takeover ",
         "cases":"کل کیس",
         "deaths":"اموات",
         "critical":"انتہائی نگھداشت",
@@ -35,7 +35,7 @@
     "views":{
       "home":{
         "title":"Just stay <span class='text-blue-200'>home</span>",
-        "description":"Too many people don't yet realize how serious Corona is and that they should stay at home. This site should convince them.",
+        "description":"Too many people don't yet realize how serious Corona is and that they should stay at home. This site should convince them. Got flu, fever and 2G internet, won't be maintaining this anymore Last Update 18 March 11:54 Contact on GitHub to takeover ",
         "cases":"cases",
         "deaths":"deaths",
         "critical":"critical",
