@@ -19,7 +19,7 @@ import Footer from '@/components/footer/Footer'
 
 export default {
   beforeMount () {
-    this.fetchAPI()
+    this.fetchLocal()
   },
   methods: {
     fetchAPI () {

@@ -87,7 +87,7 @@ export default {
   },
   watch: {
     'getAppData': function () {
-      this.fetchAPI()
+      this.fetchLocal()
     }
   },
   components: {
