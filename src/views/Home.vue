@@ -20,8 +20,12 @@
               {{ $t('views.home.cases') }}
             </div>
 
-            <div class="flex justify-center p-16 text-34 text-blue-200 font-bold">
+            <div class="flex flex-col justify-center items-center p-16 text-34 text-blue-200 font-bold">
               {{ getAppCases }}
+
+              <div v-if="getAppCases !== 0 && getAppTotalCases !== 0" class="text-12">
+                  {{ getAppTotalCases }} ({{ Math.round((getAppCases / getAppTotalCases) * 100) }}%)
+              </div>
             </div>
           </div>
         </div>
@@ -32,8 +36,12 @@
               {{ $t('views.home.deaths') }}
             </div>
 
-            <div class="flex justify-center p-16 text-34 text-red-100 font-bold">
+            <div class="flex flex-col justify-center items-center p-16 text-34 text-red-100 font-bold">
               {{ getAppDeaths }}
+
+              <div v-if="getAppDeaths !== 0 && getAppTotalDeaths !== 0" class="text-12">
+                  {{ getAppTotalDeaths }} ({{ Math.round((getAppDeaths / getAppTotalDeaths) * 100) }}%)
+              </div>
             </div>
           </div>
         </div>
@@ -44,8 +52,12 @@
               {{ $t('views.home.critical') }}
             </div>
 
-            <div class="flex justify-center p-16 text-34 text-orange-100 font-bold">
+            <div class="flex flex-col justify-center items-center p-16 text-34 text-orange-100 font-bold">
               {{ getAppCritical }}
+
+              <div v-if="getAppCritical !== 0 && getAppTotalCritical !== 0" class="text-12">
+                  {{ getAppTotalCritical }} ({{ Math.round((getAppCritical / getAppTotalCritical) * 100) }}%)
+              </div>
             </div>
           </div>
         </div>
@@ -56,8 +68,12 @@
               {{ $t('views.home.recovered') }}
             </div>
 
-            <div class="flex justify-center p-16 text-34 text-green-100 font-bold">
+            <div class="flex flex-col justify-center items-center p-16 text-34 text-green-100 font-bold">
               {{ getAppRecovered }}
+
+              <div v-if="getAppRecovered !== 0 && getAppTotalRecovered !== 0" class="text-12">
+                  {{ getAppTotalRecovered }} ({{ Math.round((getAppRecovered / getAppTotalRecovered) * 100) }}%)
+              </div>
             </div>
           </div>
         </div>
@@ -79,9 +95,16 @@ export default {
   computed: {
     ...mapGetters([
       'getAppCases',
+      'getAppTotalCases',
+
       'getAppDeaths',
+      'getAppTotalDeaths',
+
       'getAppCritical',
-      'getAppRecovered'
+      'getAppTotalCritical',
+
+      'getAppRecovered',
+      'getAppTotalRecovered'
     ])
   },
   components: {
