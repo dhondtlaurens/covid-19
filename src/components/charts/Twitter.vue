@@ -1,9 +1,21 @@
 <template>
-  <div class="twitter w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-16">
-    <div class="px-16 h-full border border-gray-100 overflow-scroll">
-      <div class="relative w-full h-full">
-        <div class="absolute inset-0">
-          <a class="twitter-timeline" href="https://twitter.com/laurensdhondt/lists/list?ref_src=twsrc%5Etfw"></a>
+  <div class="flex flex-wrap">
+    <div class="twitter w-full sm:w-1/2 xl:w-1/4 px-16 mb-32">
+      <div class="px-16 h-full border border-gray-100 overflow-scroll">
+        <div class="relative w-full h-full">
+          <div class="absolute inset-0">
+            <a class="twitter-timeline" href="https://twitter.com/be_gezondheid?ref_src=twsrc%5Etfw"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="twitter w-full sm:w-1/2 xl:w-1/4 px-16 mb-32">
+      <div class="px-16 h-full border border-gray-100 overflow-scroll">
+        <div class="relative w-full h-full">
+          <div class="absolute inset-0">
+            <a class="twitter-timeline" href="https://twitter.com/sciensano?ref_src=twsrc%5Etfw"></a>
+          </div>
         </div>
       </div>
     </div>
@@ -28,7 +40,7 @@ export default {
 <style lang="scss">
 
 .twitter {
-  min-height: 300px;
+  height: 300px;
 }
 
 </style>

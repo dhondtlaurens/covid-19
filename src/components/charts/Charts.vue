@@ -1,14 +1,12 @@
 <template>
   <div class="charts pb-32">
-    <div class="row flex flex-wrap">
-      <curve-component
-        v-if="loading === false"
-      />
+    <curve-component
+      v-if="loading === false"
+    />
 
-      <twitter-component
-        v-if="loading === false"
-      />
-    </div>
+    <twitter-component
+      v-if="loading === false"
+    />
   </div>
 </template>
 

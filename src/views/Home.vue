@@ -14,7 +14,7 @@
       </div>
 
       <div class="flex flex-wrap w-full lg:w-1/2">
-        <div class="flex-shrink-0 px-16 w-full md:w-1/2 mb-32">
+        <div class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32">
           <div class="border border-gray-100">
             <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.cases') }}
@@ -26,7 +26,7 @@
           </div>
         </div>
 
-        <div class="flex-shrink-0 px-16 w-full md:w-1/2 mb-32">
+        <div class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32">
           <div class="border border-gray-100">
             <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.deaths') }}
@@ -38,7 +38,7 @@
           </div>
         </div>
 
-        <div class="flex-shrink-0 px-16 w-full md:w-1/2 mb-32">
+        <div class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32">
           <div class="border border-gray-100">
             <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.critical') }}
@@ -50,7 +50,7 @@
           </div>
         </div>
 
-        <div class="flex-shrink-0 px-16 w-full md:w-1/2 mb-32">
+        <div class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32">
           <div class="border border-gray-100">
             <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.recovered') }}

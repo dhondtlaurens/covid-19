@@ -62,7 +62,7 @@ export default {
           return response.json()
         })
         .then(function (data) {
-          self.$store.dispatch('setAppData', data)
+          self.$store.dispatch('setAppData', JSON.parse(data[0].value))
         })
     }
   },
