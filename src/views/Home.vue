@@ -24,7 +24,7 @@
               {{ getAppCases }}
 
               <div v-if="getAppCases !== 0 && getAppTotalCases !== 0" class="text-12">
-                  {{ getAppTotalCases }} ({{ Math.round((getAppCases / getAppTotalCases) * 100) }}%)
+                {{ getAppTotalCases }} ({{ Math.round((getAppCases / getAppTotalCases) * 100) }}%)
               </div>
             </div>
           </div>
