@@ -81,6 +81,7 @@
     </div>
 
     <charts-component />
+    <social-component />
   </div>
 </template>
 
@@ -89,6 +90,7 @@
 import { mapGetters } from 'vuex'
 
 import Charts from '@/components/charts/Charts'
+import Social from '@/components/social/Social'
 
 export default {
   name: 'home',
@@ -108,7 +110,8 @@ export default {
     ])
   },
   components: {
-    'charts-component': Charts
+    'charts-component': Charts,
+    'social-component': Social
   }
 }
 

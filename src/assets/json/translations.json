@@ -8,6 +8,10 @@
       "charts":{
         "global":"Globaal"
       },
+      "info":{
+        "title":"Bescherm jezelf en <span class='text-blue-200'>anderen</span>",
+        "description": "👉 Blijf thuis<br>👉 Zorg voor jezelf. Was regelmatig je handen.<br>👉 Zorg voor anderen. Hou voldoende afstand."
+      },
       "footer":{
         "info":"<a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>Laurens D&#39Hondt</a>",
         "refresh": "Update over:"
@@ -32,6 +36,10 @@
       },
       "charts":{
         "global":"Global"
+      },
+      "info":{
+        "title":"Protect yourself and <span class='text-blue-200'>others</span>",
+        "description": "👉 Stay home<br>👉 Take care of yourself. Wash your hands regularly.<br>👉 Take care of others. Keep enough distance."
       },
       "footer":{
         "info":"<a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>Laurens D&#39Hondt</a>",

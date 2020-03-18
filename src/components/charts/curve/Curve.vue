@@ -2,7 +2,8 @@
   <div class="curve flex flex-wrap w-full">
     <div
       v-if="getAppActive !== ''"
-      class="w-full lg:w-1/2 px-16 mb-32">
+      class="w-full lg:w-1/2 px-16 mb-32"
+    >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ getAppActive }}
@@ -42,7 +43,7 @@
 
 import { mapGetters } from 'vuex'
 
-import LineChart from '@/components/charts/vue/LineChart'
+import LineChart from '@/components/charts/chartjs/LineChart'
 
 export default {
   data () {

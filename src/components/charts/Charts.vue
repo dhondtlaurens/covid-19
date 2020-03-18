@@ -1,10 +1,6 @@
 <template>
-  <div class="charts pb-32">
+  <div class="charts">
     <curve-component
-      v-if="loading === false"
-    />
-
-    <twitter-component
       v-if="loading === false"
     />
   </div>
@@ -14,8 +10,7 @@
 
 import { mapGetters } from 'vuex'
 
-import Twitter from '@/components/charts/Twitter'
-import Curve from '@/components/charts/Curve'
+import Curve from '@/components/charts/curve/Curve'
 
 export default {
   data () {
@@ -91,7 +86,6 @@ export default {
     }
   },
   components: {
-    'twitter-component': Twitter,
     'curve-component': Curve
   }
 }
