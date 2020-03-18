@@ -34,6 +34,7 @@ export default {
   methods: {
     fetchAPI () {
       let self = this
+      self.loading = true
 
       fetch('https://covid19-data-api.herokuapp.com/countries/', {
         method: 'GET',
