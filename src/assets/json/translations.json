@@ -2,7 +2,7 @@
   "nl":{
     "components":{
       "header":{
-        "placeholder":"Zoeken",
+        "placeholder":"Zoek land",
         "empty":"Geen resultaten"
       },
       "charts":{
@@ -27,7 +27,7 @@
   "en":{
     "components":{
       "header":{
-        "placeholder":"Search",
+        "placeholder":"Search country",
         "empty":"No results"
       },
       "charts":{
