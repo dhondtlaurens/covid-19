@@ -9,8 +9,7 @@
         "global":"Globaal"
       },
       "footer":{
-        "info":"<a class='text-blue-200 no-underline appearance-none mr-32' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>Laurens D&#39Hondt</a><a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://www.coronaviruschecklist.co/'>Coronavirus Checklist</a>",
-        "refresh": "Update over:"
+        "refresh": "Update:"
       }
     },
     "views":{
@@ -35,8 +34,7 @@
         "global":"Global"
       },
       "footer":{
-        "info":"<a class='text-blue-200 no-underline appearance-none mr-32' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>Laurens D&#39Hondt</a><a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://www.coronaviruschecklist.co/'>Coronavirus Checklist</a>",
-        "refresh": "Update in:"
+        "refresh": "Update:"
       }
     },
     "views":{
