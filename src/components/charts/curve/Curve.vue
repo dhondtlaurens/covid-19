@@ -23,29 +23,6 @@
     </div>
 
     <div
-      class="w-full px-16 mb-32"
-      :class="{'lg:w-1/2': getAppActive !== ''}"
-    >
-      <div class="w-full h-full border border-gray-100">
-        <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          {{ $t('components.charts.global') }}
-
-          <div class="text-12 pl-8">
-            ({{ $t('components.charts.linear') }})
-          </div>
-        </div>
-
-        <div class="p-16">
-          <line-chart
-            :key="updateTotal"
-            :chartData="computedTotalChartData"
-            :options="optionsLinear"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div
       v-if="getAppActive !== ''"
       class="w-full lg:w-1/2 px-16 mb-32"
     >
@@ -67,10 +44,27 @@
       </div>
     </div>
 
-    <div
-      class="w-full px-16 mb-32"
-      :class="{'lg:w-1/2': getAppActive !== ''}"
-    >
+    <div class="w-full px-16 lg:w-1/2 mb-32">
+      <div class="w-full h-full border border-gray-100">
+        <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+          {{ $t('components.charts.global') }}
+
+          <div class="text-12 pl-8">
+            ({{ $t('components.charts.linear') }})
+          </div>
+        </div>
+
+        <div class="p-16">
+          <line-chart
+            :key="updateTotal"
+            :chartData="computedTotalChartData"
+            :options="optionsLinear"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-1/2 px-16 mb-32">
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ $t('components.charts.global') }}
