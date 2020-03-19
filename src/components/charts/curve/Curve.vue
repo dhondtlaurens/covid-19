@@ -7,12 +7,16 @@
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ getAppActive }}
+
+          <div class="text-12 pl-8">
+            ({{ $t('components.charts.linear') }})
+          </div>
         </div>
 
         <div class="p-16">
           <line-chart
             :chartData="computedCountryChartData"
-            :options="options"
+            :options="optionsLinear"
           />
         </div>
       </div>
@@ -25,13 +29,62 @@
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ $t('components.charts.global') }}
+
+          <div class="text-12 pl-8">
+            ({{ $t('components.charts.linear') }})
+          </div>
         </div>
 
         <div class="p-16">
           <line-chart
             :key="updateTotal"
             :chartData="computedTotalChartData"
-            :options="options"
+            :options="optionsLinear"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div
+      v-if="getAppActive !== ''"
+      class="w-full lg:w-1/2 px-16 mb-32"
+    >
+      <div class="w-full h-full border border-gray-100">
+        <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+          {{ getAppActive }}
+
+          <div class="text-12 pl-8">
+            ({{ $t('components.charts.logarithmic') }})
+          </div>
+        </div>
+
+        <div class="p-16">
+          <line-chart
+            :chartData="computedCountryChartData"
+            :options="optionsLogarithmic"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="w-full px-16 mb-32"
+      :class="{'lg:w-1/2': getAppActive !== ''}"
+    >
+      <div class="w-full h-full border border-gray-100">
+        <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+          {{ $t('components.charts.global') }}
+
+          <div class="text-12 pl-8">
+            ({{ $t('components.charts.logarithmic') }})
+          </div>
+        </div>
+
+        <div class="p-16">
+          <line-chart
+            :key="updateTotal"
+            :chartData="computedTotalChartData"
+            :options="optionsLogarithmic"
           />
         </div>
       </div>
@@ -49,9 +102,32 @@ export default {
   data () {
     return {
       updateTotal: 0,
-      options: {
+      optionsLinear: {
         maintainAspectRatio: false,
         response: true
+      },
+      optionsLogarithmic: {
+        maintainAspectRatio: false,
+        response: true,
+        scales: {
+          yAxes: [{
+            type: 'logarithmic',
+            ticks: {
+              min: 0,
+              max: 1000000,
+              callback: function (value, index, values) {
+                if (value === 1000000) return '1000000'
+                if (value === 100000) return '100000'
+                if (value === 10000) return '10000'
+                if (value === 1000) return '1000'
+                if (value === 100) return '100'
+                if (value === 10) return '10'
+                if (value === 0) return '0'
+                return null
+              }
+            }
+          }]
+        }
       }
     }
   },

@@ -6,7 +6,9 @@
         "empty":"Geen resultaten"
       },
       "charts":{
-        "global":"Globaal"
+        "global": "Globaal",
+        "linear": "lineair",
+        "logarithmic": "logaritmisch"
       },
       "footer":{
         "refresh": "Update:"
@@ -31,7 +33,9 @@
         "empty":"No results"
       },
       "charts":{
-        "global":"Global"
+        "global":"Global",
+        "linear": "linear",
+        "logarithmic": "logarithmic"
       },
       "footer":{
         "refresh": "Update:"
