@@ -104,13 +104,14 @@ export default {
     return {
       list: [],
       langs: ['nl', 'en'],
-      search: 'Belgium',
+      search: '',
       focus: false
     }
   },
   computed: {
     ...mapGetters([
-      'getAppData'
+      'getAppData',
+      'getAppActive'
     ]),
     filteredResults: function () {
       let results = []
@@ -131,19 +132,22 @@ export default {
       if (this.search === '') this.setGlobal()
     },
     setGlobal () {
-      this.search = ''
       this.focus = false
 
-      this.$store.dispatch('setAppActive', this.search)
+      localStorage.setItem('covidAppActive', '')
+      this.$router.push('/')
     },
     setCountry (e) {
-      this.search = e.currentTarget.dataset.country
       this.focus = false
 
-      this.$store.dispatch('setAppActive', this.search)
+      localStorage.setItem('covidAppActive', e.currentTarget.dataset.country)
+      this.$router.push('/' + e.currentTarget.dataset.country)
     }
   },
   watch: {
+    'getAppActive': function () {
+      this.search = this.getAppActive
+    },
     'getAppData': function () {
       if (this.getAppData.length > 0) {
         this.list = []

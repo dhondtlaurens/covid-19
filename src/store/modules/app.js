@@ -1,6 +1,6 @@
 const state = {
   data: {},
-  active: 'Belgium',
+  active: '',
 
   cases: 0,
   deaths: 0,
@@ -67,9 +67,6 @@ const getters = {
 }
 
 const updateToday = (data, country) => {
-  console.log(data)
-  console.log(country)
-
   state.cases = 0
   state.totalCases = 0
 

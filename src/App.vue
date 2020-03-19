@@ -13,13 +13,20 @@
 
 <script>
 
+import { mapGetters } from 'vuex'
+
 import Header from '@/components/header/Header'
 import HeaderChart from '@/components/header/Chart'
 import Footer from '@/components/footer/Footer'
 
 export default {
   beforeMount () {
-    this.fetchAPI()
+    this.fetchLocal()
+  },
+  computed: {
+    ...mapGetters([
+      'getAppData'
+    ])
   },
   methods: {
     fetchAPI () {
@@ -45,6 +52,7 @@ export default {
         .then(function (data) {
           if (JSON.parse(data[0].value).length > 0) {
             self.$store.dispatch('setAppData', JSON.parse(data[0].value))
+            self.setCountry(self.$route.params.country)
           } else {
             self.fetchLocal()
           }
@@ -67,7 +75,32 @@ export default {
         })
         .then(function (data) {
           self.$store.dispatch('setAppData', JSON.parse(data[0].value))
+          self.setCountry(self.$route.params.country)
         })
+    },
+    setCountry (country) {
+      if (country !== undefined) {
+        let filter = this.getAppData.filter((item) => {
+          return item.country === country
+        })
+
+        if (filter.length === 1) {
+          this.$store.dispatch('setAppActive', country)
+        } else {
+          this.$router.push('/')
+        }
+      } else {
+        if (localStorage.getItem('covidAppActive') !== null && localStorage.getItem('covidAppActive') !== '') {
+          this.$router.push('/' + localStorage.getItem('covidAppActive'))
+        } else {
+          this.$store.dispatch('setAppActive', '')
+        }
+      }
+    }
+  },
+  watch: {
+    $route () {
+      this.setCountry(this.$route.params.country)
     }
   },
   components: {
