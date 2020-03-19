@@ -21,7 +21,7 @@ import Footer from '@/components/footer/Footer'
 
 export default {
   beforeMount () {
-    this.fetchLocal()
+    this.fetchAPI()
   },
   computed: {
     ...mapGetters([
