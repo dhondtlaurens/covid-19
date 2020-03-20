@@ -5,15 +5,17 @@
   >
     <div class="list absolute inset-0">
       <div
-        class="px-16 py-8 flex justify-between border-b border-gray-100"
+        class="px-16 py-8 flex justify-between border-b border-gray-100 hover:bg-gray-100 cursor-pointer"
         :class="{'bg-gray-100': country.country === getAppActive}"
+
         v-for="(country, index) in computedCountryList"
+
         :key="country.country"
         :ref="country.country"
+
+        @click="$store.dispatch('setAppActive', country.country)"
       >
-        <div
-          class="text-blue-300"
-        >
+        <div class="text-blue-300" >
           {{ index + 1 }}. {{ country.country }}
         </div>
 
