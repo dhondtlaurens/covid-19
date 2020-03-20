@@ -1,41 +1,51 @@
 {
-  "ur":{
+  "nl":{
     "components":{
       "header":{
-        "placeholder":"سرچ",
-        "empty":"موجود نہیں"
+        "placeholder":"Zoek land",
+        "empty":"Geen resultaten"
+      },
+      "charts":{
+        "global": "Globaal",
+        "linear": "lineair",
+        "logarithmic": "logaritmisch"
       },
       "footer":{
-        "info":"<a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://github.com/aonsyed/covid19/'>Covid 19 PK</a>",
-        "refresh": "ری فریش:"
+        "refresh": "Update:"
       }
     },
     "views":{
       "home":{
-        "title":"پاکستان <span class='text-blue-200'>کورونا</span>",
-        "description":"Got flu, fever and 2G internet, won't be maintaining this anymore Last Update 18 March 11:54 Contact on GitHub to takeover ",
-        "cases":"کل کیس",
-        "deaths":"اموات",
-        "critical":"انتہائی نگھداشت",
-        "recovered":"ٹھیک"
+        "title":"Blijf gewoon <span class='text-blue-200'>thuis</span>",
+        "description":"Het <a target='_blank' class='text-blue-200' href='https://nl.wikipedia.org/wiki/SARS-CoV-2'>SARS-CoV-2-virus</a>, beter bekend als het coronavirus, legt wereldwijd het publieke leven stil. Overheden roepen mensen op om voorzichtig te zijn, en zoveel mogelijk contact te vermijden. Gewoon thuis blijven, dus. Op die manier kunnen we er allemaal samen voor zorgen dat mensen niet ziek worden en zo het gezondheidssysteem overbelasten. Samen kunnen we de curve met het aantal besmettingen afvlakken. Samen voor <a target='_blank' class='text-blue-200' href='https://www.vrt.be/vrtnws/nl/2020/03/17/professor-steven-callens-over-scherpere-maatregelen/'>#flattenthecurve</a>.<br/><br/>Je kan data van alle landen bekijken en zien hoe de ziekte <a target='_blank' class='text-blue-200' href='https://nl.wikipedia.org/wiki/COVID-19'>Covid-19</a>, veroorzaakt door het coronavirus, evolueert. Het laatst bekeken land wordt opgeslaan.",
+
+        "cases":"besmettingen",
+        "deaths":"doden",
+        "critical":"kritiek",
+        "recovered":"hersteld"
       }
     }
   },
   "en":{
     "components":{
       "header":{
-        "placeholder":"Search",
+        "placeholder":"Search country",
         "empty":"No results"
       },
+      "charts":{
+        "global":"Global",
+        "linear": "linear",
+        "logarithmic": "logarithmic"
+      },
       "footer":{
-        "info":"<a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://github.com/aonsyed/covid19/'>Covid 19 PK</a>",
-        "refresh": "Update in:"
+        "refresh": "Update:"
       }
     },
     "views":{
       "home":{
         "title":"Just stay <span class='text-blue-200'>home</span>",
-        "description":"Too many people don't yet realize how serious Corona is and that they should stay at home. This site should convince them. Got flu, fever and 2G internet, won't be maintaining this anymore Last Update 18 March 11:54 Contact on GitHub to takeover ",
+        "description":"The <a target='_blank' class='text-blue-200' href='https://en.wikipedia.org/wiki/Severe_acute_respiratory_syndrome_coronavirus_2'>SARS-CoV-2 virus</a>, better known as the coronavirus, shuts down public life worldwide. Governments are calling on people to be careful and avoid contact as much as possible. So just stay at home. In this way, we can all work together to ensure that people do not get sick and so overload the health system. Together we can smooth the curve with the number of infections. Together for #flattenthecurve.<br/><br/>You can view data from all countries and see how the disease <a target='_blank' class='text-blue-200' href='https://en.wikipedia.org/wiki/Coronavirus_disease_2019'>Covid-19</a>, caused by the coronavirus, evolves. The last viewed country is saved.",
+
         "cases":"cases",
         "deaths":"deaths",
         "critical":"critical",

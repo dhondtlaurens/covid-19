@@ -6,12 +6,12 @@ import Home from '@/views/Home.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/:country?',
       name: 'home',
-      component: Home
+      component: Home,
+      props: true
     }
   ]
 })

@@ -55,6 +55,7 @@
         >
           <option
             v-for="(lang, i) in langs"
+
             :key="`Lang${i}`"
             :value="lang"
           >
@@ -71,8 +72,10 @@
           class="flex items-center px-32 h-64 border-b border-gray-100 hover:bg-blue-100 cursor-pointer"
 
           v-for="result in filteredResults"
+
           :key="result.original"
           :data-country="result.original"
+
           @click="setCountry"
         >
           {{ result.original }}
@@ -100,14 +103,15 @@ export default {
   data () {
     return {
       list: [],
-      langs: ['en', 'ur'],
-      search: 'Search province',
+      langs: ['nl', 'en'],
+      search: '',
       focus: false
     }
   },
   computed: {
     ...mapGetters([
-      'getAppData'
+      'getAppData',
+      'getAppActive'
     ]),
     filteredResults: function () {
       let results = []
@@ -128,22 +132,26 @@ export default {
       if (this.search === '') this.setGlobal()
     },
     setGlobal () {
-      this.search = ''
       this.focus = false
 
-      this.$store.dispatch('setAppActive', this.search)
+      localStorage.setItem('covidAppActive', '')
+      this.$router.push('/')
     },
     setCountry (e) {
-      this.search = e.currentTarget.dataset.country
       this.focus = false
 
-      this.$store.dispatch('setAppActive', this.search)
+      localStorage.setItem('covidAppActive', e.currentTarget.dataset.country)
+      this.$router.push('/' + e.currentTarget.dataset.country)
     }
   },
   watch: {
+    'getAppActive': function () {
+      this.search = this.getAppActive
+    },
     'getAppData': function () {
       if (this.getAppData.length > 0) {
         this.list = []
+
         this.getAppData.map((item) => {
           this.list.push(item.country)
         })

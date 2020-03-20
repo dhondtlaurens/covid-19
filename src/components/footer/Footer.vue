@@ -1,10 +1,15 @@
 <template>
   <div class="footer flex fixed w-full h-64 bottom-0 border-t bg-white border-gray-100">
-    <div class="info flex justify-between items-center flex-grow h-full px-32 flex border-r border-gray-100">
-      <div
-        class="hidden sm:flex text-16 text-blue-200"
-        v-html="$t('components.footer.info')"
-      ></div>
+    <div class="flex justify-between items-center flex-grow h-full px-32 flex border-r border-gray-100">
+      <div class="hidden sm:flex text-16 text-blue-200">
+        <a class='text-blue-200 no-underline appearance-none mr-32' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>
+          Laurens D&#39;Hondt
+        </a>
+
+        <a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://www.coronaviruschecklist.co/'>
+          Coronavirus Checklist
+        </a>
+    </div>
 
       <div
         class="text-16 text-blue-300 no-underline"
@@ -30,8 +35,6 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'Chart',
   data () {
@@ -48,13 +51,13 @@ export default {
     initInterval () {
       let self = this
       self.minutes = Math.floor(self.interval / 60)
-      self.seconds = self.interval - self.minutes * 60;
+      self.seconds = self.interval - self.minutes * 60
 
       setInterval(() => {
         self.interval--
 
         self.minutes = Math.floor(self.interval / 60)
-        self.seconds = self.interval - self.minutes * 60;
+        self.seconds = self.interval - self.minutes * 60
 
         if (self.interval <= 0) {
           self.interval = 600
@@ -68,5 +71,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+ .footer {
+   a {
+     margin-right: 32px;
+   }
+ }
 
 </style>

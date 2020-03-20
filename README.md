@@ -1,12 +1,10 @@
 # covid19
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/dc6b4b4c-568c-4c86-a9e0-3243d580dacb/deploy-status)](https://app.netlify.com/sites/xenodochial-dubinsky-986498/deploys)
 
-Got flu, fever and 2G internet, won't be maintaining this anymore 
-Last Update 18 March 11:54
-Contact on GitHub to takeover
 ## Just stay home
 
-This repo is an attempt to show the data in different areas of Pakistan 
+Too many people don't yet realize how serious Corona is and that they should stay at home. This site should convince them. [blijfgewoonthuis.be](blijfgewoonthuis.be)
 
 ### Install dependencies
 ```

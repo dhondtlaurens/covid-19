@@ -14,8 +14,11 @@ import Translations from '@/assets/json/translations.json'
 Vue.use(VueI18n)
 Vue.config.productionTip = false
 
+let locale = navigator.languages !== undefined ? navigator.languages[0].substring(0, 2).toLowerCase() : navigator.language.substring(0, 2).toLowerCase()
+locale = ['nl', 'en'].includes(locale) ? locale : 'en'
+
 const i18n = new VueI18n({
-  locale: 'en',
+  locale: locale,
   messages: Translations
 })
 

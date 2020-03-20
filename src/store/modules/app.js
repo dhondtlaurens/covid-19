@@ -5,7 +5,12 @@ const state = {
   cases: 0,
   deaths: 0,
   critical: 0,
-  recovered: 0
+  recovered: 0,
+
+  totalCases: 0,
+  totaldeaths: 0,
+  totalCritical: 0,
+  totalRecovered: 0
 }
 
 const mutations = {
@@ -14,85 +19,18 @@ const mutations = {
   },
   setAppActive (state, value) {
     state.active = value
-  },
-  setAppCases (state, value) {
-    state.cases = value
-  },
-  setAppDeaths (state, value) {
-    state.deaths = value
-  },
-  setAppCritical (state, value) {
-    state.critical = value
-  },
-  setAppRecovered (state, value) {
-    state.recovered = value
   }
 }
 
 const actions = {
   setAppData ({ commit }, value) {
     commit('setAppData', value)
-    if (state.active !== '') {
-      let country = value.filter((item) => {
-        return item.country === state.active
-      })[0]
-
-      state.cases = country.cases
-      state.deaths = country.deaths
-      state.critical = country.critical
-      state.recovered = country.recovered
-    } else {
-      state.cases = 0
-      state.deaths = 0
-      state.critical = 0
-      state.recovered = 0
-
-      value.map((country) => {
-        state.cases += parseInt(country.cases)
-        state.deaths += parseInt(country.deaths)
-        state.critical += parseInt(country.critical)
-        state.recovered += parseInt(country.recovered)
-      })
-    }
+    updateToday(value, state.active)
   },
   setAppActive ({ commit }, value) {
     commit('setAppActive', value)
-
-    if (value !== '') {
-      let country = state.data.filter((item) => {
-        return item.country === value
-      })[0]
-
-      state.cases = country.cases
-      state.deaths = country.deaths
-      state.critical = country.critical
-      state.recovered = country.recovered
-    } else {
-      state.cases = 0
-      state.deaths = 0
-      state.critical = 0
-      state.recovered = 0
-
-      state.data.map((country) => {
-        state.cases += parseInt(country.cases)
-        state.deaths += parseInt(country.deaths)
-        state.critical += parseInt(country.critical)
-        state.recovered += parseInt(country.recovered)
-      })
-    }
-  },
-  setAppCases ({ commit }, value) {
-    commit('setAppCases', value)
-  },
-  setAppDeaths ({ commit }, value) {
-    commit('setAppDeaths', value)
-  },
-  setAppCritical ({ commit }, value) {
-    commit('setAppCritical', value)
-  },
-  setAppRecovered ({ commit }, value) {
-    commit('setAppRecovered', value)
-  },
+    updateToday(state.data, value)
+  }
 }
 
 const getters = {
@@ -105,15 +43,55 @@ const getters = {
   getAppCases: state => {
     return state.cases
   },
+  getAppTotalCases: state => {
+    return state.totalCases
+  },
   getAppDeaths: state => {
     return state.deaths
+  },
+  getAppTotalDeaths: state => {
+    return state.totaldeaths
   },
   getAppCritical: state => {
     return state.critical
   },
+  getAppTotalCritical: state => {
+    return state.totalCritical
+  },
   getAppRecovered: state => {
     return state.recovered
+  },
+  getAppTotalRecovered: state => {
+    return state.totalRecovered
   }
+}
+
+const updateToday = (data, country) => {
+  state.cases = 0
+  state.totalCases = 0
+
+  state.deaths = 0
+  state.totaldeaths = 0
+
+  state.critical = 0
+  state.totalCritical = 0
+
+  state.recovered = 0
+  state.totalRecovered = 0
+
+  data.map((item) => {
+    state.totalCases += parseInt(item.cases)
+    state.totaldeaths += parseInt(item.deaths)
+    state.totalCritical += parseInt(item.critical)
+    state.totalRecovered += parseInt(item.recovered)
+
+    if (country === item.country || country === '') {
+      state.cases += parseInt(item.cases)
+      state.deaths += parseInt(item.deaths)
+      state.critical += parseInt(item.critical)
+      state.recovered += parseInt(item.recovered)
+    }
+  })
 }
 
 export default {
