@@ -7,6 +7,8 @@
       },
       "charts":{
         "global": "Globaal",
+        "list": "Besmettingen per land",
+
         "linear": "lineair",
         "logarithmic": "logaritmisch"
       },
@@ -34,6 +36,8 @@
       },
       "charts":{
         "global":"Global",
+        "list": "Cases by country",
+
         "linear": "linear",
         "logarithmic": "logarithmic"
       },

@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="w-full px-16 mb-32">
+    <div class="w-full lg:w-3/4 px-16 mb-32">
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ $t('components.charts.global') }}
@@ -60,6 +60,18 @@
             :chartData="computedTotalChartData"
             :options="optionsLinear"
           />
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-1/4 px-16 mb-32">
+      <div class="w-full h-full border border-gray-100">
+        <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+          {{ $t('components.charts.list') }}
+        </div>
+
+        <div class="list-container relative px-16 overflow-scroll">
+          <list-component />
         </div>
       </div>
     </div>
@@ -95,6 +107,7 @@
 import { mapGetters } from 'vuex'
 
 import LineChart from '@/components/charts/chartjs/LineChart'
+import List from '@/components/charts/list/List'
 
 export default {
   data () {
@@ -266,12 +279,20 @@ export default {
     }
   },
   components: {
-    'line-chart': LineChart
+    'line-chart': LineChart,
+    'list-component': List
   }
 }
 
 </script>
 
 <style lang="scss">
+
+ .curve {
+   .list-container {
+     height: calc(100% - 32px);
+     min-height: 300px;
+   }
+ }
 
 </style>
