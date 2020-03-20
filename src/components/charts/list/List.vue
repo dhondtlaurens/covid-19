@@ -13,7 +13,7 @@
         :key="country.country"
         :ref="country.country"
 
-        @click="$store.dispatch('setAppActive', country.country)"
+        @click="$router.push('/' + country.country)"
       >
         <div class="text-blue-300" >
           {{ index + 1 }}. {{ country.country }}
