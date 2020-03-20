@@ -70,9 +70,7 @@
           {{ $t('components.charts.list') }}
         </div>
 
-        <div class="list-container relative px-16 overflow-scroll">
-          <list-component />
-        </div>
+        <list-component />
       </div>
     </div>
 

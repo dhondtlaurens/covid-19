@@ -1,16 +1,25 @@
 <template>
-  <div class="list absolute inset-0">
-    <div
-      class="px-16 py-8 flex justify-between border-b border-gray-100"
-      v-for="country in computedCountryList"
-      :key="country.country"
-    >
-      <div class="text-blue-300">
-        {{ country.country }}
-      </div>
+  <div
+    class="list-container relative px-16 overflow-scroll"
+    ref="list-container"
+  >
+    <div class="list absolute inset-0">
+      <div
+        class="px-16 py-8 flex justify-between border-b border-gray-100"
+        :class="{'bg-gray-100': country.country === getAppActive}"
+        v-for="(country, index) in computedCountryList"
+        :key="country.country"
+        :ref="country.country"
+      >
+        <div
+          class="text-blue-300"
+        >
+          {{ index + 1 }}. {{ country.country }}
+        </div>
 
-      <div class="text-blue-200">
-        {{ country.cases }}
+        <div class="text-blue-200">
+          {{ country.cases }}
+        </div>
       </div>
     </div>
   </div>
@@ -26,16 +35,24 @@ export default {
 
     }
   },
+  mounted () {
+    if (this.getAppActive !== '') this.$refs['list-container'].scrollTop = this.$refs[this.getAppActive][0].offsetTop
+  },
   computed: {
     ...mapGetters([
-      'getAppData'
+      'getAppData',
+      'getAppActive'
     ]),
     computedCountryList () {
       let list = [...this.getAppData]
-
       list.sort((a, b) => (a.cases < b.cases) ? 1 : -1)
 
       return list
+    }
+  },
+  watch: {
+    'getAppActive': function () {
+      if (this.getAppActive !== '') this.$refs['list-container'].scrollTop = this.$refs[this.getAppActive][0].offsetTop
     }
   }
 }
@@ -44,7 +61,9 @@ export default {
 
 <style lang="scss">
 
-</style>
+ .list-container {
+   height: calc(100% - 32px);
+   min-height: 300px;
+ }
 
-<div class="relative w-full h-full">
-  <div class="absolute inset-0">
+</style>
