@@ -29,6 +29,12 @@ export default {
       let self = this
       self.loading = true
 
+      let yesterday = new Date()
+      yesterday.setDate(yesterday.getDate() - 1)
+
+      let day = yesterday.getDate()
+      let month = (yesterday.getMonth() + 1) < 10 ? '0' + (yesterday.getMonth() + 1) : (yesterday.getMonth() + 1)
+
       fetch('https://covid19-data-api.herokuapp.com/countries/', {
         method: 'GET',
         headers: {
@@ -44,6 +50,8 @@ export default {
         })
         .then(function (data) {
           data.map((date) => {
+            if (date.id === day + '_' + month + '_20') self.$store.dispatch('setAppDataYesterday', JSON.parse(date.value))
+
             self.$store.dispatch('addDatesData', {
               key: date.id,
               value: JSON.parse(date.value)
@@ -59,6 +67,12 @@ export default {
     fetchLocal () {
       let self = this
 
+      let yesterday = new Date()
+      yesterday.setDate(yesterday.getDate() - 1)
+
+      let day = yesterday.getDate()
+      let month = (yesterday.getMonth() + 1) < 10 ? '0' + (yesterday.getMonth() + 1) : (yesterday.getMonth() + 1)
+
       fetch('/data/history.json', {
         method: 'GET',
         headers: {
@@ -70,6 +84,8 @@ export default {
         })
         .then(function (data) {
           data.map((date) => {
+            if (date.id === day + '_' + month + '_20') self.$store.dispatch('setAppDataYesterday', JSON.parse(date.value))
+
             self.$store.dispatch('addDatesData', {
               key: date.id,
               value: JSON.parse(date.value)

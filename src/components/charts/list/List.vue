@@ -12,8 +12,9 @@
 
         :key="country.country"
         :ref="country.country"
+        :data-country="country.country"
 
-        @click="$router.push('/' + country.country)"
+        @click="setCountry"
       >
         <div class="text-blue-300" >
           {{ index + 1 }}. {{ country.country }}
@@ -50,6 +51,12 @@ export default {
       list.sort((a, b) => (a.cases < b.cases) ? 1 : -1)
 
       return list
+    }
+  },
+  methods: {
+    setCountry (e) {
+      localStorage.setItem('covidAppActive', e.currentTarget.dataset.country)
+      this.$router.push('/' + e.currentTarget.dataset.country)
     }
   },
   watch: {

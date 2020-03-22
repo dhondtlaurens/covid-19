@@ -2,11 +2,35 @@
   <div class="footer flex fixed w-full h-64 bottom-0 border-t bg-white border-gray-100">
     <div class="flex justify-between items-center flex-grow h-full px-32 flex border-r border-gray-100">
       <div class="hidden sm:flex text-16 text-blue-200">
-        <a class='text-blue-200 no-underline appearance-none mr-32' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>
+        <a class='flex items-center text-blue-200 no-underline appearance-none mr-16' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>
+          <div class="text-12 mr-1">
+            💁‍♂️
+          </div>
+
           Laurens D&#39;Hondt
         </a>
 
-        <a class='text-blue-200 no-underline appearance-none' target='_blank' href='https://www.coronaviruschecklist.co/'>
+        <div class="hidden md:inline-block text-gray-100 mr-16">
+          -
+        </div>
+
+        <a class='hidden md:flex items-center text-blue-200 no-underline appearance-none mr-16' target='_blank' href='https://www.worldometers.info/coronavirus/'>
+          <div class="text-12 mr-1">
+            ⚙️
+          </div>
+
+          Data by worldometers
+        </a>
+
+        <div class="hidden lg:inline-block text-gray-100 mr-16">
+          -
+        </div>
+
+        <a class='hidden lg:flex items-center text-blue-200 no-underline appearance-none' target='_blank' href='https://www.coronaviruschecklist.co/'>
+          <div class="text-12 mr-1">
+            ✅
+          </div>
+
           Coronavirus Checklist
         </a>
     </div>
@@ -71,11 +95,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
- .footer {
-   a {
-     margin-right: 32px;
-   }
- }
 
 </style>
