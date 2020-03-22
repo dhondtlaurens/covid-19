@@ -38,7 +38,9 @@ export default {
       fetch('https://covid19-data-api.herokuapp.com/countries/', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json; charset=utf-8'
+          'Content-Type': 'application/json; charset=utf-8',
+          'Pragma': 'no-cache',
+          'Cache-Control': 'no-cache'
         }
       })
         .then(function (response) {
@@ -76,7 +78,9 @@ export default {
       fetch('/data/history.json', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json; charset=utf-8'
+          'Content-Type': 'application/json; charset=utf-8',
+          'Pragma': 'no-cache',
+          'Cache-Control': 'no-cache'
         }
       })
         .then(function (response) {
