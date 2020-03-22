@@ -5,8 +5,8 @@
   >
     <div class="list absolute inset-0">
       <div
-        class="px-16 py-8 flex justify-between border-b border-gray-100 hover:bg-gray-100 cursor-pointer"
-        :class="{'bg-gray-100': country.country === getAppActive}"
+        class="flex h-32 items-center justify-between border-b border-gray-100 hover:bg-blue-100 cursor-pointer text-12"
+        :class="{'bg-blue-100': country.country === getAppActive}"
 
         v-for="(country, index) in computedCountryList"
 
@@ -16,12 +16,20 @@
 
         @click="setCountry"
       >
-        <div class="text-blue-300" >
+        <div class="h-full flex items-center px-16 text-blue-300 w-2/4 sm:w-2/5 border-r border-gray-100" >
           {{ index + 1 }}. {{ country.country }}
         </div>
 
-        <div class="text-blue-200">
+        <div class="h-full hidden sm:flex justify-center items-center px-16 text-blue-300 sm:w-1/5 border-r border-gray-100">
+          {{ population[country.country] }}
+        </div>
+
+        <div class="h-full flex items-center justify-center px-16 text-blue-200 w-1/4 sm:w-1/5 border-r border-gray-100">
           {{ country.cases }}
+        </div>
+
+        <div class="h-full flex items-center justify-center px-16 text-red-100 w-1/4 sm:w-1/5">
+          {{ country.deaths }}
         </div>
       </div>
     </div>
@@ -31,11 +39,12 @@
 <script>
 
 import { mapGetters } from 'vuex'
+import population from '@/assets/json/population.json'
 
 export default {
   data () {
     return {
-
+      population: population
     }
   },
   mounted () {

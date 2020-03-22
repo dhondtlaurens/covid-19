@@ -10,7 +10,13 @@
         "list": "Besmettingen per land",
 
         "linear": "lineair",
-        "logarithmic": "logaritmisch"
+        "logarithmic": "logaritmisch",
+        "list": {
+          "country": "Land",
+          "population": "Bevolking",
+          "cases": "Besmettingen",
+          "deaths": "Doden"
+        }
       },
       "footer":{
         "refresh": "Update:"
@@ -36,10 +42,14 @@
       },
       "charts":{
         "global":"Global",
-        "list": "Cases by country",
-
         "linear": "linear",
-        "logarithmic": "logarithmic"
+        "logarithmic": "logarithmic",
+        "list": {
+          "country": "Country",
+          "population": "Population",
+          "cases": "Cases",
+          "deaths": "Deaths"
+        }
       },
       "footer":{
         "refresh": "Update:"

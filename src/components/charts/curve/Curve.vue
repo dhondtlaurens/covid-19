@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="w-full lg:w-1/2 xl:w-3/4 px-16 mb-32">
+    <div class="w-full lg:w-1/2 xl:w-1/2 px-16 mb-32">
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ $t('components.charts.global') }}
@@ -64,10 +64,24 @@
       </div>
     </div>
 
-    <div class="w-full lg:w-1/2 xl:w-1/4 px-16 mb-32">
+    <div class="w-full lg:w-1/2 xl:w-1/2 px-16 mb-32">
       <div class="w-full h-full border border-gray-100">
-        <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          {{ $t('components.charts.list') }}
+        <div class="flex items-center h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+          <div class="px-16 py-8 w-2/4 sm:w-2/5 border-r border-gray-100" >
+            {{ $t('components.charts.list.country') }}
+          </div>
+
+          <div class="px-16 hidden sm:block sm:w-1/5 border-r border-gray-100 text-center">
+            {{ $t('components.charts.list.population') }}
+          </div>
+
+          <div class="px-16 w-1/4 sm:w-1/5 border-r border-gray-100 text-center">
+            {{ $t('components.charts.list.cases') }}
+          </div>
+
+          <div class="px-16 w-1/4 sm:w-1/5 text-center">
+            {{ $t('components.charts.list.deaths') }}
+          </div>
         </div>
 
         <list-component />
