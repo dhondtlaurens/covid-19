@@ -33,7 +33,7 @@
         </div>
 
         <div class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 text-blue-300 w-1/3 sm:w-1/5">
-          {{ parseInt((country.deaths / country.cases) * 100) }}%
+          {{ ((country.deaths / country.cases) * 100).toFixed(2) }}%
         </div>
       </div>
     </div>
