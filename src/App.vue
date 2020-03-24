@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="min-h-screen font-app">
+  <div id="app" class="min-h-screen w-full overflow-x-hidden font-app">
     <header-chart-component />
     <header-component />
 
