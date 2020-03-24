@@ -16,20 +16,24 @@
 
         @click="setCountry"
       >
-        <div class="h-full flex items-center px-16 text-blue-300 w-2/4 sm:w-2/5 border-r border-gray-100" >
+        <div class="h-full flex flex-shrink-0 flex-grow-0 items-center px-16 text-blue-300 w-1/3 sm:w-1/5 border-r border-gray-100 truncate" >
           {{ index + 1 }}. {{ country.country }}
         </div>
 
-        <div class="h-full hidden sm:flex justify-center items-center px-16 text-blue-300 sm:w-1/5 border-r border-gray-100">
-          {{ population[country.country] }}
+        <div class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 text-blue-300 w-1/3 sm:w-1/5 sm:border-r sm:border-gray-100">
+          {{ formatNumber(population[country.country]) }}
         </div>
 
-        <div class="h-full flex items-center justify-center px-16 text-blue-200 w-1/4 sm:w-1/5 border-r border-gray-100">
-          {{ country.cases }}
+        <div class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 text-blue-200 w-1/3 sm:w-1/5 border-r border-gray-100">
+          {{ formatNumber(country.cases) }}
         </div>
 
-        <div class="h-full flex items-center justify-center px-16 text-red-100 w-1/4 sm:w-1/5">
-          {{ country.deaths }}
+        <div class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 text-red-100 w-1/3 sm:w-1/5 sm:border-r sm:border-gray-100">
+          {{ formatNumber(country.deaths) }}
+        </div>
+
+        <div class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 text-blue-300 w-1/3 sm:w-1/5">
+          {{ parseInt((country.deaths / country.cases) * 100) }}%
         </div>
       </div>
     </div>
@@ -82,6 +86,13 @@ export default {
  .list-container {
    height: calc(100% - 32px);
    min-height: 300px;
+
+   scrollbar-width: none;
+   -ms-overflow-style: none;
+
+   &::-webkit-scrollbar {
+    display: none;
+  }
  }
 
 </style>

@@ -6,7 +6,9 @@ import store from './store'
 
 import VueI18n from 'vue-i18n'
 
+import '@/utils/mixins.js'
 import '@/utils/icons.js'
+
 import '@/assets/css/app.css'
 
 import Translations from '@/assets/json/translations.json'

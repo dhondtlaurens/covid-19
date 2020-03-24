@@ -15,7 +15,8 @@
           "country": "Land",
           "population": "Bevolking",
           "cases": "Besmettingen",
-          "deaths": "Doden"
+          "deaths": "Doden",
+          "mortality": "Sterftecijfer"
         }
       },
       "footer":{
@@ -48,7 +49,8 @@
           "country": "Country",
           "population": "Population",
           "cases": "Cases",
-          "deaths": "Deaths"
+          "deaths": "Deaths",
+          "mortality": "Mortality rate"
         }
       },
       "footer":{

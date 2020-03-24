@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="w-full lg:w-1/2 xl:w-1/2 px-16 mb-32">
+    <div class="w-full order-4 xl:w-1/2 xl:order-3 px-16 mb-32">
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ $t('components.charts.global') }}
@@ -64,53 +64,33 @@
       </div>
     </div>
 
-    <div class="w-full lg:w-1/2 xl:w-1/2 px-16 mb-32">
+    <div class="w-full order-3 xl:w-1/2 xl:order-4 px-16 mb-32">
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          <div class="h-full flex items-center px-16 w-2/4 sm:w-2/5 border-r border-gray-100" >
+          <div class="h-full flex flex-shrink-0 flex-grow-0 items-center px-16 w-1/3 sm:w-1/5 border-r border-gray-100">
             {{ $t('components.charts.list.country') }}
           </div>
 
-          <div class="h-full flex items-center justify-center px-16 hidden sm:flex sm:w-1/5 border-r border-gray-100 text-center text-12">
+          <div class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 sm:border-r sm:border-gray-100 text-center text-12">
             {{ $t('components.charts.list.population') }}
           </div>
 
-          <div class="h-full flex items-center justify-center px-16 w-1/4 sm:w-1/5 border-r border-gray-100 text-center text-12">
+          <div class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 border-r border-gray-100 text-center text-12">
             {{ $t('components.charts.list.cases') }}
           </div>
 
-          <div class="h-full flex items-center justify-center px-16 w-1/4 sm:w-1/5 text-center text-12">
+          <div class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 sm:border-r sm:border-gray-100 text-center text-12">
             {{ $t('components.charts.list.deaths') }}
+          </div>
+
+          <div class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 text-center text-12">
+            {{ $t('components.charts.list.mortality') }}
           </div>
         </div>
 
         <list-component />
       </div>
     </div>
-
-    <!-- TODO need more data for this -->
-
-    <!--
-    <div class="w-full lg:w-1/2 px-16 mb-32">
-      <div class="w-full h-full border border-gray-100">
-        <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          {{ $t('components.charts.global') }}
-
-          <div class="text-12 pl-8">
-            ({{ $t('components.charts.logarithmic') }})
-          </div>
-        </div>
-
-        <div class="p-16">
-          <line-chart
-            :key="updateTotal"
-            :chartData="computedTotalChartData"
-            :options="optionsLogarithmic"
-          />
-        </div>
-      </div>
-    </div>
-  -->
   </div>
 </template>
 
