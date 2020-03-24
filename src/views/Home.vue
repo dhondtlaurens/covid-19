@@ -8,7 +8,7 @@
         ></div>
 
         <div
-          class="text-16"
+          class="text-16 leading-relaxed"
           v-html="$t('views.home.description')"
         ></div>
       </div>
