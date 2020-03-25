@@ -103,7 +103,7 @@ export default {
   data () {
     return {
       list: [],
-      langs: ['nl', 'en'],
+      langs: ['en', 'nl', 'es'],
       search: '',
       focus: false
     }
