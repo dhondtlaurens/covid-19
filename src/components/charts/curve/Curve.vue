@@ -2,7 +2,7 @@
   <div class="curve flex flex-wrap w-full">
     <div
       v-if="getAppActive !== ''"
-      class="w-full lg:w-1/2 px-16 mb-32"
+      class="w-full xl:w-1/3 px-16 mb-32"
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
@@ -24,7 +24,7 @@
 
     <div
       v-if="getAppActive !== ''"
-      class="w-full lg:w-1/2 px-16 mb-32"
+      class="w-full lg:w-1/2 xl:w-1/3 px-16 mb-32"
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
@@ -46,7 +46,7 @@
 
     <div
       v-if="getAppActive !== ''"
-      class="w-full lg:w-1/2 px-16 mb-32"
+      class="w-full lg:w-1/2 xl:w-1/3 px-16 mb-32"
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <div class="w-full xl:w-1/2 px-16 mb-32">
+    <div class="w-full xl:w-1/2 px-16 mb-32 xl:order-2">
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           <div class="h-full flex flex-shrink-0 flex-grow-0 items-center px-16 w-1/3 sm:w-1/5 border-r border-gray-100">
@@ -80,10 +80,9 @@
           >
             {{ $t('components.charts.list.population') }}
 
-            <span
-              class="w-8 h-8 ml-1"
-              v-icon-chevron-down
-            ></span>
+            <div class="fill-current w-8 h-8 ml-1">
+              <div v-icon-chevron-down ></div>
+            </div>
           </div>
 
           <div
@@ -93,10 +92,9 @@
           >
             {{ $t('components.charts.list.cases') }}
 
-            <span
-              class="w-8 h-8 ml-1"
-              v-icon-chevron-down
-            ></span>
+            <div class="fill-current w-8 h-8 ml-1">
+              <div v-icon-chevron-down ></div>
+            </div>
           </div>
 
           <div
@@ -106,10 +104,9 @@
           >
             {{ $t('components.charts.list.deaths') }}
 
-            <span
-              class="w-8 h-8 ml-1"
-              v-icon-chevron-down
-            ></span>
+            <div class="fill-current w-8 h-8 ml-1">
+              <div v-icon-chevron-down ></div>
+            </div>
           </div>
 
           <div
@@ -119,10 +116,9 @@
           >
             {{ $t('components.charts.list.mortality') }}
 
-            <span
-              class="w-8 h-8 ml-1"
-              v-icon-chevron-down
-            ></span>
+            <div class="fill-current w-8 h-8 ml-1">
+              <div v-icon-chevron-down ></div>
+            </div>
           </div>
         </div>
 
