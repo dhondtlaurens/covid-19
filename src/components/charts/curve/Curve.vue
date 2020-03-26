@@ -80,7 +80,7 @@
           >
             {{ $t('components.charts.list.population') }}
 
-            <div class="fill-current w-8 h-12 ml-1">
+            <div class="fill-current w-8 h-10 ml-1 leading-normal">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -92,7 +92,7 @@
           >
             {{ $t('components.charts.list.cases') }}
 
-            <div class="fill-current w-8 h-12 ml-1">
+            <div class="fill-current w-8 h-10 ml-1 leading-normal">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -104,7 +104,7 @@
           >
             {{ $t('components.charts.list.deaths') }}
 
-            <div class="fill-current w-8 h-12 ml-1">
+            <div class="fill-current w-8 h-10 ml-1 leading-normal">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -116,7 +116,7 @@
           >
             {{ $t('components.charts.list.mortality') }}
 
-            <div class="fill-current w-8 h-12 ml-1">
+            <div class="fill-current w-8 h-10 ml-1 leading-normal">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
