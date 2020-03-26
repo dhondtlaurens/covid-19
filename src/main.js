@@ -16,8 +16,6 @@ import Translations from '@/assets/json/translations.json'
 Vue.use(VueI18n)
 Vue.config.productionTip = false
 
-console.log(Translations)
-
 let locale = 'en'
 let locales = ['en', 'nl', 'es']
 let navLang = navigator.languages !== undefined ? navigator.languages[0].substring(0, 2).toLowerCase() : navigator.language.substring(0, 2).toLowerCase()

@@ -51,6 +51,9 @@ export default {
       population: population
     }
   },
+  props: [
+    'sort'
+  ],
   mounted () {
     if (this.getAppActive !== '') this.$refs['list-container'].scrollTop = this.$refs[this.getAppActive][0].offsetTop
   },
@@ -61,7 +64,45 @@ export default {
     ]),
     computedCountryList () {
       let list = [...this.getAppData]
-      list.sort((a, b) => (a.cases < b.cases) ? 1 : -1)
+      let listAppend = [...this.getAppData]
+
+      switch (this.sort) {
+        case 'population':
+          list = list.filter((country) => {
+            return population[country.country] !== undefined
+          })
+
+          list.sort((a, b) => (parseInt(population[a.country]) < parseInt(population[b.country])) ? 1 : -1)
+
+          listAppend = listAppend.filter((country) => {
+            return population[country.country] === undefined
+          })
+
+          list = [...list, ...listAppend]
+          break
+
+        case 'cases':
+          list.sort((a, b) => (a.cases < b.cases) ? 1 : -1)
+          break
+
+        case 'deaths':
+          list.sort((a, b) => (a.deaths < b.deaths) ? 1 : -1)
+          break
+
+        case 'mortality':
+          list = list.filter((country) => {
+            return country.deaths !== 0
+          })
+
+          list.sort((a, b) => ((a.deaths / a.cases) < (b.deaths / b.cases)) ? 1 : -1)
+
+          listAppend = listAppend.filter((country) => {
+            return population[country.country] === 0
+          })
+
+          list = [...list, ...listAppend]
+          break
+      }
 
       return list
     }
@@ -74,7 +115,20 @@ export default {
   },
   watch: {
     'getAppActive': function () {
-      if (this.getAppActive !== '') this.$refs['list-container'].scrollTop = this.$refs[this.getAppActive][0].offsetTop
+      if (this.getAppActive !== '') {
+        this.$refs['list-container'].scrollTop = this.$refs[this.getAppActive][0].offsetTop
+      } else {
+        this.$refs['list-container'].scrollTop = 0
+      }
+    },
+    'sort': function () {
+      setTimeout(() => {
+        if (this.getAppActive !== '') {
+          this.$refs['list-container'].scrollTop = this.$refs[this.getAppActive][0].offsetTop
+        } else {
+          this.$refs['list-container'].scrollTop = 0
+        }
+      }, 10)
     }
   }
 }

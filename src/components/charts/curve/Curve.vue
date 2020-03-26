@@ -44,7 +44,93 @@
       </div>
     </div>
 
-    <div class="w-full order-4 xl:w-1/2 xl:order-3 px-16 mb-32">
+    <div
+      v-if="getAppActive !== ''"
+      class="w-full lg:w-1/2 px-16 mb-32"
+    >
+      <div class="w-full h-full border border-gray-100">
+        <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+          {{ getAppActive }}
+
+          <div class="text-12 pl-8">
+            ({{ $t('components.charts.day') }})
+          </div>
+        </div>
+
+        <div class="p-16">
+          <line-chart
+            :chartData="computedCountryChartDataDay"
+            :options="optionsLinear"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full xl:w-1/2 px-16 mb-32">
+      <div class="w-full h-full border border-gray-100">
+        <div class="flex items-center h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+          <div class="h-full flex flex-shrink-0 flex-grow-0 items-center px-16 w-1/3 sm:w-1/5 border-r border-gray-100">
+            {{ $t('components.charts.list.country') }}
+          </div>
+
+          <div
+            class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 sm:border-r sm:border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100"
+            :class="{'bg-blue-100': sort === 'population'}"
+            @click="sort = 'population'"
+          >
+            {{ $t('components.charts.list.population') }}
+
+            <span
+              class="w-8 h-8 ml-1"
+              v-icon-chevron-down
+            ></span>
+          </div>
+
+          <div
+            class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 border-r border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100"
+            :class="{'bg-blue-100': sort === 'cases'}"
+            @click="sort = 'cases'"
+          >
+            {{ $t('components.charts.list.cases') }}
+
+            <span
+              class="w-8 h-8 ml-1"
+              v-icon-chevron-down
+            ></span>
+          </div>
+
+          <div
+            class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 sm:border-r sm:border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100"
+            :class="{'bg-blue-100': sort === 'deaths'}"
+            @click="sort = 'deaths'"
+          >
+            {{ $t('components.charts.list.deaths') }}
+
+            <span
+              class="w-8 h-8 ml-1"
+              v-icon-chevron-down
+            ></span>
+          </div>
+
+          <div
+            class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 text-center text-12 cursor-pointer hover:bg-blue-100"
+            :class="{'bg-blue-100': sort === 'mortality'}"
+            @click="sort = 'mortality'"
+          >
+            {{ $t('components.charts.list.mortality') }}
+
+            <span
+              class="w-8 h-8 ml-1"
+              v-icon-chevron-down
+            ></span>
+          </div>
+        </div>
+
+        <list-component :sort="sort" />
+      </div>
+    </div>
+
+    <div class="w-full xl:w-1/2 px-16 mb-32">
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ $t('components.charts.global') }}
@@ -63,34 +149,6 @@
         </div>
       </div>
     </div>
-
-    <div class="w-full order-3 xl:w-1/2 xl:order-4 px-16 mb-32">
-      <div class="w-full h-full border border-gray-100">
-        <div class="flex items-center h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          <div class="h-full flex flex-shrink-0 flex-grow-0 items-center px-16 w-1/3 sm:w-1/5 border-r border-gray-100">
-            {{ $t('components.charts.list.country') }}
-          </div>
-
-          <div class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 sm:border-r sm:border-gray-100 text-center text-12">
-            {{ $t('components.charts.list.population') }}
-          </div>
-
-          <div class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 border-r border-gray-100 text-center text-12">
-            {{ $t('components.charts.list.cases') }}
-          </div>
-
-          <div class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 sm:border-r sm:border-gray-100 text-center text-12">
-            {{ $t('components.charts.list.deaths') }}
-          </div>
-
-          <div class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 text-center text-12">
-            {{ $t('components.charts.list.mortality') }}
-          </div>
-        </div>
-
-        <list-component />
-      </div>
-    </div>
   </div>
 </template>
 
@@ -104,11 +162,14 @@ import List from '@/components/charts/list/List'
 export default {
   data () {
     return {
+      sort: 'cases',
       updateTotal: 0,
+
       optionsLinear: {
         maintainAspectRatio: false,
         response: true
       },
+
       optionsLogarithmic: {
         maintainAspectRatio: false,
         response: true,
@@ -202,6 +263,96 @@ export default {
             chartData.datasets[1].data.push(countryData[0].deaths)
             chartData.datasets[2].data.push(countryData[0].critical)
             chartData.datasets[3].data.push(countryData[0].recovered)
+          }
+        }
+      }
+
+      return chartData
+    },
+    computedCountryChartDataDay () {
+      let self = this
+
+      let chartData = {
+        labels: [],
+        datasets: [
+          {
+            label: self.$t('views.home.cases'),
+            borderColor: 'rgba(1, 104, 250, 1)',
+            backgroundColor: 'rgba(1, 104, 250, 0.08)',
+            data: []
+          },
+          {
+            label: self.$t('views.home.deaths'),
+            borderColor: 'rgba(239, 116, 116, 1)',
+            backgroundColor: 'rgba(239, 116, 116, 0.08)',
+            data: []
+          },
+          {
+            label: self.$t('views.home.critical'),
+            borderColor: 'rgba(239, 187, 116, 1)',
+            backgroundColor: 'rgba(239, 187, 116, 0.08)',
+            data: []
+          },
+          {
+            label: self.$t('views.home.recovered'),
+            borderColor: 'rgba(149, 230, 139, 1)',
+            backgroundColor: 'rgba(149, 230, 139, 0.08)',
+            data: []
+          }
+        ]
+      }
+
+      let keys = Object.keys(self.getDatesData)
+
+      for (let date in self.getDatesData) {
+        let countryData = self.getDatesData[date].filter((country) => {
+          return country.country === self.getAppActive
+        })
+
+        if (chartData.datasets[0].data.length === 0) {
+          if (countryData.length > 0) {
+            chartData.labels.push(date.replace(/_/g, '/'))
+
+            chartData.datasets[0].data.push(countryData[0].cases)
+            chartData.datasets[1].data.push(countryData[0].deaths)
+            chartData.datasets[2].data.push(countryData[0].critical)
+            chartData.datasets[3].data.push(countryData[0].recovered)
+          }
+        } else {
+          let countryDataYesterday = self.getDatesData[keys[keys.indexOf(date) - 1]].filter((country) => {
+            return country.country === self.getAppActive
+          })
+
+          chartData.labels.push(date.replace(/_/g, '/'))
+
+          if (countryData.length > 0 && countryDataYesterday.length > 0) {
+            if (date === keys[keys.length - 1]) {
+              if (countryData[0].cases !== countryDataYesterday[0].cases || countryData[0].deaths !== countryDataYesterday[0].deaths || countryData[0].critical !== countryDataYesterday[0].critical || countryData[0].recovered !== countryDataYesterday[0].recovered) {
+                chartData.datasets[0].data.push(countryData[0].cases - countryDataYesterday[0].cases)
+                chartData.datasets[1].data.push(countryData[0].deaths - countryDataYesterday[0].deaths)
+                chartData.datasets[2].data.push(countryData[0].critical - countryDataYesterday[0].critical)
+                chartData.datasets[3].data.push(countryData[0].recovered - countryDataYesterday[0].recovered)
+              }
+            } else {
+              chartData.datasets[0].data.push(countryData[0].cases - countryDataYesterday[0].cases)
+              chartData.datasets[1].data.push(countryData[0].deaths - countryDataYesterday[0].deaths)
+              chartData.datasets[2].data.push(countryData[0].critical - countryDataYesterday[0].critical)
+              chartData.datasets[3].data.push(countryData[0].recovered - countryDataYesterday[0].recovered)
+            }
+          } else {
+            if (date === keys[keys.length - 1]) {
+              if (countryData[0].cases !== countryDataYesterday[0].cases || countryData[0].deaths !== countryDataYesterday[0].deaths || countryData[0].critical !== countryDataYesterday[0].critical || countryData[0].recovered !== countryDataYesterday[0].recovered) {
+                chartData.datasets[0].data.push(0)
+                chartData.datasets[1].data.push(0)
+                chartData.datasets[2].data.push(0)
+                chartData.datasets[3].data.push(0)
+              }
+            } else {
+              chartData.datasets[0].data.push(0)
+              chartData.datasets[1].data.push(0)
+              chartData.datasets[2].data.push(0)
+              chartData.datasets[3].data.push(0)
+            }
           }
         }
       }

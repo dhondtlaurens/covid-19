@@ -7,10 +7,11 @@
       },
       "charts":{
         "global": "Globaal",
-        "list": "Besmettingen per land",
 
         "linear": "Lineair",
         "logarithmic": "Logaritmisch",
+        "day": "Dagelijks",
+
         "list": {
           "country": "Land",
           "population": "Bevolking",
@@ -43,8 +44,11 @@
       },
       "charts":{
         "global":"Global",
+
         "linear": "Linear",
         "logarithmic": "Logarithmic",
+        "day": "Daily",
+
         "list": {
           "country": "Country",
           "population": "Population",
@@ -77,8 +81,11 @@
       },
       "charts":{
         "global":"Global",
+
         "linear": "Lineal",
         "logarithmic": "Logarítmica",
+        "day": "Diariamente",
+
         "list": {
           "country": "País",
           "population": "Población",
