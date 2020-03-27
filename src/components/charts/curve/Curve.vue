@@ -306,29 +306,18 @@ export default {
         ]
       }
 
-      let keys = Object.keys(self.getDatesData)
+      let today = new Date()
+      let day = today.getDate()
+      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
 
-      let countryDataYesterday = self.getDatesData[keys[keys.length - 2]].filter((country) => {
-        return country.country === self.getAppActive
-      })
+      today = day + '_' + month + '_20'
 
       for (let date in self.getDatesData) {
-        let countryData = self.getDatesData[date].filter((country) => {
-          return country.country === self.getAppActive
-        })
+        if (date !== today) {
+          let countryData = self.getDatesData[date].filter((country) => {
+            return country.country === self.getAppActive
+          })
 
-        if (date === keys[keys.length - 1]) {
-          if (countryData[0].cases !== countryDataYesterday[0].cases || countryData[0].deaths !== countryDataYesterday[0].deaths || countryData[0].critical !== countryDataYesterday[0].critical || countryData[0].recovered !== countryDataYesterday[0].recovered) {
-            if (countryData.length > 0) {
-              chartData.labels.push(date.replace(/_/g, '/'))
-
-              chartData.datasets[0].data.push(countryData[0].cases)
-              chartData.datasets[1].data.push(countryData[0].deaths)
-              chartData.datasets[2].data.push(countryData[0].critical)
-              chartData.datasets[3].data.push(countryData[0].recovered)
-            }
-          }
-        } else {
           if (countryData.length > 0) {
             chartData.labels.push(date.replace(/_/g, '/'))
 
@@ -390,28 +379,36 @@ export default {
         ]
       }
 
+      let today = new Date()
+      let day = today.getDate()
+      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+
+      today = day + '_' + month + '_20'
+
       for (let date in self.getDatesData) {
-        let countryData = self.getDatesData[date].filter((country) => {
-          return country.country === self.getAppActive
-        })
+        if (date !== today) {
+          let countryData = self.getDatesData[date].filter((country) => {
+            return country.country === self.getAppActive
+          })
 
-        let countryDataCompare = self.getDatesData[date].filter((country) => {
-          return country.country === self.compare
-        })
+          let countryDataCompare = self.getDatesData[date].filter((country) => {
+            return country.country === self.compare
+          })
 
-        if (countryData.length > 0 || countryDataCompare.length) {
-          chartData.labels.push(date.replace(/_/g, '/'))
+          if (countryData.length > 0 || countryDataCompare.length) {
+            chartData.labels.push(date.replace(/_/g, '/'))
 
-          if (countryData.length > 0) {
-            chartData.datasets[0].data.push(countryData[0][self.compareType])
-          } else {
-            chartData.datasets[0].data.push(0)
-          }
+            if (countryData.length > 0) {
+              chartData.datasets[0].data.push(countryData[0][self.compareType])
+            } else {
+              chartData.datasets[0].data.push(0)
+            }
 
-          if (countryDataCompare.length > 0) {
-            chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
-          } else {
-            chartData.datasets[1].data.push(0)
+            if (countryDataCompare.length > 0) {
+              chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
+            } else {
+              chartData.datasets[1].data.push(0)
+            }
           }
         }
       }
@@ -451,51 +448,41 @@ export default {
         ]
       }
 
+      let today = new Date()
+      let day = today.getDate()
+      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+
+      today = day + '_' + month + '_20'
+
       let keys = Object.keys(self.getDatesData)
 
       for (let date in self.getDatesData) {
-        let countryData = self.getDatesData[date].filter((country) => {
-          return country.country === self.getAppActive
-        })
-
-        if (chartData.datasets[0].data.length === 0) {
-          if (countryData.length > 0) {
-            chartData.labels.push(date.replace(/_/g, '/'))
-
-            chartData.datasets[0].data.push(countryData[0].cases)
-            chartData.datasets[1].data.push(countryData[0].deaths)
-            chartData.datasets[2].data.push(countryData[0].critical)
-            chartData.datasets[3].data.push(countryData[0].recovered)
-          }
-        } else {
-          let countryDataYesterday = self.getDatesData[keys[keys.indexOf(date) - 1]].filter((country) => {
+        if (date !== today) {
+          let countryData = self.getDatesData[date].filter((country) => {
             return country.country === self.getAppActive
           })
 
-          chartData.labels.push(date.replace(/_/g, '/'))
+          if (chartData.datasets[0].data.length === 0) {
+            if (countryData.length > 0) {
+              chartData.labels.push(date.replace(/_/g, '/'))
 
-          if (countryData.length > 0 && countryDataYesterday.length > 0) {
-            if (date === keys[keys.length - 1]) {
-              if (countryData[0].cases !== countryDataYesterday[0].cases || countryData[0].deaths !== countryDataYesterday[0].deaths || countryData[0].critical !== countryDataYesterday[0].critical || countryData[0].recovered !== countryDataYesterday[0].recovered) {
-                chartData.datasets[0].data.push(countryData[0].cases - countryDataYesterday[0].cases > 0 ? countryData[0].cases - countryDataYesterday[0].cases : 0)
-                chartData.datasets[1].data.push(countryData[0].deaths - countryDataYesterday[0].deaths > 0 ? countryData[0].deaths - countryDataYesterday[0].deaths : 0)
-                chartData.datasets[2].data.push(countryData[0].critical - countryDataYesterday[0].critical > 0 ? countryData[0].critical - countryDataYesterday[0].critical : 0)
-                chartData.datasets[3].data.push(countryData[0].recovered - countryDataYesterday[0].recovered > 0 ? countryData[0].recovered - countryDataYesterday[0].recovered : 0)
-              }
-            } else {
+              chartData.datasets[0].data.push(countryData[0].cases)
+              chartData.datasets[1].data.push(countryData[0].deaths)
+              chartData.datasets[2].data.push(countryData[0].critical)
+              chartData.datasets[3].data.push(countryData[0].recovered)
+            }
+          } else {
+            let countryDataYesterday = self.getDatesData[keys[keys.indexOf(date) - 1]].filter((country) => {
+              return country.country === self.getAppActive
+            })
+
+            chartData.labels.push(date.replace(/_/g, '/'))
+
+            if (countryData.length > 0 && countryDataYesterday.length > 0) {
               chartData.datasets[0].data.push(countryData[0].cases - countryDataYesterday[0].cases > 0 ? countryData[0].cases - countryDataYesterday[0].cases : 0)
               chartData.datasets[1].data.push(countryData[0].deaths - countryDataYesterday[0].deaths > 0 ? countryData[0].deaths - countryDataYesterday[0].deaths : 0)
               chartData.datasets[2].data.push(countryData[0].critical - countryDataYesterday[0].critical > 0 ? countryData[0].critical - countryDataYesterday[0].critical : 0)
               chartData.datasets[3].data.push(countryData[0].recovered - countryDataYesterday[0].recovered > 0 ? countryData[0].recovered - countryDataYesterday[0].recovered : 0)
-            }
-          } else {
-            if (date === keys[keys.length - 1]) {
-              if (countryData[0].cases !== countryDataYesterday[0].cases || countryData[0].deaths !== countryDataYesterday[0].deaths || countryData[0].critical !== countryDataYesterday[0].critical || countryData[0].recovered !== countryDataYesterday[0].recovered) {
-                chartData.datasets[0].data.push(0)
-                chartData.datasets[1].data.push(0)
-                chartData.datasets[2].data.push(0)
-                chartData.datasets[3].data.push(0)
-              }
             } else {
               chartData.datasets[0].data.push(0)
               chartData.datasets[1].data.push(0)
@@ -541,25 +528,33 @@ export default {
         ]
       }
 
+      let today = new Date()
+      let day = today.getDate()
+      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+
+      today = day + '_' + month + '_20'
+
       for (let date in self.getDatesData) {
-        chartData.labels.push(date.replace(/_/g, '/'))
+        if (date !== today) {
+          chartData.labels.push(date.replace(/_/g, '/'))
 
-        let cases = 0
-        let deaths = 0
-        let critical = 0
-        let recovered = 0
+          let cases = 0
+          let deaths = 0
+          let critical = 0
+          let recovered = 0
 
-        self.getDatesData[date].map((country) => {
-          cases += parseInt(country.cases)
-          deaths += parseInt(country.deaths)
-          critical += parseInt(country.critical)
-          recovered += parseInt(country.recovered)
-        })
+          self.getDatesData[date].map((country) => {
+            cases += parseInt(country.cases)
+            deaths += parseInt(country.deaths)
+            critical += parseInt(country.critical)
+            recovered += parseInt(country.recovered)
+          })
 
-        chartData.datasets[0].data.push(cases)
-        chartData.datasets[1].data.push(deaths)
-        chartData.datasets[2].data.push(critical)
-        chartData.datasets[3].data.push(recovered)
+          chartData.datasets[0].data.push(cases)
+          chartData.datasets[1].data.push(deaths)
+          chartData.datasets[2].data.push(critical)
+          chartData.datasets[3].data.push(recovered)
+        }
       }
 
       return chartData
