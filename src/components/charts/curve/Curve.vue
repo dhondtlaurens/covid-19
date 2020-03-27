@@ -74,11 +74,11 @@
         <div class="flex items-center px-16 py-8 sm:py-0 h-auto sm:h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ getAppActive }}
 
-          <div class="text-12 pl-8">
+          <div class="flex text-12 pl-8">
             ({{ $t('components.charts.compare') }}
 
             <select
-              class="h-18 mx-1 bg-blue-100 outline-none"
+              class="h-18 mx-1 my-1 sm:my-0 px-8 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
               v-model="compareType"
             >
               <option value="cases">
@@ -98,10 +98,14 @@
               </option>
             </select>
 
+            <div class="fill-current w-8 h-18 mx-1 leading-normal">
+              <div v-icon-chevron-down ></div>
+            </div>
+
             {{ $t('components.charts.with') }}
 
             <select
-              class="h-18 mx-1 bg-blue-100 outline-none"
+              class="h-18 ml-1 my-1 sm:my-0 px-8 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
               v-model="compare"
             >
               <option
@@ -113,6 +117,10 @@
                 {{ data.country }}
               </option>
             </select>
+
+            <div class="fill-current w-8 h-18 mx-1 leading-normal">
+              <div v-icon-chevron-down ></div>
+            </div>
             )
           </div>
         </div>
@@ -220,7 +228,7 @@ export default {
     return {
       sort: 'cases',
 
-      compare: '',
+      compare: 'USA',
       compareType: 'cases',
 
       updateTotal: 0,
