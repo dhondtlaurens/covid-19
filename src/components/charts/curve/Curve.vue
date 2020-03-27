@@ -2,7 +2,7 @@
   <div class="curve flex flex-wrap w-full">
     <div
       v-if="getAppActive !== ''"
-      class="w-full xl:w-1/3 px-16 mb-32"
+      class="w-full lg:w-1/2 px-16 mb-32"
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
@@ -24,7 +24,7 @@
 
     <div
       v-if="getAppActive !== ''"
-      class="w-full lg:w-1/2 xl:w-1/3 px-16 mb-32"
+      class="w-full lg:w-1/2 px-16 mb-32"
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
@@ -46,7 +46,7 @@
 
     <div
       v-if="getAppActive !== ''"
-      class="w-full lg:w-1/2 xl:w-1/3 px-16 mb-32"
+      class="w-full lg:w-1/2 px-16 mb-32"
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
@@ -60,6 +60,66 @@
         <div class="p-16">
           <line-chart
             :chartData="computedCountryChartDataDay"
+            :options="optionsLinear"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div
+      v-if="getAppActive !== ''"
+      class="w-full lg:w-1/2 px-16 mb-32"
+    >
+      <div class="w-full h-full border border-gray-100">
+        <div class="flex items-center px-16 py-8 sm:py-0 h-auto sm:h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+          {{ getAppActive }}
+
+          <div class="text-12 pl-8">
+            ({{ $t('components.charts.compare') }}
+
+            <select
+              class="h-18 mx-1 bg-blue-100 outline-none"
+              v-model="compareType"
+            >
+              <option value="cases">
+                {{ $t('views.home.cases').toLowerCase() }}
+              </option>
+
+              <option value="deaths">
+                {{ $t('views.home.deaths').toLowerCase() }}
+              </option>
+
+              <option value="critical">
+                {{ $t('views.home.critical').toLowerCase() }}
+              </option>
+
+              <option value="recovered">
+                {{ $t('views.home.recovered').toLowerCase() }}
+              </option>
+            </select>
+
+            {{ $t('components.charts.with') }}
+
+            <select
+              class="h-18 mx-1 bg-blue-100 outline-none"
+              v-model="compare"
+            >
+              <option
+                v-for="data in getAppData"
+
+                :key="data.country"
+                :value="data.country"
+              >
+                {{ data.country }}
+              </option>
+            </select>
+            )
+          </div>
+        </div>
+
+        <div class="p-16">
+          <line-chart
+            :chartData="computedCountryChartCompare"
             :options="optionsLinear"
           />
         </div>
@@ -159,6 +219,10 @@ export default {
   data () {
     return {
       sort: 'cases',
+
+      compare: '',
+      compareType: 'cases',
+
       updateTotal: 0,
 
       optionsLinear: {
@@ -194,6 +258,7 @@ export default {
   computed: {
     ...mapGetters([
       'getAppActive',
+      'getAppData',
       'getDatesData'
     ]),
     computedCountryChartData () {
@@ -265,6 +330,82 @@ export default {
 
       return chartData
     },
+    computedCountryChartCompare () {
+      let self = this
+
+      let compareType = {
+        cases: {
+          label: self.$t('views.home.cases'),
+          active: 'rgba(1, 104, 250, 1)',
+          compare: 'rgba(1, 104, 250, 0.5)',
+          background: 'rgba(1, 104, 250, 0.08)'
+        },
+        deaths: {
+          label: self.$t('views.home.deaths'),
+          active: 'rgba(239, 116, 116, 1)',
+          compare: 'rgba(239, 116, 116, 0.5)',
+          background: 'rgba(239, 116, 116, 0.08)'
+        },
+        critical: {
+          label: self.$t('views.home.critical'),
+          active: 'rgba(239, 187, 116, 1)',
+          compare: 'rgba(239, 187, 116, 0.5)',
+          background: 'rgba(239, 187, 116, 0.08)'
+        },
+        recovered: {
+          label: self.$t('views.home.recovered'),
+          active: 'rgba(149, 230, 139, 1)',
+          compare: 'rgba(149, 230, 139, 0.5)',
+          background: 'rgba(149, 230, 139, 0.08)'
+        }
+      }
+
+      let chartData = {
+        labels: [],
+        datasets: [
+          {
+            label: compareType[self.compareType].label + ' ' + self.getAppActive,
+            borderColor: compareType[self.compareType].active,
+            backgroundColor: compareType[self.compareType].background,
+            data: []
+          },
+          {
+            label: compareType[self.compareType].label + ' ' + self.compare,
+            borderColor: compareType[self.compareType].compare,
+            backgroundColor: compareType[self.compareType].background,
+            data: []
+          }
+        ]
+      }
+
+      for (let date in self.getDatesData) {
+        let countryData = self.getDatesData[date].filter((country) => {
+          return country.country === self.getAppActive
+        })
+
+        let countryDataCompare = self.getDatesData[date].filter((country) => {
+          return country.country === self.compare
+        })
+
+        if (countryData.length > 0 || countryDataCompare.length) {
+          chartData.labels.push(date.replace(/_/g, '/'))
+
+          if (countryData.length > 0) {
+            chartData.datasets[0].data.push(countryData[0][self.compareType])
+          } else {
+            chartData.datasets[0].data.push(0)
+          }
+
+          if (countryDataCompare.length > 0) {
+            chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
+          } else {
+            chartData.datasets[1].data.push(0)
+          }
+        }
+      }
+
+      return chartData
+    },
     computedCountryChartDataDay () {
       let self = this
 
@@ -324,16 +465,16 @@ export default {
           if (countryData.length > 0 && countryDataYesterday.length > 0) {
             if (date === keys[keys.length - 1]) {
               if (countryData[0].cases !== countryDataYesterday[0].cases || countryData[0].deaths !== countryDataYesterday[0].deaths || countryData[0].critical !== countryDataYesterday[0].critical || countryData[0].recovered !== countryDataYesterday[0].recovered) {
-                chartData.datasets[0].data.push(countryData[0].cases - countryDataYesterday[0].cases)
-                chartData.datasets[1].data.push(countryData[0].deaths - countryDataYesterday[0].deaths)
-                chartData.datasets[2].data.push(countryData[0].critical - countryDataYesterday[0].critical)
-                chartData.datasets[3].data.push(countryData[0].recovered - countryDataYesterday[0].recovered)
+                chartData.datasets[0].data.push(countryData[0].cases - countryDataYesterday[0].cases > 0 ? countryData[0].cases - countryDataYesterday[0].cases : 0)
+                chartData.datasets[1].data.push(countryData[0].deaths - countryDataYesterday[0].deaths > 0 ? countryData[0].deaths - countryDataYesterday[0].deaths : 0)
+                chartData.datasets[2].data.push(countryData[0].critical - countryDataYesterday[0].critical > 0 ? countryData[0].critical - countryDataYesterday[0].critical : 0)
+                chartData.datasets[3].data.push(countryData[0].recovered - countryDataYesterday[0].recovered > 0 ? countryData[0].recovered - countryDataYesterday[0].recovered : 0)
               }
             } else {
-              chartData.datasets[0].data.push(countryData[0].cases - countryDataYesterday[0].cases)
-              chartData.datasets[1].data.push(countryData[0].deaths - countryDataYesterday[0].deaths)
-              chartData.datasets[2].data.push(countryData[0].critical - countryDataYesterday[0].critical)
-              chartData.datasets[3].data.push(countryData[0].recovered - countryDataYesterday[0].recovered)
+              chartData.datasets[0].data.push(countryData[0].cases - countryDataYesterday[0].cases > 0 ? countryData[0].cases - countryDataYesterday[0].cases : 0)
+              chartData.datasets[1].data.push(countryData[0].deaths - countryDataYesterday[0].deaths > 0 ? countryData[0].deaths - countryDataYesterday[0].deaths : 0)
+              chartData.datasets[2].data.push(countryData[0].critical - countryDataYesterday[0].critical > 0 ? countryData[0].critical - countryDataYesterday[0].critical : 0)
+              chartData.datasets[3].data.push(countryData[0].recovered - countryDataYesterday[0].recovered > 0 ? countryData[0].recovered - countryDataYesterday[0].recovered : 0)
             }
           } else {
             if (date === keys[keys.length - 1]) {

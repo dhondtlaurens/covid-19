@@ -11,6 +11,9 @@
         "linear": "Lineair",
         "logarithmic": "Logaritmisch",
         "day": "Dagelijks",
+        "compare": "Vergelijk",
+
+        "with": "met",
 
         "list": {
           "country": "Land",
@@ -48,6 +51,9 @@
         "linear": "Linear",
         "logarithmic": "Logarithmic",
         "day": "Daily",
+        "compare": "Compare",
+
+        "with": "with",
 
         "list": {
           "country": "Country",
@@ -85,6 +91,9 @@
         "linear": "Lineal",
         "logarithmic": "Logarítmica",
         "day": "Diariamente",
+        "compare": "comparar",
+
+        "with": "con",
 
         "list": {
           "country": "País",
