@@ -74,52 +74,56 @@
         <div class="flex items-center px-16 py-8 sm:py-0 h-auto sm:h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ getAppActive }}
 
-          <div class="flex text-12 pl-8">
+          <div class="flex items-center flex-wrap text-12 pl-8">
             ({{ $t('components.charts.compare') }}
 
-            <select
-              class="h-18 mx-1 my-1 sm:my-0 px-8 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
-              v-model="compareType"
-            >
-              <option value="cases">
-                {{ $t('views.home.cases').toLowerCase() }}
-              </option>
+            <div class="select relative">
+              <select
+                class="h-18 mx-1 my-1 sm:my-0 pl-8 pr-16 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
+                v-model="compareType"
+              >
+                <option value="cases">
+                  {{ $t('views.home.cases').toLowerCase() }}
+                </option>
 
-              <option value="deaths">
-                {{ $t('views.home.deaths').toLowerCase() }}
-              </option>
+                <option value="deaths">
+                  {{ $t('views.home.deaths').toLowerCase() }}
+                </option>
 
-              <option value="critical">
-                {{ $t('views.home.critical').toLowerCase() }}
-              </option>
+                <option value="critical">
+                  {{ $t('views.home.critical').toLowerCase() }}
+                </option>
 
-              <option value="recovered">
-                {{ $t('views.home.recovered').toLowerCase() }}
-              </option>
-            </select>
+                <option value="recovered">
+                  {{ $t('views.home.recovered').toLowerCase() }}
+                </option>
+              </select>
 
-            <div class="fill-current w-8 h-18 mx-1 leading-normal">
-              <div v-icon-chevron-down ></div>
+              <div class="select-chevron absolute top-0 right-0 h-18 fill-current w-8 h-18 mx-1 leading-normal pointer-events-none">
+                <div v-icon-chevron-down ></div>
+              </div>
             </div>
 
             {{ $t('components.charts.with') }}
 
-            <select
-              class="h-18 ml-1 my-1 sm:my-0 px-8 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
-              v-model="compare"
-            >
-              <option
-                v-for="data in getAppData"
-
-                :key="data.country"
-                :value="data.country"
+            <div class="select relative">
+              <select
+                class="h-18 ml-1 my-1 sm:my-0 pl-8 pr-16 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
+                v-model="compare"
               >
-                {{ data.country }}
-              </option>
-            </select>
+                <option
+                  v-for="data in getAppData"
 
-            <div class="fill-current w-8 h-18 mx-1 leading-normal">
-              <div v-icon-chevron-down ></div>
+                  :key="data.country"
+                  :value="data.country"
+                >
+                  {{ data.country }}
+                </option>
+              </select>
+
+              <div class="select-chevron absolute top-0 right-0 h-18 fill-current w-8 h-18 mx-1 leading-normal pointer-events-none">
+                <div v-icon-chevron-down ></div>
+              </div>
             </div>
             )
           </div>
@@ -575,6 +579,11 @@ export default {
 </script>
 
 <style lang="scss">
+  .select {
+    .select-chevron {
+      transform: translateX(-4px);
+    }
+  }
 
  .curve {
    .list-container {
