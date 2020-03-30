@@ -71,15 +71,15 @@
       class="w-full lg:w-1/2 px-16 mb-32"
     >
       <div class="w-full h-full border border-gray-100">
-        <div class="flex items-center px-16 py-8 sm:py-0 h-auto sm:h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+        <div class="flex flex-wrap items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ getAppActive }}
 
           <div class="flex items-center flex-wrap text-12 pl-8">
             ({{ $t('components.charts.compare') }}
 
-            <div class="select relative">
+            <div class="select relative w-64 sm:w-auto overflow-hidden sm:overflow-auto">
               <select
-                class="h-18 mx-1 my-1 sm:my-0 pl-8 pr-16 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
+                class="h-18 mx-1 my-1 pl-8 pr-16 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
                 v-model="compareType"
               >
                 <option value="cases">
@@ -104,15 +104,17 @@
               </div>
             </div>
 
-            {{ $t('components.charts.with') }}
+            <div class="mx-1">
+              {{ $t('components.charts.with') }}
+            </div>
 
-            <div class="select relative">
+            <div class="select relative w-64 sm:w-auto overflow-hidden sm:overflow-auto">
               <select
-                class="h-18 ml-1 my-1 sm:my-0 pl-8 pr-16 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
+                class="h-18 ml-1 my-1 pl-8 pr-16 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
                 v-model="compare"
               >
                 <option
-                  v-for="data in getAppData"
+                  v-for="data in computedCountryList"
 
                   :key="data.country"
                   :value="data.country"
@@ -558,6 +560,19 @@ export default {
       }
 
       return chartData
+    },
+    computedCountryList () {
+      let self = this
+      let countries = [...self.getAppData]
+
+      countries.sort((a, b) => {
+        let countryA = a.country.toLowerCase()
+        let countryB = b.country.toLowerCase()
+
+        return (countryA < countryB) ? -1 : (countryA > countryB) ? 1 : 0
+      })
+
+      return countries
     }
   },
   watch: {
