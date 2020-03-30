@@ -591,7 +591,7 @@ export default {
 <style lang="scss">
   .select {
     .select-chevron {
-      transform: translateX(-4px);
+      transform: translate(-4px, 8px);
     }
   }
 
