@@ -140,57 +140,69 @@
       </div>
     </div>
 
-    <div class="w-full xl:w-1/2 px-16 mb-32 xl:order-2">
+    <div class="w-full xl:w-2/3 xl:order-2 px-16 mb-32">
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          <div class="h-full flex flex-shrink-0 flex-grow-0 items-center px-16 w-1/3 sm:w-1/5 border-r border-gray-100">
+          <div class="h-full flex flex-shrink-0 flex-grow-0 items-center px-16 w-1/3 sm:w-1/4 md:w-1/6 border-r border-gray-100 leading-tight">
             {{ $t('components.charts.list.country') }}
           </div>
 
           <div
-            class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 sm:border-r sm:border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100"
+            class="h-full flex-shrink-0 flex-grow-0 items-center justify-end px-16 hidden md:flex w-1/3 sm:w-1/4 md:w-1/6 md:border-r md:border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight"
             :class="{'bg-blue-100': sort === 'population'}"
             @click="sort = 'population'"
           >
             {{ $t('components.charts.list.population') }}
 
-            <div class="fill-current w-8 h-18 ml-1 leading-normal">
+            <div class="fill-current w-8 h-18 ml-1 leading-normal flex-shrink-0">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
 
           <div
-            class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 border-r border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100"
+            class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/4 md:w-1/6 border-r border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight"
             :class="{'bg-blue-100': sort === 'cases'}"
             @click="sort = 'cases'"
           >
             {{ $t('components.charts.list.cases') }}
 
-            <div class="fill-current w-8 h-18 ml-1 leading-normal">
+            <div class="fill-current w-8 h-18 ml-1 leading-normal flex-shrink-0">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
 
           <div
-            class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 sm:border-r sm:border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100"
+          class="h-full flex-shrink-0 flex-grow-0 items-center justify-end px-16 hidden md:flex w-1/3 sm:w-1/4 md:w-1/6 md:border-r md:border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight"
+            :class="{'bg-blue-100': sort === 'infection'}"
+            @click="sort = 'infection'"
+          >
+            {{ $t('components.charts.list.infection') }}
+
+            <div class="fill-current w-8 h-18 ml-1 leading-normal flex-shrink-0">
+              <div v-icon-chevron-down ></div>
+            </div>
+          </div>
+
+          <div
+            class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/4 md:w-1/6 sm:border-r sm:border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight"
             :class="{'bg-blue-100': sort === 'deaths'}"
             @click="sort = 'deaths'"
           >
             {{ $t('components.charts.list.deaths') }}
 
-            <div class="fill-current w-8 h-18 ml-1 leading-normal">
+            <div class="fill-current w-8 h-18 ml-1 leading-normal flex-shrink-0">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
 
           <div
-            class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/5 text-center text-12 cursor-pointer hover:bg-blue-100"
+            class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/4 md:w-1/6 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight"
             :class="{'bg-blue-100': sort === 'mortality'}"
             @click="sort = 'mortality'"
           >
             {{ $t('components.charts.list.mortality') }}
 
-            <div class="fill-current w-8 h-18 ml-1 leading-normal">
+            <div class="fill-current w-8 h-18 ml-1 leading-normal flex-shrink-0">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -200,7 +212,7 @@
       </div>
     </div>
 
-    <div class="w-full xl:w-1/2 px-16 mb-32">
+    <div class="w-full xl:w-1/3 px-16 mb-32">
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ $t('components.charts.global') }}

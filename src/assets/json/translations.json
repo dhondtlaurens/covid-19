@@ -19,6 +19,7 @@
           "country": "Land",
           "population": "Bevolking",
           "cases": "Besmettingen",
+          "infection": "Besmettingen / 1M",
           "deaths": "Doden",
           "mortality": "Sterftecijfer"
         }
@@ -59,6 +60,7 @@
           "country": "Country",
           "population": "Population",
           "cases": "Cases",
+          "infection": "Cases / 1M",
           "deaths": "Deaths",
           "mortality": "Mortality rate"
         }
@@ -99,6 +101,7 @@
           "country": "País",
           "population": "Población",
           "cases": "Casos",
+          "infection": "Casos / 1M",
           "deaths": "Muertos",
           "mortality": "Tasa de mortalidad"
         }
