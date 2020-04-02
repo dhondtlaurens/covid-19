@@ -2,7 +2,7 @@
   "nl":{
     "components":{
       "header":{
-        "placeholder":"Zoek land",
+        "placeholder":"Zoek land of Amerikaanse staat",
         "empty":"Geen resultaten"
       },
       "charts":{
@@ -36,6 +36,7 @@
         "cases":"Besmettingen",
         "deaths":"Doden",
         "critical":"Kritiek",
+        "hospitalized":"Ziekenhuis",
         "recovered":"Hersteld"
       }
     }
@@ -43,7 +44,7 @@
   "en":{
     "components":{
       "header":{
-        "placeholder":"Search country",
+        "placeholder":"Search country or US state",
         "empty":"No results"
       },
       "charts":{
@@ -77,6 +78,7 @@
         "cases":"Cases",
         "deaths":"Deaths",
         "critical":"Critical",
+        "hospitalized":"Hospitalized",
         "recovered":"Recovered"
       }
     }
@@ -84,7 +86,7 @@
   "es":{
     "components":{
       "header":{
-        "placeholder":"Buscar regiones",
+        "placeholder":"Buscar país o estado de EE. UU.",
         "empty":"Sin resultados"
       },
       "charts":{
@@ -118,6 +120,7 @@
         "cases":"Casos",
         "deaths":"Muertos",
         "critical":"Estado crítico",
+        "hospitalized":"Hospitalizado",
         "recovered":"Recuperados"
       }
     }

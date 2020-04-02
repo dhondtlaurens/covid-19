@@ -1,14 +1,10 @@
 <template>
   <div class="footer flex fixed w-full h-64 bottom-0 border-t bg-white border-gray-100">
     <div class="flex justify-between items-center flex-grow h-full px-32 flex border-r border-gray-100">
-      <div class="hidden sm:flex text-16 text-blue-200">
-        <a class='flex items-center text-blue-200 no-underline appearance-none mr-16' target='_blank' href='https://www.linkedin.com/in/laurens-d-hondt-6b860a55/'>
-          <div class="text-12 mr-1">
-            💁‍♂️
-          </div>
-
-          Laurens D&#39;Hondt
-        </a>
+      <div class="flex items-center text-16 text-blue-200">
+        <div class='flex items-center mr-16'>
+          <coffee-component />
+        </div>
 
         <div class="hidden md:inline-block text-gray-100 mr-16">
           -
@@ -16,7 +12,7 @@
 
         <a class='hidden md:flex items-center text-blue-200 no-underline appearance-none mr-16' target='_blank' href='https://www.worldometers.info/coronavirus/'>
           <div class="text-12 mr-1">
-            ⚙️
+            🌎
           </div>
 
           Data by worldometers
@@ -26,12 +22,12 @@
           -
         </div>
 
-        <a class='hidden lg:flex items-center text-blue-200 no-underline appearance-none' target='_blank' href='https://www.coronaviruschecklist.co/'>
+        <a class='hidden lg:flex items-center text-blue-200 no-underline appearance-none mr-16' target='_blank' href='https://covidtracking.com/'>
           <div class="text-12 mr-1">
-            ✅
+            🇺🇸
           </div>
 
-          Coronavirus Checklist
+          Data by covidtracking
         </a>
     </div>
 
@@ -58,6 +54,8 @@
 </template>
 
 <script>
+
+import Coffee from '@/components/coffee/Coffee'
 
 export default {
   name: 'Chart',
@@ -89,6 +87,9 @@ export default {
         }
       }, 1000)
     }
+  },
+  components: {
+    'coffee-component': Coffee
   }
 }
 

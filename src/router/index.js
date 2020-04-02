@@ -8,7 +8,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/:country?',
+      path: '/:country?/:state?',
       name: 'home',
       component: Home,
       props: true

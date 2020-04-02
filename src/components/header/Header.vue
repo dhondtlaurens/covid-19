@@ -1,5 +1,5 @@
 <template>
-  <div class="header flex flex-wrap">
+  <div class="header relative z-50 flex flex-wrap">
     <div
       class="logo w-full sm:w-auto flex flex-shrink-0 items-center h-64 px-32 border-r border-b border-gray-100 cursor-pointer"
       @click="setGlobal"
@@ -72,12 +72,20 @@
           class="flex items-center px-32 h-64 border-b border-gray-100 hover:bg-blue-100 cursor-pointer"
 
           v-for="result in filteredResults"
-
           :key="result.original"
-          :data-country="result.original"
 
-          @click="setCountry"
+          :data-country="result.original"
+          :data-type="result.type"
+
+          @click="setCountryOrState"
         >
+          <div
+            class="mr-1 text-blue-200 font-medium "
+            v-if="result.type === 'state'"
+          >
+            USA
+          </div>
+
           {{ result.original }}
         </div>
 
@@ -102,8 +110,11 @@ export default {
   name: 'Header',
   data () {
     return {
-      list: [],
       langs: ['en', 'nl', 'es'],
+
+      list: [],
+      listStates: [],
+
       search: '',
       focus: false
     }
@@ -111,20 +122,42 @@ export default {
   computed: {
     ...mapGetters([
       'getAppData',
-      'getAppActive'
+      'getAppDataStates',
+
+      'getAppActive',
+      'getAppActiveStates'
     ]),
     filteredResults: function () {
       let results = []
+      let resultsStates = []
 
       if (this.search !== '') {
+        // COUNTRIES
         results = fuzzy.filter(this.search, this.list)
 
         results = results.filter((result, index) => {
           return result.score > 3 && index < 5
         })
+
+        results = results.map((result) => {
+          result.type = 'country'
+          return result
+        })
+
+        // STATES
+        resultsStates = fuzzy.filter(this.search, this.listStates)
+
+        resultsStates = resultsStates.filter((result, index) => {
+          return result.score > 3 && index < 5
+        })
+
+        resultsStates = resultsStates.map((result) => {
+          result.type = 'state'
+          return result
+        })
       }
 
-      return results
+      return [...results, ...resultsStates]
     }
   },
   methods: {
@@ -137,16 +170,26 @@ export default {
       localStorage.setItem('covidAppActive', '')
       this.$router.push('/')
     },
-    setCountry (e) {
+    setCountryOrState (e) {
       this.focus = false
 
-      localStorage.setItem('covidAppActive', e.currentTarget.dataset.country)
-      this.$router.push('/' + e.currentTarget.dataset.country)
+      if (e.currentTarget.dataset.type === 'country' && this.getAppActive !== e.currentTarget.dataset.country) {
+        localStorage.setItem('covidAppActive', e.currentTarget.dataset.country)
+        this.$router.push('/' + e.currentTarget.dataset.country)
+      } else if (e.currentTarget.dataset.type === 'state' && this.getAppActiveStates !== this.mapStateReverse(e.currentTarget.dataset.country)) {
+        localStorage.setItem('covidAppActive', 'USA/' + this.mapStateReverse(e.currentTarget.dataset.country))
+        this.$router.push('/USA/' + this.mapStateReverse(e.currentTarget.dataset.country))
+      } else {
+        this.search = this.getAppActiveStates !== '' ? this.mapState(this.getAppActiveStates) : this.getAppActive
+      }
     }
   },
   watch: {
     'getAppActive': function () {
-      this.search = this.getAppActive
+      this.search = this.getAppActiveStates !== '' ? this.mapState(this.getAppActiveStates) : this.getAppActive
+    },
+    'getAppActiveStates': function () {
+      this.search = this.getAppActiveStates !== '' ? this.mapState(this.getAppActiveStates) : this.getAppActive
     },
     'getAppData': function () {
       if (this.getAppData.length > 0) {
@@ -154,6 +197,15 @@ export default {
 
         this.getAppData.map((item) => {
           this.list.push(item.country)
+        })
+      }
+    },
+    'getAppDataStates': function () {
+      if (this.getAppDataStates.length > 0) {
+        this.listStates = []
+
+        this.getAppDataStates.map((item) => {
+          this.listStates.push(this.mapState(item.country))
         })
       }
     }

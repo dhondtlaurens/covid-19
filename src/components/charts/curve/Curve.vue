@@ -6,7 +6,7 @@
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          {{ getAppActive }}
+          {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
 
           <div class="text-12 pl-8">
             ({{ $t('components.charts.linear') }})
@@ -28,7 +28,7 @@
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          {{ getAppActive }}
+          {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
 
           <div class="text-12 pl-8">
             ({{ $t('components.charts.logarithmic') }})
@@ -50,7 +50,7 @@
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          {{ getAppActive }}
+          {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
 
           <div class="text-12 pl-8">
             ({{ $t('components.charts.day') }})
@@ -72,7 +72,7 @@
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex flex-wrap items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          {{ getAppActive }}
+          {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
 
           <div class="flex items-center flex-wrap text-12 pl-8">
             ({{ $t('components.charts.compare') }}
@@ -111,6 +111,7 @@
             <div class="select relative w-64 sm:w-auto overflow-hidden sm:overflow-auto">
               <select
                 class="h-18 ml-1 my-1 pl-8 pr-16 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
+                v-if="getAppActiveStates === '' ||  getAppActiveStates === undefined"
                 v-model="compare"
               >
                 <option
@@ -120,6 +121,21 @@
                   :value="data.country"
                 >
                   {{ data.country }}
+                </option>
+              </select>
+
+              <select
+                class="h-18 ml-1 my-1 pl-8 pr-16 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
+                v-if="getAppActiveStates !== '' &&  getAppActiveStates !== undefined"
+                v-model="compare"
+              >
+                <option
+                  v-for="data in computedStatesList"
+
+                  :key="data.country"
+                  :value="data.country"
+                >
+                  {{ mapState(data.country) }}
                 </option>
               </select>
 
@@ -246,7 +262,7 @@ export default {
     return {
       sort: 'cases',
 
-      compare: 'USA',
+      compare: '',
       compareType: 'cases',
 
       updateTotal: 0,
@@ -284,8 +300,13 @@ export default {
   computed: {
     ...mapGetters([
       'getAppActive',
+      'getAppActiveStates',
+
       'getAppData',
-      'getDatesData'
+      'getAppDataStates',
+
+      'getDatesData',
+      'getDatesDataStates'
     ]),
     computedCountryChartData () {
       let self = this
@@ -306,7 +327,7 @@ export default {
             data: []
           },
           {
-            label: self.$t('views.home.critical'),
+            label: self.getAppActiveStates === '' || self.getAppActiveStates === undefined ? self.$t('views.home.critical') : self.$t('views.home.hospitalized'),
             borderColor: 'rgba(239, 187, 116, 1)',
             backgroundColor: 'rgba(239, 187, 116, 0.08)',
             data: []
@@ -321,24 +342,45 @@ export default {
       }
 
       let today = new Date()
-      let day = today.getDate()
+
+      let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
       let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+      let year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
 
-      today = day + '_' + month + '_20'
+      today = day + '_' + month + '_' + year
 
-      for (let date in self.getDatesData) {
-        if (date !== today) {
-          let countryData = self.getDatesData[date].filter((country) => {
-            return country.country === self.getAppActive
-          })
+      if (self.getAppActiveStates === '' || self.getAppActiveStates === undefined) {
+        for (let date in self.getDatesData) {
+          if (date !== today) {
+            let countryData = self.getDatesData[date].filter((country) => {
+              return country.country === self.getAppActive
+            })
 
-          if (countryData.length > 0) {
-            chartData.labels.push(date.replace(/_/g, '/'))
+            if (countryData.length > 0) {
+              chartData.labels.push(date.replace(/_/g, '/'))
 
-            chartData.datasets[0].data.push(countryData[0].cases)
-            chartData.datasets[1].data.push(countryData[0].deaths)
-            chartData.datasets[2].data.push(countryData[0].critical)
-            chartData.datasets[3].data.push(countryData[0].recovered)
+              chartData.datasets[0].data.push(countryData[0].cases)
+              chartData.datasets[1].data.push(countryData[0].deaths)
+              chartData.datasets[2].data.push(countryData[0].critical)
+              chartData.datasets[3].data.push(countryData[0].recovered)
+            }
+          }
+        }
+      } else {
+        for (let date in self.getDatesDataStates) {
+          if (date !== today) {
+            let countryData = self.getDatesDataStates[date].filter((country) => {
+              return country.country === self.getAppActiveStates
+            })
+
+            if (countryData.length > 0) {
+              chartData.labels.push(date.replace(/_/g, '/'))
+
+              chartData.datasets[0].data.push(countryData[0].cases)
+              chartData.datasets[1].data.push(countryData[0].deaths)
+              chartData.datasets[2].data.push(countryData[0].critical)
+              chartData.datasets[3].data.push(countryData[0].recovered)
+            }
           }
         }
       }
@@ -362,7 +404,7 @@ export default {
           background: 'rgba(239, 116, 116, 0.08)'
         },
         critical: {
-          label: self.$t('views.home.critical'),
+          label: self.getAppActiveStates === '' || self.getAppActiveStates === undefined ? self.$t('views.home.critical') : self.$t('views.home.hospitalized'),
           active: 'rgba(239, 187, 116, 1)',
           compare: 'rgba(239, 187, 116, 0.5)',
           background: 'rgba(239, 187, 116, 0.08)'
@@ -394,34 +436,69 @@ export default {
       }
 
       let today = new Date()
-      let day = today.getDate()
+
+      let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
       let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+      let year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
 
-      today = day + '_' + month + '_20'
+      today = day + '_' + month + '_' + year
 
-      for (let date in self.getDatesData) {
-        if (date !== today) {
-          let countryData = self.getDatesData[date].filter((country) => {
-            return country.country === self.getAppActive
-          })
+      if (self.getAppActiveStates === '' || self.getAppActiveStates === undefined) {
+        for (let date in self.getDatesData) {
+          if (date !== today) {
+            let countryData = self.getDatesData[date].filter((country) => {
+              return country.country === self.getAppActive
+            })
 
-          let countryDataCompare = self.getDatesData[date].filter((country) => {
-            return country.country === self.compare
-          })
+            let countryDataCompare = self.getDatesData[date].filter((country) => {
+              return country.country === self.compare
+            })
 
-          if (countryData.length > 0 || countryDataCompare.length) {
-            chartData.labels.push(date.replace(/_/g, '/'))
+            if (countryData.length > 0 || countryDataCompare.length) {
+              chartData.labels.push(date.replace(/_/g, '/'))
 
-            if (countryData.length > 0) {
-              chartData.datasets[0].data.push(countryData[0][self.compareType])
-            } else {
-              chartData.datasets[0].data.push(0)
+              if (countryData.length > 0) {
+                chartData.datasets[0].data.push(countryData[0][self.compareType])
+              } else {
+                chartData.datasets[0].data.push(0)
+              }
+
+              if (countryDataCompare.length > 0) {
+                chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
+              } else {
+                chartData.datasets[1].data.push(0)
+              }
             }
+          }
+        }
+      } else {
+        for (let date in self.getDatesDataStates) {
+          chartData.datasets[0].label = compareType[self.compareType].label + ' ' + self.mapState(self.getAppActiveStates)
+          chartData.datasets[1].label = compareType[self.compareType].label + ' ' + self.mapState(self.compare)
 
-            if (countryDataCompare.length > 0) {
-              chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
-            } else {
-              chartData.datasets[1].data.push(0)
+          if (date !== today) {
+            let countryData = self.getDatesDataStates[date].filter((country) => {
+              return country.country === self.getAppActiveStates
+            })
+
+            let countryDataCompare = self.getDatesDataStates[date].filter((country) => {
+              return country.country === self.compare
+            })
+
+            if (countryData.length > 0 || countryDataCompare.length) {
+              chartData.labels.push(date.replace(/_/g, '/'))
+
+              if (countryData.length > 0) {
+                chartData.datasets[0].data.push(countryData[0][self.compareType])
+              } else {
+                chartData.datasets[0].data.push(0)
+              }
+
+              if (countryDataCompare.length > 0) {
+                chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
+              } else {
+                chartData.datasets[1].data.push(0)
+              }
             }
           }
         }
@@ -448,7 +525,7 @@ export default {
             data: []
           },
           {
-            label: self.$t('views.home.critical'),
+            label: self.getAppActiveStates === '' || self.getAppActiveStates === undefined ? self.$t('views.home.critical') : self.$t('views.home.hospitalized'),
             borderColor: 'rgba(239, 187, 116, 1)',
             backgroundColor: 'rgba(239, 187, 116, 0.08)',
             data: []
@@ -463,45 +540,86 @@ export default {
       }
 
       let today = new Date()
-      let day = today.getDate()
-      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
 
-      today = day + '_' + month + '_20'
+      let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
+      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+      let year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
+
+      today = day + '_' + month + '_' + year
 
       let keys = Object.keys(self.getDatesData)
 
-      for (let date in self.getDatesData) {
-        if (date !== today) {
-          let countryData = self.getDatesData[date].filter((country) => {
-            return country.country === self.getAppActive
-          })
-
-          if (chartData.datasets[0].data.length === 0) {
-            if (countryData.length > 0) {
-              chartData.labels.push(date.replace(/_/g, '/'))
-
-              chartData.datasets[0].data.push(countryData[0].cases)
-              chartData.datasets[1].data.push(countryData[0].deaths)
-              chartData.datasets[2].data.push(countryData[0].critical)
-              chartData.datasets[3].data.push(countryData[0].recovered)
-            }
-          } else {
-            let countryDataYesterday = self.getDatesData[keys[keys.indexOf(date) - 1]].filter((country) => {
+      if (self.getAppActiveStates === '' || self.getAppActiveStates === undefined) {
+        for (let date in self.getDatesData) {
+          if (date !== today) {
+            let countryData = self.getDatesData[date].filter((country) => {
               return country.country === self.getAppActive
             })
 
-            chartData.labels.push(date.replace(/_/g, '/'))
+            if (chartData.datasets[0].data.length === 0) {
+              if (countryData.length > 0) {
+                chartData.labels.push(date.replace(/_/g, '/'))
 
-            if (countryData.length > 0 && countryDataYesterday.length > 0) {
-              chartData.datasets[0].data.push(countryData[0].cases - countryDataYesterday[0].cases > 0 ? countryData[0].cases - countryDataYesterday[0].cases : 0)
-              chartData.datasets[1].data.push(countryData[0].deaths - countryDataYesterday[0].deaths > 0 ? countryData[0].deaths - countryDataYesterday[0].deaths : 0)
-              chartData.datasets[2].data.push(countryData[0].critical - countryDataYesterday[0].critical > 0 ? countryData[0].critical - countryDataYesterday[0].critical : 0)
-              chartData.datasets[3].data.push(countryData[0].recovered - countryDataYesterday[0].recovered > 0 ? countryData[0].recovered - countryDataYesterday[0].recovered : 0)
+                chartData.datasets[0].data.push(countryData[0].cases)
+                chartData.datasets[1].data.push(countryData[0].deaths)
+                chartData.datasets[2].data.push(countryData[0].critical)
+                chartData.datasets[3].data.push(countryData[0].recovered)
+              }
             } else {
-              chartData.datasets[0].data.push(0)
-              chartData.datasets[1].data.push(0)
-              chartData.datasets[2].data.push(0)
-              chartData.datasets[3].data.push(0)
+              let countryDataYesterday = self.getDatesData[keys[keys.indexOf(date) - 1]].filter((country) => {
+                return country.country === self.getAppActive
+              })
+
+              chartData.labels.push(date.replace(/_/g, '/'))
+
+              if (countryData.length > 0 && countryDataYesterday.length > 0) {
+                chartData.datasets[0].data.push(countryData[0].cases - countryDataYesterday[0].cases > 0 ? countryData[0].cases - countryDataYesterday[0].cases : 0)
+                chartData.datasets[1].data.push(countryData[0].deaths - countryDataYesterday[0].deaths > 0 ? countryData[0].deaths - countryDataYesterday[0].deaths : 0)
+                chartData.datasets[2].data.push(countryData[0].critical - countryDataYesterday[0].critical > 0 ? countryData[0].critical - countryDataYesterday[0].critical : 0)
+                chartData.datasets[3].data.push(countryData[0].recovered - countryDataYesterday[0].recovered > 0 ? countryData[0].recovered - countryDataYesterday[0].recovered : 0)
+              } else {
+                chartData.datasets[0].data.push(0)
+                chartData.datasets[1].data.push(0)
+                chartData.datasets[2].data.push(0)
+                chartData.datasets[3].data.push(0)
+              }
+            }
+          }
+        }
+      } else {
+        for (let date in self.getDatesDataStates) {
+          if (date !== today) {
+            let countryData = self.getDatesDataStates[date].filter((country) => {
+              return country.country === self.getAppActiveStates
+            })
+
+            if (chartData.datasets[0].data.length === 0) {
+              if (countryData.length > 0) {
+                chartData.labels.push(date.replace(/_/g, '/'))
+
+                chartData.datasets[0].data.push(countryData[0].cases)
+                chartData.datasets[1].data.push(countryData[0].deaths)
+                chartData.datasets[2].data.push(countryData[0].critical)
+                chartData.datasets[3].data.push(countryData[0].recovered)
+              }
+            } else {
+              let countryDataYesterday = self.getDatesDataStates[keys[keys.indexOf(date) - 1]].filter((country) => {
+                return country.country === self.getAppActiveStates
+              })
+
+              chartData.labels.push(date.replace(/_/g, '/'))
+
+              if (countryData.length > 0 && countryDataYesterday.length > 0) {
+                chartData.datasets[0].data.push(countryData[0].cases - countryDataYesterday[0].cases > 0 ? countryData[0].cases - countryDataYesterday[0].cases : 0)
+                chartData.datasets[1].data.push(countryData[0].deaths - countryDataYesterday[0].deaths > 0 ? countryData[0].deaths - countryDataYesterday[0].deaths : 0)
+                chartData.datasets[2].data.push(countryData[0].critical - countryDataYesterday[0].critical > 0 ? countryData[0].critical - countryDataYesterday[0].critical : 0)
+                chartData.datasets[3].data.push(countryData[0].recovered - countryDataYesterday[0].recovered > 0 ? countryData[0].recovered - countryDataYesterday[0].recovered : 0)
+              } else {
+                chartData.datasets[0].data.push(0)
+                chartData.datasets[1].data.push(0)
+                chartData.datasets[2].data.push(0)
+                chartData.datasets[3].data.push(0)
+              }
             }
           }
         }
@@ -543,10 +661,12 @@ export default {
       }
 
       let today = new Date()
-      let day = today.getDate()
-      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
 
-      today = day + '_' + month + '_20'
+      let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
+      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+      let year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
+
+      today = day + '_' + month + '_' + year
 
       for (let date in self.getDatesData) {
         if (date !== today) {
@@ -585,11 +705,29 @@ export default {
       })
 
       return countries
+    },
+    computedStatesList () {
+      let self = this
+      let countries = [...self.getAppDataStates]
+
+      countries.sort((a, b) => {
+        let countryA = a.country.toLowerCase()
+        let countryB = b.country.toLowerCase()
+
+        return (countryA < countryB) ? -1 : (countryA > countryB) ? 1 : 0
+      })
+
+      return countries
     }
   },
   watch: {
     'getAppActive': function () {
       this.updateTotal++
+      this.compare = this.getAppActiveStates !== '' && this.getAppActiveStates !== undefined ? this.getAppActiveStates : this.getAppActive
+    },
+    'getAppActiveStates': function () {
+      this.updateTotal++
+      this.compare = this.getAppActiveStates !== '' && this.getAppActiveStates !== undefined ? this.getAppActiveStates : this.getAppActive
     }
   },
   components: {
