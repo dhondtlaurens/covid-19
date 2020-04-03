@@ -33,7 +33,7 @@ export default {
   methods: {
     fetchAPI () {
       let self = this
-      let today = new Date()
+      let today = new Date(new Date().toLocaleString('en-US', { timeZone: 'UTC' }))
 
       let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
       let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
@@ -73,7 +73,7 @@ export default {
     },
     fetchStatesAPI () {
       let self = this
-      let today = new Date()
+      let today = new Date(new Date().toLocaleString('en-US', { timeZone: 'UTC' }))
 
       let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
       let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
