@@ -25,7 +25,10 @@
           class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32"
           :class="{'lg:w-1/4': getAppActive !== ''}"
         >
-          <div class="flex flex-col h-full border border-gray-100">
+          <div
+            class="flex flex-col h-full border border-gray-100"
+            v-if="Object.keys(getAppData).length > 0"
+          >
             <div class="flex justify-between items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.cases') }}
 
@@ -48,13 +51,23 @@
               </div>
             </div>
           </div>
+
+          <div
+            class="flex flex-col h-full border border-gray-100 overflow-hidden bg-blue-100"
+            v-if="Object.keys(getAppData).length === 0"
+          >
+            <div class="loading w-full h-full"></div>
+          </div>
         </div>
 
         <div
           class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32"
           :class="{'lg:w-1/4': getAppActive !== ''}"
         >
-          <div class="flex flex-col h-full border border-gray-100">
+          <div
+            class="flex flex-col h-full border border-gray-100"
+            v-if="Object.keys(getAppData).length > 0"
+          >
             <div class="flex justify-between items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.deaths') }}
 
@@ -75,13 +88,23 @@
               </div>
             </div>
           </div>
+
+          <div
+            class="flex flex-col h-full border border-gray-100 overflow-hidden bg-blue-100"
+            v-if="Object.keys(getAppData).length === 0"
+          >
+            <div class="loading w-full h-full"></div>
+          </div>
         </div>
 
         <div
           class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32"
           :class="{'lg:w-1/4': getAppActive !== ''}"
         >
-          <div class="flex flex-col h-full border border-gray-100">
+          <div
+            class="flex flex-col h-full border border-gray-100"
+            v-if="Object.keys(getAppData).length > 0"
+          >
             <div class="flex justify-between items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.critical') }}
 
@@ -102,13 +125,23 @@
               </div>
             </div>
           </div>
+
+          <div
+            class="flex flex-col h-full border border-gray-100 overflow-hidden bg-blue-100"
+            v-if="Object.keys(getAppData).length === 0"
+          >
+            <div class="loading w-full h-full"></div>
+          </div>
         </div>
 
         <div
           class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32"
           :class="{'lg:w-1/4': getAppActive !== ''}"
         >
-          <div class="flex flex-col h-full border border-gray-100">
+          <div
+            class="flex flex-col h-full border border-gray-100"
+            v-if="Object.keys(getAppData).length > 0"
+          >
             <div class="flex justify-between items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.recovered') }}
 
@@ -129,6 +162,13 @@
               </div>
             </div>
           </div>
+
+          <div
+            class="flex flex-col h-full border border-gray-100 overflow-hidden bg-blue-100"
+            v-if="Object.keys(getAppData).length === 0"
+          >
+            <div class="loading w-full h-full"></div>
+          </div>
         </div>
       </div>
 
@@ -141,14 +181,17 @@
           class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32"
           :class="{'lg:w-1/4': getAppActive !== ''}"
         >
-          <div class="flex flex-col h-full border border-gray-100">
+          <div
+            class="flex flex-col h-full border border-gray-100"
+            v-if="Object.keys(getAppDataStates).length > 0"
+          >
             <div class="flex justify-between items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.cases') }}
 
               <div
                 class="text-12 font-bold text-blue-200 cursor-pointer"
                 v-if="getAppCasesStates !== 0 && getAppCases !== 0 && getAppActiveStates !== ''"
-                @click="setGlobal"
+                @click="setUSA"
               >
                 🇺🇸 {{ formatNumber(getAppCases) }} ({{ Math.round((getAppCasesStates / getAppCases) * 100) }}%)
               </div>
@@ -164,20 +207,30 @@
               </div>
             </div>
           </div>
+
+          <div
+            class="flex flex-col h-full border border-gray-100 overflow-hidden bg-blue-100"
+            v-if="Object.keys(getAppDataStates).length === 0"
+          >
+            <div class="loading w-full h-full"></div>
+          </div>
         </div>
 
         <div
           class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32"
           :class="{'lg:w-1/4': getAppActive !== ''}"
         >
-          <div class="flex flex-col h-full border border-gray-100">
+          <div
+            class="flex flex-col h-full border border-gray-100"
+            v-if="Object.keys(getAppDataStates).length > 0"
+          >
             <div class="flex justify-between items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.deaths') }}
 
               <div
                 class="text-12 font-bold text-red-100 cursor-pointer"
                 v-if="getAppDeathsStates !== 0 && getAppDeaths !== 0  && getAppActiveStates !== ''"
-                @click="setGlobal"
+                @click="setUSA"
               >
                 🇺🇸 {{ formatNumber(getAppDeaths) }} ({{ Math.round((getAppDeathsStates / getAppDeaths) * 100) }}%)
               </div>
@@ -191,20 +244,30 @@
               </div>
             </div>
           </div>
+
+          <div
+            class="flex flex-col h-full border border-gray-100 overflow-hidden bg-blue-100"
+            v-if="Object.keys(getAppDataStates).length === 0"
+          >
+            <div class="loading w-full h-full"></div>
+          </div>
         </div>
 
         <div
           class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32"
           :class="{'lg:w-1/4': getAppActive !== ''}"
         >
-          <div class="flex flex-col h-full border border-gray-100">
+          <div
+            class="flex flex-col h-full border border-gray-100"
+            v-if="Object.keys(getAppDataStates).length > 0"
+          >
             <div class="flex justify-between items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.hospitalized') }}
 
               <div
                 class="text-12 font-bold text-orange-100 cursor-pointer"
                 v-if="getAppCriticalStates !== 0 && getAppCritical !== 0  && getAppActiveStates !== ''"
-                @click="setGlobal"
+                @click="setUSA"
               >
                 🇺🇸 {{ formatNumber(getAppCritical) }} ({{ Math.round((getAppCriticalStates / getAppCritical) * 100) }}%)
               </div>
@@ -218,20 +281,30 @@
               </div>
             </div>
           </div>
+
+          <div
+            class="flex flex-col h-full border border-gray-100 overflow-hidden bg-blue-100"
+            v-if="Object.keys(getAppData).length === 0"
+          >
+            <div class="loading w-full h-full"></div>
+          </div>
         </div>
 
         <div
           class="flex-shrink-0 px-16 w-full sm:w-1/2 mb-32"
           :class="{'lg:w-1/4': getAppActive !== ''}"
         >
-          <div class="flex flex-col h-full border border-gray-100">
+          <div
+            class="flex flex-col h-full border border-gray-100"
+            v-if="Object.keys(getAppDataStates).length > 0"
+          >
             <div class="flex justify-between items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
               {{ $t('views.home.recovered') }}
 
               <div
                 class="text-12 font-bold text-green-100 cursor-pointer"
                 v-if="getAppRecoveredStates !== 0 && getAppRecovered !== 0  && getAppActiveStates !== ''"
-                @click="setGlobal"
+                @click="setUSA"
               >
                 🇺🇸 {{ formatNumber(getAppRecovered) }} ({{ Math.round((getAppRecoveredStates / getAppRecovered) * 100) }}%)
               </div>
@@ -244,6 +317,13 @@
                 +{{ formatNumber(getAppRecoveredStates - getAppRecoveredYesterdayStates) }} (+{{ Math.round(((getAppRecoveredStates - getAppRecoveredYesterdayStates) / getAppRecoveredStates) * 100) }}%)
               </div>
             </div>
+          </div>
+
+          <div
+            class="flex flex-col h-full border border-gray-100 overflow-hidden bg-blue-100"
+            v-if="Object.keys(getAppDataStates).length === 0"
+          >
+            <div class="loading w-full h-full"></div>
           </div>
         </div>
       </div>
@@ -267,6 +347,9 @@ export default {
     ...mapGetters([
       'getAppActive',
       'getAppActiveStates',
+
+      'getAppData',
+      'getAppDataStates',
 
       'getAppCases',
       'getAppCasesStates',
@@ -309,6 +392,10 @@ export default {
     setGlobal () {
       localStorage.setItem('covidAppActive', '')
       this.$router.push('/')
+    },
+    setUSA () {
+      localStorage.setItem('covidAppActive', 'USA')
+      this.$router.push('/USA')
     }
   },
   components: {

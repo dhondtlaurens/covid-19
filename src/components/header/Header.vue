@@ -174,9 +174,14 @@ export default {
     setCountryOrState (e) {
       this.focus = false
 
-      if (e.currentTarget.dataset.type === 'country' && this.getAppActive !== e.currentTarget.dataset.country) {
-        localStorage.setItem('covidAppActive', e.currentTarget.dataset.country)
-        this.$router.push('/' + e.currentTarget.dataset.country)
+      if (e.currentTarget.dataset.type === 'country') {
+        if (this.getAppActive !== e.currentTarget.dataset.country) {
+          localStorage.setItem('covidAppActive', e.currentTarget.dataset.country)
+          this.$router.push('/' + e.currentTarget.dataset.country)
+        } else if (this.getAppActive === 'USA' && e.currentTarget.dataset.country === 'USA') {
+          localStorage.setItem('covidAppActive', e.currentTarget.dataset.country)
+          this.$router.push('/' + e.currentTarget.dataset.country)
+        }
       } else if (e.currentTarget.dataset.type === 'state' && this.getAppActiveStates !== this.mapStateReverse(e.currentTarget.dataset.country)) {
         localStorage.setItem('covidAppActive', 'USA/' + this.mapStateReverse(e.currentTarget.dataset.country))
         this.$router.push('/USA/' + this.mapStateReverse(e.currentTarget.dataset.country))

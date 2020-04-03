@@ -204,7 +204,7 @@ export default {
   },
   watch: {
     $route () {
-      if (this.$route.params.country === 'USA' && this.$route.params.state !== undefined) {
+      if (this.$route.params.country === 'USA' && this.$route.params.state !== '' && this.$route.params.state !== undefined) {
         this.setState(this.$route.params.state)
       } else {
         this.setCountry(this.$route.params.country)
@@ -221,5 +221,21 @@ export default {
 </script>
 
 <style lang="scss">
+
+.loading {
+    min-height: 120px;
+
+    background: linear-gradient(to right, rgba(235, 243, 255, 0) 0%,lighten(rgba(235, 243, 255, 1), 2%) 50%,rgba(235, 243, 255, 0) 100%);
+    animation: progress 1s ease-in-out infinite;
+  }
+
+@keyframes progress {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+  }
+}
 
 </style>

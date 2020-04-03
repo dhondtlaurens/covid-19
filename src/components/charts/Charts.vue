@@ -3,6 +3,23 @@
     <curve-component
       v-if="loading === false"
     />
+
+    <div
+      class="flex flex-wrap w-full"
+      v-if="loading === true"
+    >
+      <div class="w-full lg:w-1/2 px-16 mb-32">
+        <div class="w-full h-full border border-gray-100 overflow-hidden bg-blue-100">
+          <div class="loading loading-chart w-full h-full"></div>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 px-16 mb-32">
+        <div class="w-full h-full border border-gray-100 overflow-hidden bg-blue-100">
+          <div class="loading loading-chart w-full h-full"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
