@@ -16,27 +16,29 @@
 
         @click="setCountry"
       >
-        <div class="h-full flex flex-shrink-0 flex-grow-0 items-center px-16 text-blue-300 w-1/3 sm:w-1/4 md:w-1/6 border-r border-gray-100 truncate" >
-          {{ index + 1 }}. {{ country.country }}
+        <div class="h-full flex items-center px-16 text-blue-300 w-1/3 sm:w-1/4 md:w-1/6 border-r border-gray-100" >
+          <div class="truncate">
+            {{ index + 1 }}. {{ country.country }}
+          </div>
         </div>
 
-        <div class="h-full flex-shrink-0 flex-grow-0 items-center justify-end px-16 text-blue-300 hidden md:flex w-1/3 sm:w-1/4 md:w-1/6 md:border-r md:border-gray-100">
+        <div class="h-full hidden md:flex items-center justify-end px-16 text-blue-300 w-1/3 sm:w-1/4 md:w-1/6 md:border-r md:border-gray-100">
           {{ formatNumber(population[country.country]) }}
         </div>
 
-        <div class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 text-blue-200 w-1/3 sm:w-1/4 md:w-1/6 border-r border-gray-100">
+        <div class="h-full flex items-center justify-end px-16 text-blue-200 w-1/3 sm:w-1/4 md:w-1/6 border-r border-gray-100">
           {{ formatNumber(country.cases) }}
         </div>
 
-        <div class="h-full flex-shrink-0 flex-grow-0 items-center justify-end px-16 text-blue-300 hidden md:flex w-1/3 sm:w-1/4 md:w-1/6 md:border-r md:border-gray-100">
+        <div class="h-full flex items-center justify-end px-16 text-blue-300 hidden md:flex w-1/3 sm:w-1/4 md:w-1/6 md:border-r md:border-gray-100">
           {{ formatNumber(population[country.country] !== undefined ? Math.round((1000000 / population[country.country]) * country.cases) : 0) }}
         </div>
 
-        <div class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 text-red-100 w-1/3 sm:w-1/4 md:w-1/6 sm:border-r sm:border-gray-100">
+        <div class="h-full flex items-center justify-end px-16 text-red-100 w-1/3 sm:w-1/4 md:w-1/6 sm:border-r sm:border-gray-100">
           {{ formatNumber(country.deaths) }}
         </div>
 
-        <div class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 text-blue-300 w-1/3 sm:w-1/4 md:w-1/6">
+        <div class="h-full hidden sm:flex items-center justify-end px-16 text-blue-300 w-1/3 sm:w-1/4 md:w-1/6">
           {{ ((country.deaths / country.cases) * 100).toFixed(2) }}%
         </div>
       </div>

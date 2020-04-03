@@ -180,9 +180,11 @@
             :class="{'bg-blue-100': sort === 'population'}"
             @click="sort = 'population'"
           >
-            {{ $t('components.charts.list.population') }}
+            <div class="truncate">
+              {{ $t('components.charts.list.population') }}
+            </div>
 
-            <div class="list-chevron fill-current">
+            <div class="flex-shrink-0 list-chevron fill-current">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -192,9 +194,11 @@
             :class="{'bg-blue-100': sort === 'cases'}"
             @click="sort = 'cases'"
           >
-            {{ $t('components.charts.list.cases') }}
+            <div class="truncate">
+              {{ $t('components.charts.list.cases') }}
+            </div>
 
-            <div class="list-chevron fill-current">
+            <div class="flex-shrink-0 list-chevron fill-current">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -204,9 +208,11 @@
             :class="{'bg-blue-100': sort === 'infection'}"
             @click="sort = 'infection'"
           >
-            {{ $t('components.charts.list.infection') }}
+            <div class="truncate">
+              {{ $t('components.charts.list.infection') }}
+            </div>
 
-            <div class="list-chevron fill-current">
+            <div class="flex-shrink-0 list-chevron fill-current">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -216,9 +222,11 @@
             :class="{'bg-blue-100': sort === 'deaths'}"
             @click="sort = 'deaths'"
           >
-            {{ $t('components.charts.list.deaths') }}
+            <div class="truncate">
+              {{ $t('components.charts.list.deaths') }}
+            </div>
 
-            <div class="list-chevron fill-current">
+            <div class="flex-shrink-0 list-chevron fill-current">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -230,7 +238,7 @@
           >
             {{ $t('components.charts.list.mortality') }}
 
-            <div class="list-chevron fill-current">
+            <div class="flex-shrink-0 list-chevron fill-current">
               <div v-icon-chevron-down ></div>
             </div>
           </div>

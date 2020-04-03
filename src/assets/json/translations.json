@@ -19,7 +19,7 @@
           "country": "Land",
           "population": "Bevolking",
           "cases": "Besmettingen",
-          "infection": "Besmettingen / 1M",
+          "infection": "Besm... / 1M",
           "deaths": "Doden",
           "mortality": "Sterftecijfer"
         }
