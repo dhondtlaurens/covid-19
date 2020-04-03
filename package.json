@@ -18,7 +18,7 @@
     "tailwindcss-transitions": "2.2.0",
     "vue": "2.6.11",
     "vue-chartjs": "3.5.0",
-    "vue-i18n": "8.15.5",
+    "vue-i18n": "8.16.0",
     "vue-router": "3.1.6",
     "vuex": "3.1.3"
   },
