@@ -38,8 +38,7 @@
     </div>
 
     <div class="interval flex items-center flex-shrink-0 h-full px-32">
-      <div class="flex text-blue-300 text-24 font-bold">
-
+      <div class="flex text-blue-300 text-20 md:text-24 font-bold">
         <div
           class="mr-2"
           v-if="minutes !== 0"

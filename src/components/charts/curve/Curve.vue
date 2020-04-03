@@ -6,9 +6,11 @@
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
+          <div class="pr-8 truncate">
+            {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
+          </div>
 
-          <div class="text-12 pl-8">
+          <div class="text-12 ">
             ({{ $t('components.charts.linear') }})
           </div>
         </div>
@@ -28,9 +30,11 @@
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
+          <div class="pr-8 truncate">
+            {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
+          </div>
 
-          <div class="text-12 pl-8">
+          <div class="text-12">
             ({{ $t('components.charts.logarithmic') }})
           </div>
         </div>
@@ -50,9 +54,11 @@
     >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
+          <div class="pr-8 truncate">
+            {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
+          </div>
 
-          <div class="text-12 pl-8">
+          <div class="text-12">
             ({{ $t('components.charts.day') }})
           </div>
         </div>
@@ -71,15 +77,21 @@
       class="w-full lg:w-1/2 px-16 mb-32"
     >
       <div class="w-full h-full border border-gray-100">
-        <div class="flex flex-wrap items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
+        <div class="flex flex-wrap sm:flex-no-wrap items-center px-16 py-8 sm:py-0 h-auto sm:h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+          <div class="mb-1 sm:mb-0 pr-8 truncate">
+              {{ getAppActiveStates !== '' && getAppActiveStates !== undefined ? mapState(getAppActiveStates) : getAppActive}}
+          </div>
 
-          <div class="flex items-center flex-wrap text-12 pl-8">
-            ({{ $t('components.charts.compare') }}
+          <div class="flex flex-shrink-0 items-center flex-wrap text-12">
+            (
 
-            <div class="select relative w-64 sm:w-auto overflow-hidden sm:overflow-auto">
+            <div class="hidden sm:inline-block">
+              {{ $t('components.charts.compare') }}
+            </div>
+
+            <div class="select mx-1 relative overflow-hidden sm:overflow-auto">
               <select
-                class="h-18 mx-1 my-1 pl-8 pr-16 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
+                class="w-80 sm:w-100 pl-8 pr-16 bg-blue-100 font-medium appearance-none outline-none cursor-pointer rounded-md"
                 v-model="compareType"
               >
                 <option value="cases">
@@ -91,7 +103,7 @@
                 </option>
 
                 <option value="critical">
-                  {{ $t('views.home.critical').toLowerCase() }}
+                  {{ getAppActiveStates === '' || getAppActiveStates === undefined ? $t('views.home.critical').toLowerCase() : $t('views.home.hospitalized').toLowerCase() }}
                 </option>
 
                 <option value="recovered">
@@ -99,7 +111,7 @@
                 </option>
               </select>
 
-              <div class="select-chevron absolute top-0 right-0 h-18 fill-current w-8 h-18 mx-1 leading-normal pointer-events-none">
+              <div class="select-chevron absolute top-0 right-0 fill-current">
                 <div v-icon-chevron-down ></div>
               </div>
             </div>
@@ -108,9 +120,9 @@
               {{ $t('components.charts.with') }}
             </div>
 
-            <div class="select relative w-64 sm:w-auto overflow-hidden sm:overflow-auto">
+            <div class="select mx-1 relative overflow-hidden sm:overflow-auto">
               <select
-                class="h-18 ml-1 my-1 pl-8 pr-16 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
+                class="w-80 sm:w-100 pl-8 pr-16 bg-blue-100 font-medium appearance-none outline-none cursor-pointer rounded-md"
                 v-if="getAppActiveStates === '' ||  getAppActiveStates === undefined"
                 v-model="compare"
               >
@@ -125,7 +137,7 @@
               </select>
 
               <select
-                class="h-18 ml-1 my-1 pl-8 pr-16 bg-blue-100 appearance-none outline-none text-blue-300 text-12 font-bold cursor-pointer rounded-none"
+                class="w-80 sm:w-100 pl-8 pr-16 bg-blue-100 font-medium appearance-none outline-none cursor-pointer rounded-md"
                 v-if="getAppActiveStates !== '' &&  getAppActiveStates !== undefined"
                 v-model="compare"
               >
@@ -139,7 +151,7 @@
                 </option>
               </select>
 
-              <div class="select-chevron absolute top-0 right-0 h-18 fill-current w-8 h-18 mx-1 leading-normal pointer-events-none">
+              <div class="select-chevron absolute top-0 right-0 fill-current">
                 <div v-icon-chevron-down ></div>
               </div>
             </div>
@@ -156,7 +168,7 @@
       </div>
     </div>
 
-    <div class="w-full xl:w-2/3 xl:order-2 px-16 mb-32">
+    <div class="list w-full xl:w-2/3 xl:order-2 px-16 mb-32">
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           <div class="h-full flex flex-shrink-0 flex-grow-0 items-center px-16 w-1/3 sm:w-1/4 md:w-1/6 border-r border-gray-100 leading-tight">
@@ -170,7 +182,7 @@
           >
             {{ $t('components.charts.list.population') }}
 
-            <div class="fill-current w-8 h-18 ml-1 leading-normal flex-shrink-0">
+            <div class="list-chevron fill-current">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -182,7 +194,7 @@
           >
             {{ $t('components.charts.list.cases') }}
 
-            <div class="fill-current w-8 h-18 ml-1 leading-normal flex-shrink-0">
+            <div class="list-chevron fill-current">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -194,7 +206,7 @@
           >
             {{ $t('components.charts.list.infection') }}
 
-            <div class="fill-current w-8 h-18 ml-1 leading-normal flex-shrink-0">
+            <div class="list-chevron fill-current">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -206,7 +218,7 @@
           >
             {{ $t('components.charts.list.deaths') }}
 
-            <div class="fill-current w-8 h-18 ml-1 leading-normal flex-shrink-0">
+            <div class="list-chevron fill-current">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -218,7 +230,7 @@
           >
             {{ $t('components.charts.list.mortality') }}
 
-            <div class="fill-current w-8 h-18 ml-1 leading-normal flex-shrink-0">
+            <div class="list-chevron fill-current">
               <div v-icon-chevron-down ></div>
             </div>
           </div>
@@ -740,8 +752,24 @@ export default {
 
 <style lang="scss">
   .select {
+    text-overflow: ellipsis;
+
     .select-chevron {
-      transform: translate(-4px, 4px);
+      width: 18px;
+      height: 18px;
+
+      transform-origin: center;
+      transform: scale(0.5);
+    }
+  }
+
+  .list {
+    .list-chevron {
+      width: 18px;
+      height: 18px;
+
+      transform-origin: center;
+      transform: scale(0.5);
     }
   }
 

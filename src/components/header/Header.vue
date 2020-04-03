@@ -23,7 +23,7 @@
         </div>
 
         <input
-          class="flex-grow flex-shrink min-w-0 h-full px-32 appearance-none outline-none"
+          class="flex-grow flex-shrink min-w-0 h-full px-32 appearance-none outline-none truncate"
 
           type="text"
           size="1"
@@ -80,7 +80,7 @@
           @click="setCountryOrState"
         >
           <div
-            class="mr-1 text-blue-200 font-medium "
+            class="mr-1 bg-blue-100 px-8 py-1 rounded-md mr-2 text-blue-200 font-medium "
             v-if="result.type === 'state'"
           >
             USA
@@ -136,7 +136,7 @@ export default {
         results = fuzzy.filter(this.search, this.list)
 
         results = results.filter((result, index) => {
-          return result.score > 3 && index < 5
+          return result.score > 3
         })
 
         results = results.map((result) => {
@@ -148,7 +148,7 @@ export default {
         resultsStates = fuzzy.filter(this.search, this.listStates)
 
         resultsStates = resultsStates.filter((result, index) => {
-          return result.score > 3 && index < 5
+          return result.score > 3
         })
 
         resultsStates = resultsStates.map((result) => {
@@ -157,7 +157,8 @@ export default {
         })
       }
 
-      return [...results, ...resultsStates]
+      results = [...results, ...resultsStates].sort((a, b) => (a.score < b.score) ? 1 : -1)
+      return results.slice(0, 5)
     }
   },
   methods: {
