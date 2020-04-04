@@ -329,9 +329,9 @@ export default {
       'getDatesDataStates'
     ]),
     computedCountryChartData () {
-      let self = this
+      const self = this
 
-      let chartData = {
+      const chartData = {
         labels: [],
         datasets: [
           {
@@ -363,16 +363,16 @@ export default {
 
       let today = new Date(new Date().toLocaleString('en-US', { timeZone: 'UTC' }))
 
-      let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
-      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
-      let year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
+      const day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
+      const month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+      const year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
 
       today = day + '_' + month + '_' + year
 
       if (self.getAppActiveStates === '' || self.getAppActiveStates === undefined) {
-        for (let date in self.getDatesData) {
+        for (const date in self.getDatesData) {
           if (date !== today) {
-            let countryData = self.getDatesData[date].filter((country) => {
+            const countryData = self.getDatesData[date].filter((country) => {
               return country.country === self.getAppActive
             })
 
@@ -387,9 +387,9 @@ export default {
           }
         }
       } else {
-        for (let date in self.getDatesDataStates) {
+        for (const date in self.getDatesDataStates) {
           if (date !== today) {
-            let countryData = self.getDatesDataStates[date].filter((country) => {
+            const countryData = self.getDatesDataStates[date].filter((country) => {
               return country.country === self.getAppActiveStates
             })
 
@@ -408,9 +408,9 @@ export default {
       return chartData
     },
     computedCountryChartCompare () {
-      let self = this
+      const self = this
 
-      let compareType = {
+      const compareType = {
         cases: {
           label: self.$t('views.home.cases'),
           active: 'rgba(1, 104, 250, 1)',
@@ -437,7 +437,7 @@ export default {
         }
       }
 
-      let chartData = {
+      const chartData = {
         labels: [],
         datasets: [
           {
@@ -457,20 +457,20 @@ export default {
 
       let today = new Date(new Date().toLocaleString('en-US', { timeZone: 'UTC' }))
 
-      let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
-      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
-      let year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
+      const day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
+      const month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+      const year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
 
       today = day + '_' + month + '_' + year
 
       if (self.getAppActiveStates === '' || self.getAppActiveStates === undefined) {
-        for (let date in self.getDatesData) {
+        for (const date in self.getDatesData) {
           if (date !== today) {
-            let countryData = self.getDatesData[date].filter((country) => {
+            const countryData = self.getDatesData[date].filter((country) => {
               return country.country === self.getAppActive
             })
 
-            let countryDataCompare = self.getDatesData[date].filter((country) => {
+            const countryDataCompare = self.getDatesData[date].filter((country) => {
               return country.country === self.compare
             })
 
@@ -492,16 +492,16 @@ export default {
           }
         }
       } else {
-        for (let date in self.getDatesDataStates) {
+        for (const date in self.getDatesDataStates) {
           chartData.datasets[0].label = compareType[self.compareType].label + ' ' + self.mapState(self.getAppActiveStates)
           chartData.datasets[1].label = compareType[self.compareType].label + ' ' + self.mapState(self.compare)
 
           if (date !== today) {
-            let countryData = self.getDatesDataStates[date].filter((country) => {
+            const countryData = self.getDatesDataStates[date].filter((country) => {
               return country.country === self.getAppActiveStates
             })
 
-            let countryDataCompare = self.getDatesDataStates[date].filter((country) => {
+            const countryDataCompare = self.getDatesDataStates[date].filter((country) => {
               return country.country === self.compare
             })
 
@@ -527,9 +527,9 @@ export default {
       return chartData
     },
     computedCountryChartDataDay () {
-      let self = this
+      const self = this
 
-      let chartData = {
+      const chartData = {
         labels: [],
         datasets: [
           {
@@ -561,18 +561,18 @@ export default {
 
       let today = new Date(new Date().toLocaleString('en-US', { timeZone: 'UTC' }))
 
-      let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
-      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
-      let year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
+      const day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
+      const month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+      const year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
 
       today = day + '_' + month + '_' + year
 
-      let keys = Object.keys(self.getDatesData)
+      const keys = Object.keys(self.getDatesData)
 
       if (self.getAppActiveStates === '' || self.getAppActiveStates === undefined) {
-        for (let date in self.getDatesData) {
+        for (const date in self.getDatesData) {
           if (date !== today) {
-            let countryData = self.getDatesData[date].filter((country) => {
+            const countryData = self.getDatesData[date].filter((country) => {
               return country.country === self.getAppActive
             })
 
@@ -586,7 +586,7 @@ export default {
                 chartData.datasets[3].data.push(countryData[0].recovered)
               }
             } else {
-              let countryDataYesterday = self.getDatesData[keys[keys.indexOf(date) - 1]].filter((country) => {
+              const countryDataYesterday = self.getDatesData[keys[keys.indexOf(date) - 1]].filter((country) => {
                 return country.country === self.getAppActive
               })
 
@@ -607,9 +607,9 @@ export default {
           }
         }
       } else {
-        for (let date in self.getDatesDataStates) {
+        for (const date in self.getDatesDataStates) {
           if (date !== today) {
-            let countryData = self.getDatesDataStates[date].filter((country) => {
+            const countryData = self.getDatesDataStates[date].filter((country) => {
               return country.country === self.getAppActiveStates
             })
 
@@ -623,7 +623,7 @@ export default {
                 chartData.datasets[3].data.push(countryData[0].recovered)
               }
             } else {
-              let countryDataYesterday = self.getDatesDataStates[keys[keys.indexOf(date) - 1]].filter((country) => {
+              const countryDataYesterday = self.getDatesDataStates[keys[keys.indexOf(date) - 1]].filter((country) => {
                 return country.country === self.getAppActiveStates
               })
 
@@ -648,9 +648,9 @@ export default {
       return chartData
     },
     computedTotalChartData () {
-      let self = this
+      const self = this
 
-      let chartData = {
+      const chartData = {
         labels: [],
         datasets: [
           {
@@ -682,13 +682,13 @@ export default {
 
       let today = new Date(new Date().toLocaleString('en-US', { timeZone: 'UTC' }))
 
-      let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
-      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
-      let year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
+      const day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
+      const month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+      const year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
 
       today = day + '_' + month + '_' + year
 
-      for (let date in self.getDatesData) {
+      for (const date in self.getDatesData) {
         if (date !== today) {
           chartData.labels.push(date.replace(/_/g, '/'))
 
@@ -714,12 +714,12 @@ export default {
       return chartData
     },
     computedCountryList () {
-      let self = this
-      let countries = [...self.getAppData]
+      const self = this
+      const countries = [...self.getAppData]
 
       countries.sort((a, b) => {
-        let countryA = a.country.toLowerCase()
-        let countryB = b.country.toLowerCase()
+        const countryA = a.country.toLowerCase()
+        const countryB = b.country.toLowerCase()
 
         return (countryA < countryB) ? -1 : (countryA > countryB) ? 1 : 0
       })
@@ -727,12 +727,12 @@ export default {
       return countries
     },
     computedStatesList () {
-      let self = this
-      let countries = [...self.getAppDataStates]
+      const self = this
+      const countries = [...self.getAppDataStates]
 
       countries.sort((a, b) => {
-        let countryA = a.country.toLowerCase()
-        let countryB = b.country.toLowerCase()
+        const countryA = a.country.toLowerCase()
+        const countryB = b.country.toLowerCase()
 
         return (countryA < countryB) ? -1 : (countryA > countryB) ? 1 : 0
       })
@@ -741,11 +741,11 @@ export default {
     }
   },
   watch: {
-    'getAppActive': function () {
+    getAppActive: function () {
       this.updateTotal++
       this.compare = this.getAppActiveStates !== '' && this.getAppActiveStates !== undefined ? this.getAppActiveStates : this.getAppActive
     },
-    'getAppActiveStates': function () {
+    getAppActiveStates: function () {
       this.updateTotal++
       this.compare = this.getAppActiveStates !== '' && this.getAppActiveStates !== undefined ? this.getAppActiveStates : this.getAppActive
     }

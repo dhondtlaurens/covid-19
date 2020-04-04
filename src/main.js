@@ -17,8 +17,8 @@ Vue.use(VueI18n)
 Vue.config.productionTip = false
 
 let locale = 'en'
-let locales = ['en', 'nl', 'es']
-let navLang = navigator.languages !== undefined ? navigator.languages[0].substring(0, 2).toLowerCase() : navigator.language.substring(0, 2).toLowerCase()
+const locales = ['en', 'nl', 'es']
+const navLang = navigator.languages !== undefined ? navigator.languages[0].substring(0, 2).toLowerCase() : navigator.language.substring(0, 2).toLowerCase()
 
 locales.map((lang) => {
   if (navLang === lang) locale = lang

@@ -134,14 +134,14 @@ export default {
     }
   },
   watch: {
-    'getAppActive': function () {
+    getAppActive: function () {
       if (this.getAppActive !== '') {
         this.$refs['list-container'].scrollTop = this.$refs[this.getAppActive][0].offsetTop
       } else {
         this.$refs['list-container'].scrollTop = 0
       }
     },
-    'sort': function () {
+    sort: function () {
       setTimeout(() => {
         if (this.getAppActive !== '') {
           this.$refs['list-container'].scrollTop = this.$refs[this.getAppActive][0].offsetTop

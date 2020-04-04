@@ -11,7 +11,7 @@ Vue.mixin({
 Vue.mixin({
   methods: {
     mapState (postal) {
-      let states = {
+      const states = {
         AK: 'Alaska',
         AL: 'Alabama',
         AR: 'Arkansas',
@@ -78,7 +78,7 @@ Vue.mixin({
 Vue.mixin({
   methods: {
     mapStateReverse (state) {
-      let states = {
+      const states = {
         AK: 'Alaska',
         AL: 'Alabama',
         AR: 'Arkansas',

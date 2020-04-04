@@ -3,57 +3,57 @@ module.exports = {
     extend: {
       colors: {
         gray: {
-          '100': '#E2E5ED'
+          100: '#E2E5ED'
         },
         blue: {
-          '100': '#EBF3FF',
-          '200': '#0168FA',
-          '300': '#071D5D'
+          100: '#EBF3FF',
+          200: '#0168FA',
+          300: '#071D5D'
         },
         green: {
-          '100': '#95E68B'
+          100: '#95E68B'
         },
         orange: {
-          '100': '#EFBB74'
+          100: '#EFBB74'
         },
         red: {
-          '100': '#EF7474'
+          100: '#EF7474'
         }
       },
       spacing: {
-        '8': '8px',
-        '10': '10px',
-        '16': '16px',
-        '18': '18px',
-        '32': '32px',
-        '64': '64px',
+        8: '8px',
+        10: '10px',
+        16: '16px',
+        18: '18px',
+        32: '32px',
+        64: '64px',
 
-        '40': '40px',
-        '80': '80px',
-        '100': '100px'
+        40: '40px',
+        80: '80px',
+        100: '100px'
       },
       fontFamily: {
-        'app': [
+        app: [
           'IBM Plex Sans',
           'system-ui',
           'sans-serif'
         ]
       },
       fontSize: {
-        '10': '10px',
-        '12': '12px',
-        '14': '14px',
-        '16': '16px',
-        '20': '20px',
-        '24': '24px',
-        '34': '34px'
+        10: '10px',
+        12: '12px',
+        14: '14px',
+        16: '16px',
+        20: '20px',
+        24: '24px',
+        34: '34px'
       },
       transitionProperty: {
-        'all': 'all'
+        all: 'all'
       },
       transitionDuration: {
-        '200': '200ms',
-        '900': '900ms'
+        200: '200ms',
+        900: '900ms'
       },
       transitionTimingFunction: {
         'in-out': 'cubic-bezier(0.4, 0, 0.2, 1)'
@@ -67,5 +67,5 @@ module.exports = {
   },
   plugins: [
     require('tailwindcss-transitions')()
-  ],
+  ]
 }

@@ -191,13 +191,13 @@ export default {
     }
   },
   watch: {
-    'getAppActive': function () {
+    getAppActive: function () {
       this.search = this.getAppActiveStates !== '' ? this.mapState(this.getAppActiveStates) : this.getAppActive
     },
-    'getAppActiveStates': function () {
+    getAppActiveStates: function () {
       this.search = this.getAppActiveStates !== '' ? this.mapState(this.getAppActiveStates) : this.getAppActive
     },
-    'getAppData': function () {
+    getAppData: function () {
       if (this.getAppData.length > 0) {
         this.list = []
 
@@ -206,7 +206,7 @@ export default {
         })
       }
     },
-    'getAppDataStates': function () {
+    getAppDataStates: function () {
       if (this.getAppDataStates.length > 0) {
         this.listStates = []
 

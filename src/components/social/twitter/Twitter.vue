@@ -36,7 +36,7 @@
 
 export default {
   mounted () {
-    let twitter = document.createElement('script')
+    const twitter = document.createElement('script')
 
     twitter.async = true
     twitter.setAttribute('src', 'https://platform.twitter.com/widgets.js')

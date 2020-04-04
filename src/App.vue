@@ -32,18 +32,18 @@ export default {
   },
   methods: {
     fetchAPI () {
-      let self = this
-      let today = new Date(new Date().toLocaleString('en-US', { timeZone: 'UTC' }))
+      const self = this
+      const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'UTC' }))
 
-      let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
-      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
-      let year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
+      const day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
+      const month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+      const year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
 
       fetch('https://covid19-data-api.herokuapp.com/countries/' + day + '_' + month + '_' + year, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          'Pragma': 'no-cache',
+          Pragma: 'no-cache',
           'Cache-Control': 'no-cache'
         }
       })
@@ -72,18 +72,18 @@ export default {
         })
     },
     fetchStatesAPI () {
-      let self = this
-      let today = new Date(new Date().toLocaleString('en-US', { timeZone: 'UTC' }))
+      const self = this
+      const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'UTC' }))
 
-      let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
-      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
-      let year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
+      const day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
+      const month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+      const year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
 
       fetch('https://covid19-data-api.herokuapp.com/states/' + day + '_' + month + '_' + year, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          'Pragma': 'no-cache',
+          Pragma: 'no-cache',
           'Cache-Control': 'no-cache'
         }
       })
@@ -106,13 +106,13 @@ export default {
         })
     },
     fetchLocal () {
-      let self = this
+      const self = this
 
       fetch('/data/countriesToday.json', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          'Pragma': 'no-cache',
+          Pragma: 'no-cache',
           'Cache-Control': 'no-cache'
         }
       })
@@ -130,13 +130,13 @@ export default {
         })
     },
     fetchStatesLocal () {
-      let self = this
+      const self = this
 
       fetch('/data/statesToday.json', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          'Pragma': 'no-cache',
+          Pragma: 'no-cache',
           'Cache-Control': 'no-cache'
         }
       })
@@ -150,7 +150,7 @@ export default {
     setCountry (country) {
       if (Object.keys(this.getAppData).length > 0) {
         if (country !== undefined) {
-          let filter = this.getAppData.filter((item) => {
+          const filter = this.getAppData.filter((item) => {
             return item.country === country
           })
 
@@ -177,7 +177,7 @@ export default {
     setState (country) {
       if (Object.keys(this.getAppDataStates).length > 0) {
         if (country !== undefined) {
-          let filter = this.getAppDataStates.filter((item) => {
+          const filter = this.getAppDataStates.filter((item) => {
             return item.country === country
           })
 

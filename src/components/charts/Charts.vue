@@ -46,21 +46,21 @@ export default {
   },
   methods: {
     fetchAPI () {
-      let self = this
+      const self = this
       self.loading = true
 
-      let yesterday = new Date()
+      const yesterday = new Date()
       yesterday.setDate(yesterday.getDate() - 1)
 
-      let day = yesterday.getDate() < 10 ? '0' + yesterday.getDate() : yesterday.getDate()
-      let month = (yesterday.getMonth() + 1) < 10 ? '0' + (yesterday.getMonth() + 1) : (yesterday.getMonth() + 1)
-      let year = yesterday.getFullYear().toString().substr(-2) < 10 ? '0' + yesterday.getFullYear().toString().substr(-2) : yesterday.getFullYear().toString().substr(-2)
+      const day = yesterday.getDate() < 10 ? '0' + yesterday.getDate() : yesterday.getDate()
+      const month = (yesterday.getMonth() + 1) < 10 ? '0' + (yesterday.getMonth() + 1) : (yesterday.getMonth() + 1)
+      const year = yesterday.getFullYear().toString().substr(-2) < 10 ? '0' + yesterday.getFullYear().toString().substr(-2) : yesterday.getFullYear().toString().substr(-2)
 
       fetch('https://covid19-data-api.herokuapp.com/countries/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          'Pragma': 'no-cache',
+          Pragma: 'no-cache',
           'Cache-Control': 'no-cache'
         }
       })
@@ -90,21 +90,21 @@ export default {
         })
     },
     fetchStatesAPI () {
-      let self = this
+      const self = this
       self.loading = true
 
-      let yesterday = new Date()
+      const yesterday = new Date()
       yesterday.setDate(yesterday.getDate() - 1)
 
-      let day = yesterday.getDate() < 10 ? '0' + yesterday.getDate() : yesterday.getDate()
-      let month = (yesterday.getMonth() + 1) < 10 ? '0' + (yesterday.getMonth() + 1) : (yesterday.getMonth() + 1)
-      let year = yesterday.getFullYear().toString().substr(-2) < 10 ? '0' + yesterday.getFullYear().toString().substr(-2) : yesterday.getFullYear().toString().substr(-2)
+      const day = yesterday.getDate() < 10 ? '0' + yesterday.getDate() : yesterday.getDate()
+      const month = (yesterday.getMonth() + 1) < 10 ? '0' + (yesterday.getMonth() + 1) : (yesterday.getMonth() + 1)
+      const year = yesterday.getFullYear().toString().substr(-2) < 10 ? '0' + yesterday.getFullYear().toString().substr(-2) : yesterday.getFullYear().toString().substr(-2)
 
       fetch('https://covid19-data-api.herokuapp.com/states/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          'Pragma': 'no-cache',
+          Pragma: 'no-cache',
           'Cache-Control': 'no-cache'
         }
       })
@@ -134,20 +134,20 @@ export default {
         })
     },
     fetchLocal () {
-      let self = this
+      const self = this
 
-      let yesterday = new Date()
+      const yesterday = new Date()
       yesterday.setDate(yesterday.getDate() - 1)
 
-      let day = yesterday.getDate() < 10 ? '0' + yesterday.getDate() : yesterday.getDate()
-      let month = (yesterday.getMonth() + 1) < 10 ? '0' + (yesterday.getMonth() + 1) : (yesterday.getMonth() + 1)
-      let year = yesterday.getFullYear().toString().substr(-2) < 10 ? '0' + yesterday.getFullYear().toString().substr(-2) : yesterday.getFullYear().toString().substr(-2)
+      const day = yesterday.getDate() < 10 ? '0' + yesterday.getDate() : yesterday.getDate()
+      const month = (yesterday.getMonth() + 1) < 10 ? '0' + (yesterday.getMonth() + 1) : (yesterday.getMonth() + 1)
+      const year = yesterday.getFullYear().toString().substr(-2) < 10 ? '0' + yesterday.getFullYear().toString().substr(-2) : yesterday.getFullYear().toString().substr(-2)
 
       fetch('/data/countries.json', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          'Pragma': 'no-cache',
+          Pragma: 'no-cache',
           'Cache-Control': 'no-cache'
         }
       })
@@ -170,20 +170,20 @@ export default {
         })
     },
     fetchStatesLocal () {
-      let self = this
+      const self = this
 
-      let yesterday = new Date()
+      const yesterday = new Date()
       yesterday.setDate(yesterday.getDate() - 1)
 
-      let day = yesterday.getDate() < 10 ? '0' + yesterday.getDate() : yesterday.getDate()
-      let month = (yesterday.getMonth() + 1) < 10 ? '0' + (yesterday.getMonth() + 1) : (yesterday.getMonth() + 1)
-      let year = yesterday.getFullYear().toString().substr(-2) < 10 ? '0' + yesterday.getFullYear().toString().substr(-2) : yesterday.getFullYear().toString().substr(-2)
+      const day = yesterday.getDate() < 10 ? '0' + yesterday.getDate() : yesterday.getDate()
+      const month = (yesterday.getMonth() + 1) < 10 ? '0' + (yesterday.getMonth() + 1) : (yesterday.getMonth() + 1)
+      const year = yesterday.getFullYear().toString().substr(-2) < 10 ? '0' + yesterday.getFullYear().toString().substr(-2) : yesterday.getFullYear().toString().substr(-2)
 
       fetch('/data/states.json', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          'Pragma': 'no-cache',
+          Pragma: 'no-cache',
           'Cache-Control': 'no-cache'
         }
       })
@@ -207,10 +207,10 @@ export default {
     }
   },
   watch: {
-    'getAppData': function () {
+    getAppData: function () {
       this.fetchAPI()
     },
-    'getAppDataStates': function () {
+    getAppDataStates: function () {
       this.fetchStatesAPI()
     }
   },

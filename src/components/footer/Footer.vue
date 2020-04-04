@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     initInterval () {
-      let self = this
+      const self = this
       self.minutes = Math.floor(self.interval / 60)
       self.seconds = self.interval - self.minutes * 60
 
