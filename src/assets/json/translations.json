@@ -36,7 +36,6 @@
         "cases":"Besmettingen",
         "deaths":"Doden",
         "critical":"Kritiek",
-        "hospitalized":"Ziekenhuis",
         "recovered":"Hersteld"
       }
     }
@@ -78,7 +77,6 @@
         "cases":"Cases",
         "deaths":"Deaths",
         "critical":"Critical",
-        "hospitalized":"Hospitalized",
         "recovered":"Recovered"
       }
     }
@@ -120,7 +118,6 @@
         "cases":"Casos",
         "deaths":"Muertos",
         "critical":"Estado crítico",
-        "hospitalized":"Hospitalizado",
         "recovered":"Recuperados"
       }
     }

@@ -103,7 +103,7 @@
                 </option>
 
                 <option value="critical">
-                  {{ getAppActiveStates === '' || getAppActiveStates === undefined ? $t('views.home.critical').toLowerCase() : $t('views.home.hospitalized').toLowerCase() }}
+                  {{ $t('views.home.critical').toLowerCase() }}
                 </option>
 
                 <option value="recovered">
@@ -347,7 +347,7 @@ export default {
             data: []
           },
           {
-            label: self.getAppActiveStates === '' || self.getAppActiveStates === undefined ? self.$t('views.home.critical') : self.$t('views.home.hospitalized'),
+            label: self.$t('views.home.critical'),
             borderColor: 'rgba(239, 187, 116, 1)',
             backgroundColor: 'rgba(239, 187, 116, 0.08)',
             data: []
@@ -424,7 +424,7 @@ export default {
           background: 'rgba(239, 116, 116, 0.08)'
         },
         critical: {
-          label: self.getAppActiveStates === '' || self.getAppActiveStates === undefined ? self.$t('views.home.critical') : self.$t('views.home.hospitalized'),
+          label: self.$t('views.home.critical'),
           active: 'rgba(239, 187, 116, 1)',
           compare: 'rgba(239, 187, 116, 0.5)',
           background: 'rgba(239, 187, 116, 0.08)'
@@ -545,7 +545,7 @@ export default {
             data: []
           },
           {
-            label: self.getAppActiveStates === '' || self.getAppActiveStates === undefined ? self.$t('views.home.critical') : self.$t('views.home.hospitalized'),
+            label: self.$t('views.home.critical'),
             borderColor: 'rgba(239, 187, 116, 1)',
             backgroundColor: 'rgba(239, 187, 116, 0.08)',
             data: []

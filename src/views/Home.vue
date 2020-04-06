@@ -262,7 +262,7 @@
             v-if="Object.keys(getAppDataStates).length > 0"
           >
             <div class="flex justify-between items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-              {{ $t('views.home.hospitalized') }}
+              {{ $t('views.home.critical') }}
 
               <div
                 class="text-12 font-bold text-orange-100 cursor-pointer"
