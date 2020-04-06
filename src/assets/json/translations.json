@@ -11,9 +11,15 @@
         "linear": "Lineair",
         "logarithmic": "Logaritmisch",
         "day": "Dagelijks",
-        "compare": "Vergelijk",
 
         "with": "met",
+
+        "compare": {
+          "compare": "Vergelijk",
+          "date": "op tijdlijn",
+          "dayzero": "van dag 0",
+          "day": "dag"
+        },
 
         "list": {
           "country": "Land",
@@ -52,9 +58,15 @@
         "linear": "Linear",
         "logarithmic": "Logarithmic",
         "day": "Daily",
-        "compare": "Compare",
 
         "with": "with",
+
+        "compare": {
+          "compare": "Compare",
+          "date": "on timeline",
+          "dayzero": "from day 0",
+          "day": "day"
+        },
 
         "list": {
           "country": "Country",
@@ -93,9 +105,15 @@
         "linear": "Lineal",
         "logarithmic": "Logarítmica",
         "day": "Diariamente",
-        "compare": "comparar",
 
         "with": "con",
+
+        "compare": {
+          "compare": "comparar",
+          "date": "en la línea de tiempo",
+          "dayzero": "desde el día 0",
+          "day": "día"
+        },
 
         "list": {
           "country": "País",

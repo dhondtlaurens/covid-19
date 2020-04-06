@@ -83,19 +83,24 @@
           </div>
 
           <div class="flex flex-shrink-0 items-center flex-wrap text-12">
-            (
-
             <div class="hidden sm:inline-block">
-              {{ $t('components.charts.compare') }}
+              ({{ $t('components.charts.compare.compare') }}
             </div>
 
-            <div class="select mx-1 relative overflow-hidden sm:overflow-auto">
+            <div class="select mr-1 sm:mx-1 relative overflow-hidden sm:overflow-auto">
               <select
                 class="w-80 sm:w-100 pl-8 pr-16 bg-blue-100 font-medium appearance-none outline-none cursor-pointer rounded-md"
                 v-model="compareType"
               >
                 <option value="cases">
                   {{ $t('views.home.cases').toLowerCase() }}
+                </option>
+
+                <option
+                  value="infection"
+                  v-if="getAppActiveStates === '' ||  getAppActiveStates === undefined"
+                >
+                  {{ $t('components.charts.list.infection').toLowerCase() }}
                 </option>
 
                 <option value="deaths">
@@ -116,7 +121,7 @@
               </div>
             </div>
 
-            <div class="mx-1">
+            <div class="hidden sm:inline-block mx-1">
               {{ $t('components.charts.with') }}
             </div>
 
@@ -155,7 +160,29 @@
                 <div v-icon-chevron-down ></div>
               </div>
             </div>
-            )
+
+            <div class="select mx-1 relative overflow-hidden sm:overflow-auto">
+              <select
+                class="w-80 sm:w-100 pl-8 pr-16 bg-blue-100 font-medium appearance-none outline-none cursor-pointer rounded-md"
+                v-model="compareTimeline"
+              >
+                <option value="date">
+                  {{ $t('components.charts.compare.date').toLowerCase() }}
+                </option>
+
+                <option value="dayzero">
+                {{ $t('components.charts.compare.dayzero').toLowerCase() }}
+                </option>
+              </select>
+
+              <div class="select-chevron absolute top-0 right-0 fill-current">
+                <div v-icon-chevron-down ></div>
+              </div>
+            </div>
+
+            <div class="hidden sm:inline-block">
+              )
+            </div>
           </div>
         </div>
 
@@ -277,13 +304,17 @@ import { mapGetters } from 'vuex'
 import LineChart from '@/components/charts/chartjs/LineChart'
 import List from '@/components/charts/list/List'
 
+import population from '@/assets/json/population.json'
+
 export default {
   data () {
     return {
       sort: 'cases',
+      population: population,
 
       compare: '',
       compareType: 'cases',
+      compareTimeline: 'date',
 
       updateTotal: 0,
 
@@ -417,6 +448,12 @@ export default {
           compare: 'rgba(1, 104, 250, 0.5)',
           background: 'rgba(1, 104, 250, 0.08)'
         },
+        infection: {
+          label: self.$t('components.charts.list.infection'),
+          active: 'rgba(1, 104, 250, 1)',
+          compare: 'rgba(1, 104, 250, 0.5)',
+          background: 'rgba(1, 104, 250, 0.08)'
+        },
         deaths: {
           label: self.$t('views.home.deaths'),
           active: 'rgba(239, 116, 116, 1)',
@@ -475,20 +512,36 @@ export default {
             })
 
             if (countryData.length > 0 || countryDataCompare.length) {
-              chartData.labels.push(date.replace(/_/g, '/'))
+              if (self.compareTimeline === 'date') chartData.labels.push(date.replace(/_/g, '/'))
 
               if (countryData.length > 0) {
-                chartData.datasets[0].data.push(countryData[0][self.compareType])
-              } else {
+                if (self.compareType !== 'infection') {
+                  chartData.datasets[0].data.push(countryData[0][self.compareType])
+                } else {
+                  chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].cases) : 0)
+                }
+              } else if (self.compareTimeline === 'date') {
                 chartData.datasets[0].data.push(0)
               }
 
               if (countryDataCompare.length > 0) {
-                chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
-              } else {
+                if (self.compareType !== 'infection') {
+                  chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
+                } else {
+                  chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].cases) : 0)
+                }
+              } else if (self.compareTimeline === 'date') {
                 chartData.datasets[1].data.push(0)
               }
             }
+          }
+        }
+
+        if (self.compareTimeline === 'dayzero') {
+          let maxLength = chartData.datasets[0].data.length > chartData.datasets[1].data.length ? chartData.datasets[0].data.length : chartData.datasets[1].data.length
+
+          for (let i = 0; i < maxLength; i++) {
+            chartData.labels.push(self.$t('components.charts.compare.day') + ' ' + i)
           }
         }
       } else {
@@ -506,20 +559,28 @@ export default {
             })
 
             if (countryData.length > 0 || countryDataCompare.length) {
-              chartData.labels.push(date.replace(/_/g, '/'))
+              if (self.compareTimeline === 'date') chartData.labels.push(date.replace(/_/g, '/'))
 
               if (countryData.length > 0) {
                 chartData.datasets[0].data.push(countryData[0][self.compareType])
-              } else {
+              } else if (self.compareTimeline === 'date') {
                 chartData.datasets[0].data.push(0)
               }
 
               if (countryDataCompare.length > 0) {
                 chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
-              } else {
+              } else if (self.compareTimeline === 'date') {
                 chartData.datasets[1].data.push(0)
               }
             }
+          }
+        }
+
+        if (self.compareTimeline === 'dayzero') {
+          let maxLength = chartData.datasets[0].data.length > chartData.datasets[1].data.length ? chartData.datasets[0].data.length : chartData.datasets[1].data.length
+
+          for (let i = 0; i < maxLength; i++) {
+            chartData.labels.push(self.$t('components.charts.compare.day') + ' ' + i)
           }
         }
       }
@@ -740,14 +801,27 @@ export default {
       return countries
     }
   },
+  mounted () {
+    this.compareType = 'cases'
+    this.compareTimeline = 'date'
+    this.compare = this.getAppActiveStates !== '' && this.getAppActiveStates !== undefined ? this.getAppActiveStates : this.getAppActive
+
+    this.updateTotal++
+  },
   watch: {
     'getAppActive': function () {
-      this.updateTotal++
+      this.compareType = 'cases'
+      this.compareTimeline = 'date'
       this.compare = this.getAppActiveStates !== '' && this.getAppActiveStates !== undefined ? this.getAppActiveStates : this.getAppActive
+
+      this.updateTotal++
     },
     'getAppActiveStates': function () {
-      this.updateTotal++
+      this.compareType = 'cases'
+      this.compareTimeline = 'date'
       this.compare = this.getAppActiveStates !== '' && this.getAppActiveStates !== undefined ? this.getAppActiveStates : this.getAppActive
+
+      this.updateTotal++
     }
   },
   components: {
