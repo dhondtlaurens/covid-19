@@ -215,16 +215,16 @@ const updateToday = (data, country) => {
   state.totalRecovered = 0
 
   data.map((item) => {
-    state.totalCases += parseInt(item.cases)
-    state.totalDeaths += parseInt(item.deaths)
-    state.totalCritical += parseInt(item.critical)
-    state.totalRecovered += parseInt(item.recovered)
+    state.totalCases += item.cases !== null ? parseInt(item.cases) : 0
+    state.totalDeaths += item.deaths !== null ? parseInt(item.deaths) : 0
+    state.totalCritical += item.critical !== null ? parseInt(item.critical) : 0
+    state.totalRecovered += item.recovered !== null ? parseInt(item.recovered) : 0
 
     if (country === item.country || country === '') {
-      state.cases += parseInt(item.cases)
-      state.deaths += parseInt(item.deaths)
-      state.critical += parseInt(item.critical)
-      state.recovered += parseInt(item.recovered)
+      state.cases += item.cases !== null ? parseInt(item.cases) : 0
+      state.deaths += item.deaths !== null ? parseInt(item.deaths) : 0
+      state.critical += item.critical !== null ? parseInt(item.critical) : 0
+      state.recovered += item.recovered !== null ? parseInt(item.recovered) : 0
     }
   })
 }
@@ -238,10 +238,10 @@ const updateTodayStates = (data, country) => {
 
     data.map((item) => {
       if (country === item.country) {
-        state.casesStates += parseInt(item.cases)
-        state.deathsStates += parseInt(item.deaths)
-        state.criticalStates += parseInt(item.critical)
-        state.recoveredStates += parseInt(item.recovered)
+        state.casesStates += item.cases !== null ? parseInt(item.cases) : 0
+        state.deathsStates += item.deaths !== null ? parseInt(item.deaths) : 0
+        state.criticalStates += item.critical !== null ? parseInt(item.critical) : 0
+        state.recoveredStates += item.recovered !== null ? parseInt(item.recovered) : 0
       }
     })
   }
@@ -262,16 +262,16 @@ const updateYesterday = (data, country) => {
     state.totalRecoveredYesterday = 0
 
     data.map((item) => {
-      state.totalCasesYesterday += parseInt(item.cases)
-      state.totalDeathsYesterday += parseInt(item.deaths)
-      state.totalCriticalYesterday += parseInt(item.critical)
-      state.totalRecoveredYesterday += parseInt(item.recovered)
+      state.totalCasesYesterday += item.cases !== null ? parseInt(item.cases) : 0
+      state.totalDeathsYesterday += item.deaths !== null ? parseInt(item.deaths) : 0
+      state.totalCriticalYesterday += item.critical !== null ? parseInt(item.critical) : 0
+      state.totalRecoveredYesterday += item.recovered !== null ? parseInt(item.recovered) : 0
 
       if (country === item.country || country === '') {
-        state.casesYesterday += parseInt(item.cases)
-        state.deathsYesterday += parseInt(item.deaths)
-        state.criticalYesterday += parseInt(item.critical)
-        state.recoveredYesterday += parseInt(item.recovered)
+        state.casesYesterday += item.cases !== null ? parseInt(item.cases) : 0
+        state.deathsYesterday += item.deaths !== null ? parseInt(item.deaths) : 0
+        state.criticalYesterday += item.critical !== null ? parseInt(item.critical) : 0
+        state.recoveredYesterday += item.recovered !== null ? parseInt(item.recovered) : 0
       }
     })
   }
@@ -287,10 +287,10 @@ const updateYesterdayStates = (data, country) => {
 
       data.map((item) => {
         if (country === item.country) {
-          state.casesYesterdayStates += parseInt(item.cases)
-          state.deathsYesterdayStates += parseInt(item.deaths)
-          state.criticalYesterdayStates += parseInt(item.critical)
-          state.getAppRecoveredYesterdayStates += parseInt(item.recovered)
+          state.casesYesterdayStates += item.cases !== null ? parseInt(item.cases) : 0
+          state.deathsYesterdayStates += item.deaths !== null ? parseInt(item.deaths) : 0
+          state.criticalYesterdayStates += item.critical !== null ? parseInt(item.critical) : 0
+          state.getAppRecoveredYesterdayStates += item.recovered !== null ? parseInt(item.recovered) : 0
         }
       })
     }
