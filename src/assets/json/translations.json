@@ -24,9 +24,13 @@
         "list": {
           "country": "Land",
           "population": "Bevolking",
+
           "cases": "Besmettingen",
-          "infection": "Besm... / 1M",
+          "casesNormalised": "Besm... / 1M",
+
           "deaths": "Doden",
+          "deathsNormalised": "Doden / 1M",
+
           "mortality": "Sterftecijfer"
         }
       },
@@ -71,9 +75,13 @@
         "list": {
           "country": "Country",
           "population": "Population",
+
           "cases": "Cases",
-          "infection": "Cases / 1M",
+          "casesNormalised": "Cases / 1M",
+
           "deaths": "Deaths",
+          "deathsNormalised": "Deaths / 1M",
+
           "mortality": "Mortality rate"
         }
       },
@@ -118,9 +126,13 @@
         "list": {
           "country": "País",
           "population": "Población",
+
           "cases": "Casos",
-          "infection": "Casos / 1M",
+          "casesNormalised": "Casos / 1M",
+
           "deaths": "Muertos",
+          "deathsNormalised": "Muertos / 1M",
+
           "mortality": "Tasa de mortalidad"
         }
       },

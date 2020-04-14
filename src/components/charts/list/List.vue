@@ -5,7 +5,7 @@
   >
     <div class="list absolute inset-0">
       <div
-        class="flex h-32 items-center justify-between border-b border-gray-100 hover:bg-blue-100 cursor-pointer text-12"
+        class="flex h-32 items-center justify-between border-b last:border-b-0 border-gray-100 hover:bg-blue-100 cursor-pointer text-12"
         :class="{'bg-blue-100': country.country === getAppActive}"
 
         v-for="(country, index) in computedCountryList"
@@ -16,29 +16,33 @@
 
         @click="setCountry"
       >
-        <div class="h-full flex items-center px-16 text-blue-300 w-1/3 sm:w-1/4 md:w-1/6 border-r border-gray-100" >
+        <div class="list-column h-full flex items-center justify-start px-16 text-center text-12 leading-tight border-r border-gray-100 text-blue-300">
           <div class="truncate">
             {{ index + 1 }}. {{ country.country }}
           </div>
         </div>
 
-        <div class="h-full hidden md:flex items-center justify-end px-16 text-blue-300 w-1/3 sm:w-1/4 md:w-1/6 md:border-r md:border-gray-100">
+        <div class="list-column h-full hidden lg:flex items-center justify-end px-16 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight border-r border-gray-100 text-blue-300">
           {{ formatNumber(population[country.country]) }}
         </div>
 
-        <div class="h-full flex items-center justify-end px-16 text-blue-200 w-1/3 sm:w-1/4 md:w-1/6 border-r border-gray-100">
+        <div class="list-column h-full flex items-center justify-end px-16 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight border-r border-gray-100 text-blue-200">
           {{ formatNumber(country.cases) }}
         </div>
 
-        <div class="h-full flex items-center justify-end px-16 text-blue-300 hidden md:flex w-1/3 sm:w-1/4 md:w-1/6 md:border-r md:border-gray-100">
+        <div class="list-column h-full hidden md:flex items-center justify-end px-16 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight border-r border-gray-100 text-blue-200">
           {{ formatNumber(population[country.country] !== undefined ? Math.round((1000000 / population[country.country]) * country.cases) : 0) }}
         </div>
 
-        <div class="h-full flex items-center justify-end px-16 text-red-100 w-1/3 sm:w-1/4 md:w-1/6 sm:border-r sm:border-gray-100">
+        <div class="list-column h-full flex items-center justify-end px-16 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight border-r-0 md:border-r border-gray-100 border-gray-100 text-red-100">
           {{ formatNumber(country.deaths) }}
         </div>
 
-        <div class="h-full hidden sm:flex items-center justify-end px-16 text-blue-300 w-1/3 sm:w-1/4 md:w-1/6">
+        <div class="list-column h-full hidden md:flex items-center justify-end px-16 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight border-r-0 xl:border-r border-gray-100 text-red-100">
+          {{ formatNumber(population[country.country] !== undefined ? Math.round((1000000 / population[country.country]) * country.deaths) : 0) }}
+        </div>
+
+        <div class="list-column h-full hidden xl:flex items-center justify-end px-16 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight text-red-100">
           {{ ((country.deaths / country.cases) * 100).toFixed(2) }}%
         </div>
       </div>
@@ -91,7 +95,7 @@ export default {
           list.sort((a, b) => (a.cases < b.cases) ? 1 : -1)
           break
 
-        case 'infection':
+        case 'casesNormalised':
           list = list.filter((country) => {
             return population[country.country] !== undefined
           })
@@ -107,6 +111,20 @@ export default {
 
         case 'deaths':
           list.sort((a, b) => (a.deaths < b.deaths) ? 1 : -1)
+          break
+
+        case 'deathsNormalised':
+          list = list.filter((country) => {
+            return population[country.country] !== undefined
+          })
+
+          list.sort((a, b) => ((1000000 / parseInt(population[a.country])) * a.deaths) < ((1000000 / parseInt(population[b.country])) * b.deaths) ? 1 : -1)
+
+          listAppend = listAppend.filter((country) => {
+            return population[country.country] === undefined
+          })
+
+          list = [...list, ...listAppend]
           break
 
         case 'mortality':
@@ -163,6 +181,22 @@ export default {
 
    scrollbar-width: none;
    -ms-overflow-style: none;
+
+   .list-column {
+     width: 33.33%;
+
+     @media (min-width: 768px) {
+       width: 20%;
+     }
+
+     @media (min-width: 1024px) {
+       width: 16.66%;
+     }
+
+     @media (min-width: 1280px) {
+       width: 14.28%;
+     }
+   }
 
    &::-webkit-scrollbar {
     display: none;

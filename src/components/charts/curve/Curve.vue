@@ -97,14 +97,21 @@
                 </option>
 
                 <option
-                  value="infection"
+                  value="casesNormalised"
                   v-if="getAppActiveStates === '' ||  getAppActiveStates === undefined"
                 >
-                  {{ $t('components.charts.list.infection').toLowerCase() }}
+                  {{ $t('components.charts.list.casesNormalised').toLowerCase() }}
                 </option>
 
                 <option value="deaths">
                   {{ $t('views.home.deaths').toLowerCase() }}
+                </option>
+
+                <option
+                  value="deathsNormalised"
+                  v-if="getAppActiveStates === '' ||  getAppActiveStates === undefined"
+                >
+                  {{ $t('components.charts.list.deathsNormalised').toLowerCase() }}
                 </option>
 
                 <option value="critical">
@@ -195,87 +202,10 @@
       </div>
     </div>
 
-    <div class="list w-full xl:w-2/3 xl:order-2 px-16 mb-32">
-      <div class="w-full h-full border border-gray-100">
-        <div class="flex items-center h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
-          <div class="h-full flex flex-shrink-0 flex-grow-0 items-center px-16 w-1/3 sm:w-1/4 md:w-1/6 border-r border-gray-100 leading-tight">
-            {{ $t('components.charts.list.country') }}
-          </div>
-
-          <div
-            class="h-full flex-shrink-0 flex-grow-0 items-center justify-end px-16 hidden md:flex w-1/3 sm:w-1/4 md:w-1/6 md:border-r md:border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight"
-            :class="{'bg-blue-100': sort === 'population'}"
-            @click="sort = 'population'"
-          >
-            <div class="truncate">
-              {{ $t('components.charts.list.population') }}
-            </div>
-
-            <div class="flex-shrink-0 list-chevron fill-current">
-              <div v-icon-chevron-down ></div>
-            </div>
-          </div>
-
-          <div
-            class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/4 md:w-1/6 border-r border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight"
-            :class="{'bg-blue-100': sort === 'cases'}"
-            @click="sort = 'cases'"
-          >
-            <div class="truncate">
-              {{ $t('components.charts.list.cases') }}
-            </div>
-
-            <div class="flex-shrink-0 list-chevron fill-current">
-              <div v-icon-chevron-down ></div>
-            </div>
-          </div>
-
-          <div
-          class="h-full flex-shrink-0 flex-grow-0 items-center justify-end px-16 hidden md:flex w-1/3 sm:w-1/4 md:w-1/6 md:border-r md:border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight"
-            :class="{'bg-blue-100': sort === 'infection'}"
-            @click="sort = 'infection'"
-          >
-            <div class="truncate">
-              {{ $t('components.charts.list.infection') }}
-            </div>
-
-            <div class="flex-shrink-0 list-chevron fill-current">
-              <div v-icon-chevron-down ></div>
-            </div>
-          </div>
-
-          <div
-            class="h-full flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/4 md:w-1/6 sm:border-r sm:border-gray-100 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight"
-            :class="{'bg-blue-100': sort === 'deaths'}"
-            @click="sort = 'deaths'"
-          >
-            <div class="truncate">
-              {{ $t('components.charts.list.deaths') }}
-            </div>
-
-            <div class="flex-shrink-0 list-chevron fill-current">
-              <div v-icon-chevron-down ></div>
-            </div>
-          </div>
-
-          <div
-            class="h-full hidden sm:flex flex-shrink-0 flex-grow-0 items-center justify-end px-16 w-1/3 sm:w-1/4 md:w-1/6 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight"
-            :class="{'bg-blue-100': sort === 'mortality'}"
-            @click="sort = 'mortality'"
-          >
-            {{ $t('components.charts.list.mortality') }}
-
-            <div class="flex-shrink-0 list-chevron fill-current">
-              <div v-icon-chevron-down ></div>
-            </div>
-          </div>
-        </div>
-
-        <list-component :sort="sort" />
-      </div>
-    </div>
-
-    <div class="w-full xl:w-1/3 px-16 mb-32">
+    <div
+      class="w-full lg:w-1/2 px-16 mb-32"
+      v-if="getAppActive === ''"
+    >
       <div class="w-full h-full border border-gray-100">
         <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
           {{ $t('components.charts.global') }}
@@ -292,6 +222,124 @@
             :options="optionsLinear"
           />
         </div>
+      </div>
+    </div>
+
+    <div
+      class="w-full lg:w-1/2 px-16 mb-32"
+      v-if="getAppActive === ''"
+    >
+      <div class="w-full h-full border border-gray-100">
+        <div class="flex items-center px-16 h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+          <div class="pr-8 truncate">
+              {{ $t('components.charts.global') }}
+          </div>
+
+          <div class="text-12">
+            ({{ $t('components.charts.day') }})
+          </div>
+        </div>
+
+        <div class="p-16">
+          <line-chart
+            :chartData="computedTotalChartDataDay"
+            :options="optionsLinear"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="list w-full px-16 mb-32">
+      <div class="w-full h-full border border-gray-100">
+        <div class="flex items-center h-32 text-blue-300 font-medium text-16 border-b border-gray-100">
+          <div class="list-column h-full flex items-center justify-start px-16 text-center font-medium text-16 leading-tight border-r border-gray-100">
+            {{ $t('components.charts.list.country') }}
+          </div>
+
+          <div
+            class="list-column h-full hidden lg:flex items-center justify-end px-16 text-center text-12 cursor-pointer hover:bg-blue-100 leading-tight border-r border-gray-100"
+            :class="{'bg-blue-100': sort === 'population'}"
+            @click="sort = 'population'"
+          >
+            <div class="truncate">
+              {{ $t('components.charts.list.population') }}
+            </div>
+
+            <div class="flex-shrink-0 list-chevron fill-current">
+              <div v-icon-chevron-down ></div>
+            </div>
+          </div>
+
+          <div
+            class="list-column h-full flex items-center justify-end px-16 text-12 cursor-pointer hover:bg-blue-100 leading-tight border-r border-gray-100"
+            :class="{'bg-blue-100': sort === 'cases'}"
+            @click="sort = 'cases'"
+          >
+            <div class="truncate">
+              {{ $t('components.charts.list.cases') }}
+            </div>
+
+            <div class="flex-shrink-0 list-chevron fill-current">
+              <div v-icon-chevron-down ></div>
+            </div>
+          </div>
+
+          <div
+            class="list-column h-full hidden md:flex items-center justify-end px-16 text-12 cursor-pointer hover:bg-blue-100 leading-tight border-r border-gray-100"
+            :class="{'bg-blue-100': sort === 'casesNormalised'}"
+            @click="sort = 'casesNormalised'"
+          >
+            <div class="truncate">
+              {{ $t('components.charts.list.casesNormalised') }}
+            </div>
+
+            <div class="flex-shrink-0 list-chevron fill-current">
+              <div v-icon-chevron-down ></div>
+            </div>
+          </div>
+
+          <div
+          class="list-column h-full flex items-center justify-end px-16 text-12 cursor-pointer hover:bg-blue-100 leading-tight border-r-0 md:border-r border-gray-100"
+            :class="{'bg-blue-100': sort === 'deaths'}"
+            @click="sort = 'deaths'"
+          >
+            <div class="truncate">
+              {{ $t('components.charts.list.deaths') }}
+            </div>
+
+            <div class="flex-shrink-0 list-chevron fill-current">
+              <div v-icon-chevron-down ></div>
+            </div>
+          </div>
+
+          <div
+          class="list-column h-full hidden md:flex items-center justify-end px-16 text-12 cursor-pointer hover:bg-blue-100 leading-tight border-r-0 xl:border-r border-gray-100"
+            :class="{'bg-blue-100': sort === 'deathsNormalised'}"
+            @click="sort = 'deathsNormalised'"
+          >
+            <div class="truncate">
+              {{ $t('components.charts.list.deathsNormalised') }}
+            </div>
+
+            <div class="flex-shrink-0 list-chevron fill-current">
+              <div v-icon-chevron-down ></div>
+            </div>
+          </div>
+
+          <div
+            class="list-column h-full hidden xl:flex items-center justify-end px-16 text-12 cursor-pointer hover:bg-blue-100 leading-tight"
+            :class="{'bg-blue-100': sort === 'mortality'}"
+            @click="sort = 'mortality'"
+          >
+            {{ $t('components.charts.list.mortality') }}
+
+            <div class="flex-shrink-0 list-chevron fill-current">
+              <div v-icon-chevron-down ></div>
+            </div>
+          </div>
+        </div>
+
+        <list-component :sort="sort" />
       </div>
     </div>
   </div>
@@ -448,14 +496,20 @@ export default {
           compare: 'rgba(1, 104, 250, 0.5)',
           background: 'rgba(1, 104, 250, 0.08)'
         },
-        infection: {
-          label: self.$t('components.charts.list.infection'),
+        casesNormalised: {
+          label: self.$t('components.charts.list.casesNormalised'),
           active: 'rgba(1, 104, 250, 1)',
           compare: 'rgba(1, 104, 250, 0.5)',
           background: 'rgba(1, 104, 250, 0.08)'
         },
         deaths: {
           label: self.$t('views.home.deaths'),
+          active: 'rgba(239, 116, 116, 1)',
+          compare: 'rgba(239, 116, 116, 0.5)',
+          background: 'rgba(239, 116, 116, 0.08)'
+        },
+        deathsNormalised: {
+          label: self.$t('components.charts.list.deathsNormalised'),
           active: 'rgba(239, 116, 116, 1)',
           compare: 'rgba(239, 116, 116, 0.5)',
           background: 'rgba(239, 116, 116, 0.08)'
@@ -515,20 +569,34 @@ export default {
               if (self.compareTimeline === 'date') chartData.labels.push(date.replace(/_/g, '/'))
 
               if (countryData.length > 0) {
-                if (self.compareType !== 'infection') {
-                  chartData.datasets[0].data.push(countryData[0][self.compareType])
-                } else {
-                  chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].cases) : 0)
+                switch (self.compareType) {
+                  case 'casesNormalised':
+                    chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].cases) : 0)
+                    break
+
+                  case 'deathsNormalised':
+                    chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].deaths) : 0)
+                    break
+
+                  default:
+                    chartData.datasets[0].data.push(countryData[0][self.compareType])
                 }
               } else if (self.compareTimeline === 'date') {
                 chartData.datasets[0].data.push(0)
               }
 
               if (countryDataCompare.length > 0) {
-                if (self.compareType !== 'infection') {
-                  chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
-                } else {
-                  chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].cases) : 0)
+                switch (self.compareType) {
+                  case 'casesNormalised':
+                    chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].cases) : 0)
+                    break
+
+                  case 'deathsNormalised':
+                    chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].deaths) : 0)
+                    break
+
+                  default:
+                    chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
                 }
               } else if (self.compareTimeline === 'date') {
                 chartData.datasets[1].data.push(0)
@@ -759,16 +827,119 @@ export default {
           let recovered = 0
 
           self.getDatesData[date].map((country) => {
-            cases += parseInt(country.cases)
-            deaths += parseInt(country.deaths)
-            critical += parseInt(country.critical)
-            recovered += parseInt(country.recovered)
+            cases += country.cases !== null ? parseInt(country.cases) : 0
+            deaths += country.deaths !== null ? parseInt(country.deaths) : 0
+            critical += country.critical !== null ? parseInt(country.critical) : 0
+            recovered += country.recovered !== null ? parseInt(country.recovered) : 0
           })
 
           chartData.datasets[0].data.push(cases)
           chartData.datasets[1].data.push(deaths)
           chartData.datasets[2].data.push(critical)
           chartData.datasets[3].data.push(recovered)
+        }
+      }
+
+      return chartData
+    },
+    computedTotalChartDataDay () {
+      let self = this
+
+      let chartData = {
+        labels: [],
+        datasets: [
+          {
+            label: self.$t('views.home.cases'),
+            borderColor: 'rgba(1, 104, 250, 1)',
+            backgroundColor: 'rgba(1, 104, 250, 0.08)',
+            data: []
+          },
+          {
+            label: self.$t('views.home.deaths'),
+            borderColor: 'rgba(239, 116, 116, 1)',
+            backgroundColor: 'rgba(239, 116, 116, 0.08)',
+            data: []
+          },
+          {
+            label: self.$t('views.home.critical'),
+            borderColor: 'rgba(239, 187, 116, 1)',
+            backgroundColor: 'rgba(239, 187, 116, 0.08)',
+            data: []
+          },
+          {
+            label: self.$t('views.home.recovered'),
+            borderColor: 'rgba(149, 230, 139, 1)',
+            backgroundColor: 'rgba(149, 230, 139, 0.08)',
+            data: []
+          }
+        ]
+      }
+
+      let today = new Date(new Date().toLocaleString('en-US', { timeZone: 'UTC' }))
+
+      let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
+      let month = (today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+      let year = today.getFullYear().toString().substr(-2) < 10 ? '0' + today.getFullYear().toString().substr(-2) : today.getFullYear().toString().substr(-2)
+
+      today = day + '_' + month + '_' + year
+
+      let keys = Object.keys(self.getDatesData)
+
+      for (let date in self.getDatesData) {
+        if (date !== today) {
+          if (chartData.datasets[0].data.length === 0) {
+            chartData.labels.push(date.replace(/_/g, '/'))
+
+            let cases = 0
+            let deaths = 0
+            let critical = 0
+            let recovered = 0
+
+            self.getDatesData[date].map((country) => {
+              cases += country.cases !== null ? parseInt(country.cases) : 0
+              deaths += country.deaths !== null ? parseInt(country.deaths) : 0
+              critical += country.critical !== null ? parseInt(country.critical) : 0
+              recovered += country.recovered !== null ? parseInt(country.recovered) : 0
+            })
+
+            chartData.datasets[0].data.push(cases)
+            chartData.datasets[1].data.push(deaths)
+            chartData.datasets[2].data.push(critical)
+            chartData.datasets[3].data.push(recovered)
+          } else {
+            chartData.labels.push(date.replace(/_/g, '/'))
+
+            let cases = 0
+            let casesYesterday = 0
+
+            let deaths = 0
+            let deathsYesterday = 0
+
+            let critical = 0
+            let criticalYesterday = 0
+
+            let recovered = 0
+            let recoveredYesterday = 0
+
+            self.getDatesData[date].map((country) => {
+              cases += country.cases !== null ? parseInt(country.cases) : 0
+              deaths += country.deaths !== null ? parseInt(country.deaths) : 0
+              critical += country.critical !== null ? parseInt(country.critical) : 0
+              recovered += country.recovered !== null ? parseInt(country.recovered) : 0
+            })
+
+            self.getDatesData[keys[keys.indexOf(date) - 1]].map((country) => {
+              casesYesterday += country.cases !== null ? parseInt(country.cases) : 0
+              deathsYesterday += country.deaths !== null ? parseInt(country.deaths) : 0
+              criticalYesterday += country.critical !== null ? parseInt(country.critical) : 0
+              recoveredYesterday += country.recovered !== null ? parseInt(country.recovered) : 0
+            })
+
+            chartData.datasets[0].data.push(cases - casesYesterday > 0 ? cases - casesYesterday : 0)
+            chartData.datasets[1].data.push(deaths - deathsYesterday > 0 ? deaths - deathsYesterday : 0)
+            chartData.datasets[2].data.push(critical - criticalYesterday > 0 ? critical - criticalYesterday : 0)
+            chartData.datasets[3].data.push(recovered - recoveredYesterday > 0 ? recovered - recoveredYesterday : 0)
+          }
         }
       }
 
@@ -846,6 +1017,22 @@ export default {
   }
 
   .list {
+    .list-column {
+      width: 33.33%;
+
+      @media (min-width: 768px) {
+        width: 20%;
+      }
+
+      @media (min-width: 1024px) {
+        width: 16.66%;
+      }
+
+      @media (min-width: 1280px) {
+        width: 14.28%;
+      }
+    }
+
     .list-chevron {
       width: 18px;
       height: 18px;
