@@ -177,8 +177,12 @@
                   {{ $t('components.charts.compare.date').toLowerCase() }}
                 </option>
 
-                <option value="dayzero">
-                {{ $t('components.charts.compare.dayzero').toLowerCase() }}
+                <option value="patientOne">
+                {{ $t('components.charts.compare.patientOne').toLowerCase() }}
+                </option>
+
+                <option value="patientHundred">
+                {{ $t('components.charts.compare.patientHundred').toLowerCase() }}
                 </option>
               </select>
 
@@ -571,15 +575,33 @@ export default {
               if (countryData.length > 0) {
                 switch (self.compareType) {
                   case 'casesNormalised':
-                    chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].cases) : 0)
+                    if (self.compareTimeline === 'patientHundred') {
+                      if (countryData[0].cases >= 100) {
+                        chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].cases) : 0)
+                      }
+                    } else {
+                      chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].cases) : 0)
+                    }
                     break
 
                   case 'deathsNormalised':
-                    chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].deaths) : 0)
+                    if (self.compareTimeline === 'patientHundred') {
+                      if (countryData[0].cases >= 100) {
+                        chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].deaths) : 0)
+                      }
+                    } else {
+                      chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].deaths) : 0)
+                    }
                     break
 
                   default:
-                    chartData.datasets[0].data.push(countryData[0][self.compareType])
+                    if (self.compareTimeline === 'patientHundred') {
+                      if (countryData[0].cases >= 100) {
+                        chartData.datasets[0].data.push(countryData[0][self.compareType])
+                      }
+                    } else {
+                      chartData.datasets[0].data.push(countryData[0][self.compareType])
+                    }
                 }
               } else if (self.compareTimeline === 'date') {
                 chartData.datasets[0].data.push(0)
@@ -588,15 +610,33 @@ export default {
               if (countryDataCompare.length > 0) {
                 switch (self.compareType) {
                   case 'casesNormalised':
-                    chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].cases) : 0)
+                    if (self.compareTimeline === 'patientHundred') {
+                      if (countryDataCompare[0].cases >= 100) {
+                        chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].cases) : 0)
+                      }
+                    } else {
+                      chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].cases) : 0)
+                    }
                     break
 
                   case 'deathsNormalised':
-                    chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].deaths) : 0)
+                    if (self.compareTimeline === 'patientHundred') {
+                      if (countryDataCompare[0].cases >= 100) {
+                        chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].deaths) : 0)
+                      }
+                    } else {
+                      chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].deaths) : 0)
+                    }
                     break
 
                   default:
-                    chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
+                    if (self.compareTimeline === 'patientHundred') {
+                      if (countryDataCompare[0].cases >= 100) {
+                        chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
+                      }
+                    } else {
+                      chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
+                    }
                 }
               } else if (self.compareTimeline === 'date') {
                 chartData.datasets[1].data.push(0)
@@ -605,7 +645,7 @@ export default {
           }
         }
 
-        if (self.compareTimeline === 'dayzero') {
+        if (self.compareTimeline === 'patientOne' || self.compareTimeline === 'patientHundred') {
           let maxLength = chartData.datasets[0].data.length > chartData.datasets[1].data.length ? chartData.datasets[0].data.length : chartData.datasets[1].data.length
 
           for (let i = 0; i < maxLength; i++) {
@@ -630,13 +670,25 @@ export default {
               if (self.compareTimeline === 'date') chartData.labels.push(date.replace(/_/g, '/'))
 
               if (countryData.length > 0) {
-                chartData.datasets[0].data.push(countryData[0][self.compareType])
+                if (self.compareTimeline === 'patientHundred') {
+                  if (countryData[0].cases >= 100) {
+                    chartData.datasets[0].data.push(countryData[0][self.compareType])
+                  }
+                } else {
+                  chartData.datasets[0].data.push(countryData[0][self.compareType])
+                }
               } else if (self.compareTimeline === 'date') {
                 chartData.datasets[0].data.push(0)
               }
 
               if (countryDataCompare.length > 0) {
-                chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
+                if (self.compareTimeline === 'patientHundred') {
+                  if (countryDataCompare[0].cases >= 100) {
+                    chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
+                  }
+                } else {
+                  chartData.datasets[1].data.push(countryDataCompare[0][self.compareType])
+                }
               } else if (self.compareTimeline === 'date') {
                 chartData.datasets[1].data.push(0)
               }
@@ -644,7 +696,7 @@ export default {
           }
         }
 
-        if (self.compareTimeline === 'dayzero') {
+        if (self.compareTimeline === 'patientOne' || self.compareTimeline === 'patientHundred') {
           let maxLength = chartData.datasets[0].data.length > chartData.datasets[1].data.length ? chartData.datasets[0].data.length : chartData.datasets[1].data.length
 
           for (let i = 0; i < maxLength; i++) {

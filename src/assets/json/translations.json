@@ -16,8 +16,11 @@
 
         "compare": {
           "compare": "Vergelijk",
+
           "date": "op tijdlijn",
-          "dayzero": "van dag 0",
+          "patientOne": "vanaf 1e besmetting",
+          "patientHundred": "vanaf 100e besmetting",
+
           "day": "dag"
         },
 
@@ -67,8 +70,11 @@
 
         "compare": {
           "compare": "Compare",
+
           "date": "on timeline",
-          "dayzero": "from day 0",
+          "patientOne": "from 1th case",
+          "patientHundred": "from 100th case",
+
           "day": "day"
         },
 
@@ -118,8 +124,11 @@
 
         "compare": {
           "compare": "comparar",
+
           "date": "en la línea de tiempo",
-          "dayzero": "desde el día 0",
+          "patientOne": "del primer caso",
+          "patientHundred": "del caso número 100",
+
           "day": "día"
         },
 
