@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "2.1.0",
+    "@fullhuman/postcss-purgecss": "2.1.2",
     "autoprefixer": "9.7.6",
     "core-js": "2.6.11",
     "chart.js": "2.9.3",
