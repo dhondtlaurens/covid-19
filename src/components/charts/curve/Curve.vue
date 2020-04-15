@@ -96,15 +96,23 @@
                   {{ $t('views.home.cases').toLowerCase() }}
                 </option>
 
+                <option value="deaths">
+                  {{ $t('views.home.deaths').toLowerCase() }}
+                </option>
+
+                <option value="critical">
+                  {{ $t('views.home.critical').toLowerCase() }}
+                </option>
+
+                <option value="recovered">
+                  {{ $t('views.home.recovered').toLowerCase() }}
+                </option>
+
                 <option
                   value="casesNormalised"
                   v-if="getAppActiveStates === '' ||  getAppActiveStates === undefined"
                 >
                   {{ $t('components.charts.list.casesNormalised').toLowerCase() }}
-                </option>
-
-                <option value="deaths">
-                  {{ $t('views.home.deaths').toLowerCase() }}
                 </option>
 
                 <option
@@ -114,12 +122,18 @@
                   {{ $t('components.charts.list.deathsNormalised').toLowerCase() }}
                 </option>
 
-                <option value="critical">
-                  {{ $t('views.home.critical').toLowerCase() }}
+                <option
+                  value="criticalNormalised"
+                  v-if="getAppActiveStates === '' ||  getAppActiveStates === undefined"
+                >
+                  {{ $t('components.charts.list.criticalNormalised').toLowerCase() }}
                 </option>
 
-                <option value="recovered">
-                  {{ $t('views.home.recovered').toLowerCase() }}
+                <option
+                  value="recoveredNormalised"
+                  v-if="getAppActiveStates === '' ||  getAppActiveStates === undefined"
+                >
+                  {{ $t('components.charts.list.recoveredNormalised').toLowerCase() }}
                 </option>
               </select>
 
@@ -495,7 +509,7 @@ export default {
 
       let compareType = {
         cases: {
-          label: self.$t('views.home.cases'),
+          label: self.$t('components.charts.list.cases'),
           active: 'rgba(1, 104, 250, 1)',
           compare: 'rgba(1, 104, 250, 0.5)',
           background: 'rgba(1, 104, 250, 0.08)'
@@ -507,7 +521,7 @@ export default {
           background: 'rgba(1, 104, 250, 0.08)'
         },
         deaths: {
-          label: self.$t('views.home.deaths'),
+          label: self.$t('components.charts.list.deaths'),
           active: 'rgba(239, 116, 116, 1)',
           compare: 'rgba(239, 116, 116, 0.5)',
           background: 'rgba(239, 116, 116, 0.08)'
@@ -519,13 +533,25 @@ export default {
           background: 'rgba(239, 116, 116, 0.08)'
         },
         critical: {
-          label: self.$t('views.home.critical'),
+          label: self.$t('components.charts.list.critical'),
+          active: 'rgba(239, 187, 116, 1)',
+          compare: 'rgba(239, 187, 116, 0.5)',
+          background: 'rgba(239, 187, 116, 0.08)'
+        },
+        criticalNormalised: {
+          label: self.$t('components.charts.list.criticalNormalised'),
           active: 'rgba(239, 187, 116, 1)',
           compare: 'rgba(239, 187, 116, 0.5)',
           background: 'rgba(239, 187, 116, 0.08)'
         },
         recovered: {
-          label: self.$t('views.home.recovered'),
+          label: self.$t('components.charts.list.recovered'),
+          active: 'rgba(149, 230, 139, 1)',
+          compare: 'rgba(149, 230, 139, 0.5)',
+          background: 'rgba(149, 230, 139, 0.08)'
+        },
+        recoveredNormalised: {
+          label: self.$t('components.charts.list.recoveredNormalised'),
           active: 'rgba(149, 230, 139, 1)',
           compare: 'rgba(149, 230, 139, 0.5)',
           background: 'rgba(149, 230, 139, 0.08)'
@@ -594,6 +620,26 @@ export default {
                     }
                     break
 
+                  case 'criticalNormalised':
+                    if (self.compareTimeline === 'patientHundred') {
+                      if (countryData[0].cases >= 100) {
+                        chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].critical) : 0)
+                      }
+                    } else {
+                      chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].critical) : 0)
+                    }
+                    break
+
+                  case 'recoveredNormalised':
+                    if (self.compareTimeline === 'patientHundred') {
+                      if (countryData[0].cases >= 100) {
+                        chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].recovered) : 0)
+                      }
+                    } else {
+                      chartData.datasets[0].data.push(self.population[self.getAppActive] !== undefined ? Math.round((1000000 / self.population[self.getAppActive]) * countryData[0].recovered) : 0)
+                    }
+                    break
+
                   default:
                     if (self.compareTimeline === 'patientHundred') {
                       if (countryData[0].cases >= 100) {
@@ -626,6 +672,26 @@ export default {
                       }
                     } else {
                       chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].deaths) : 0)
+                    }
+                    break
+
+                  case 'criticalNormalised':
+                    if (self.compareTimeline === 'patientHundred') {
+                      if (countryDataCompare[0].cases >= 100) {
+                        chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].critical) : 0)
+                      }
+                    } else {
+                      chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].critical) : 0)
+                    }
+                    break
+
+                  case 'recoveredNormalised':
+                    if (self.compareTimeline === 'patientHundred') {
+                      if (countryDataCompare[0].cases >= 100) {
+                        chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].recovered) : 0)
+                      }
+                    } else {
+                      chartData.datasets[1].data.push(self.population[self.compare] !== undefined ? Math.round((1000000 / self.population[self.compare]) * countryDataCompare[0].recovered) : 0)
                     }
                     break
 

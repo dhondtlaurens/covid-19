@@ -34,6 +34,12 @@
           "deaths": "Doden",
           "deathsNormalised": "Doden / 1M",
 
+          "critical": "Kritiek",
+          "criticalNormalised": "Kritiek / 1M",
+
+          "recovered": "Hersteld",
+          "recoveredNormalised": "Hersteld / 1M",
+
           "mortality": "Sterftecijfer"
         }
       },
@@ -88,6 +94,12 @@
           "deaths": "Deaths",
           "deathsNormalised": "Deaths / 1M",
 
+          "critical": "Critical",
+          "criticalNormalised": "Critical / 1M",
+
+          "recovered": "Recovered",
+          "recoveredNormalised": "Recovered / 1M",
+
           "mortality": "Mortality rate"
         }
       },
@@ -141,6 +153,12 @@
 
           "deaths": "Muertos",
           "deathsNormalised": "Muertos / 1M",
+
+          "critical": "Estado crítico",
+          "criticalNormalised": "Estado crítico / 1M",
+
+          "recovered": "Recuperados",
+          "recoveredNormalised": "Recuperados / 1M",
 
           "mortality": "Tasa de mortalidad"
         }
