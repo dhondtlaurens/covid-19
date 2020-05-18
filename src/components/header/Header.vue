@@ -202,7 +202,7 @@ export default {
         this.list = []
 
         this.getAppData.map((item) => {
-          this.list.push(item.country)
+          if (typeof item.country === 'string' || item.country instanceof String) this.list.push(item.country)
         })
       }
     },

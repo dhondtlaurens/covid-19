@@ -397,8 +397,9 @@ export default {
             type: 'logarithmic',
             ticks: {
               min: 0,
-              max: 1000000,
+              max: 10000000,
               callback: function (value, index, values) {
+                if (value === 10000000) return '100000000'
                 if (value === 1000000) return '1000000'
                 if (value === 100000) return '100000'
                 if (value === 10000) return '10000'
@@ -1068,10 +1069,18 @@ export default {
       let countries = [...self.getAppData]
 
       countries.sort((a, b) => {
-        let countryA = a.country.toLowerCase()
-        let countryB = b.country.toLowerCase()
+        if (typeof a.country === 'string' || a.country instanceof String) {
+          if (typeof b.country === 'string' || b.country instanceof String) {
+            let countryA = a.country.toLowerCase()
+            let countryB = b.country.toLowerCase()
 
-        return (countryA < countryB) ? -1 : (countryA > countryB) ? 1 : 0
+            return (countryA < countryB) ? -1 : (countryA > countryB) ? 1 : 0
+          } else {
+            return -1
+          }
+        } else {
+          return 1
+        }
       })
 
       return countries
