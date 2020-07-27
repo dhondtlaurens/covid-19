@@ -15,6 +15,7 @@
 
     <div class="relative flex flex-grow h-64 border-b border-gray-100">
       <div class="search flex flex-grow items-center border-r border-gray-100 text-blue-300">
+        <!--
         <div class="pl-32 flex-shrink-0">
           <div
             class="fill-current w-16 h-16"
@@ -46,6 +47,7 @@
             v-icon-times
           ></div>
         </div>
+        -->
       </div>
 
       <div class="locale flex items-center flex-shrink-0 h-full px-32">

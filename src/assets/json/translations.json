@@ -48,6 +48,10 @@
       }
     },
     "views":{
+      "maintenance": {
+        "title": "Deze site is in onderhoud",
+        "description":"De COVID-19 uitbraak duurt langer dan ik had gehoopt. De site zal heropgebouwd worden met de laatste officiële databronnen. Deze werkzaamheden zullen afgerond zijn op 31 juli. Hou je contact beperkt en volg de richtlijnen van de lokale overheden. Wees veilig!"
+      },
       "home":{
         "title":"Blijf gewoon <span class='text-blue-200'>thuis</span>",
         "description":"Het <a target='_blank' class='text-blue-200' href='https://nl.wikipedia.org/wiki/SARS-CoV-2'>SARS-CoV-2-virus</a>, beter bekend als het coronavirus, legt wereldwijd het publieke leven stil. Overheden roepen mensen op om voorzichtig te zijn, en zoveel mogelijk contact te vermijden. Gewoon thuis blijven, dus. Op die manier kunnen we er allemaal samen voor zorgen dat mensen niet ziek worden en zo het gezondheidssysteem overbelasten. Samen kunnen we de curve met het aantal besmettingen afvlakken. Samen voor <a target='_blank' class='text-blue-200' href='https://www.vrt.be/vrtnws/nl/2020/03/17/professor-steven-callens-over-scherpere-maatregelen/'>#flattenthecurve</a>.<br/><br/>Je kan data van alle landen bekijken en zien hoe de ziekte <a target='_blank' class='text-blue-200' href='https://nl.wikipedia.org/wiki/COVID-19'>Covid-19</a>, veroorzaakt door het coronavirus, evolueert.",
@@ -108,6 +112,10 @@
       }
     },
     "views":{
+      "maintenance": {
+        "title": "This site is under maintenance",
+        "description":"The COVID-19 outbreak is taking longer than I hoped. The site will be rebuilt with the latest official data sources. This work will be completed on July 31. Keep your contact limited and follow the guidelines of the local authorities. Be safe!"
+      },
       "home":{
         "title":"Just stay <span class='text-blue-200'>home</span>",
         "description":"The <a target='_blank' class='text-blue-200' href='https://en.wikipedia.org/wiki/Severe_acute_respiratory_syndrome_coronavirus_2'>SARS-CoV-2 virus</a>, better known as the coronavirus, shuts down public life worldwide. Governments are calling on people to be careful and avoid contact as much as possible. So just stay at home. In this way, we can all work together to ensure that people do not get sick and so overload the health system. Together we can smooth the curve with the number of infections. Together for #flattenthecurve.<br/><br/>You can view data from all countries and see how the disease <a target='_blank' class='text-blue-200' href='https://en.wikipedia.org/wiki/Coronavirus_disease_2019'>Covid-19</a>, caused by the coronavirus, evolves.",
@@ -168,6 +176,10 @@
       }
     },
     "views":{
+      "maintenance": {
+        "title": "Este sitio esta bajo mantenimiento",
+        "description":"El brote de COVID-19 está tomando más tiempo de lo que esperaba. El sitio será reconstruido con las últimas fuentes de datos oficiales. Este trabajo se completará el 31 de julio. Mantenga su contacto limitado y siga las pautas de las autoridades locales. ¡Cuidate!"
+      },
       "home":{
         "title":"Solo quédate en <span class='text-blue-200'>casa</span>",
         "description":"El virus <a target='_blank' class='text-blue-200' href='https://es.wikipedia.org/wiki/SARS-CoV-2'>SARS-CoV-2</a>, mejor conocido como coronavirus, ha logrado apagar la vida publica  en el mundo entero. Los gobiernos hacen el llamado constantemente a mantener la distancia social a fin de evitar la propagación del virus. Así que solo quédate en casa. De esta forma, todos podremos apoyar esta necesaria iniciativa y asegurarnos que más personas sean contagiadas para evitar sobrecargar el sistema de salud. Juntos podemos desacelerar la curva numérica de contagios por infecciones. Juntos a bajar la curva #QuédateEnCasa.<br/><br/>Puedes ver los datos de todas las regiones y ver como la enfermedad <a target='_blank' class='text-blue-200' href='https://es.wikipedia.org/wiki/COVID-19'>Covid-19</a>, causada por el coronavirus evoluciona.",

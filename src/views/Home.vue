@@ -1,6 +1,21 @@
 <template>
   <div class="home leading-relaxed px-16 pt-32 pb-64 ">
     <div class="row flex flex-wrap">
+      <div class="w-full lg:w-1/2 px-16 pb-32 text-blue-300">
+        <div
+          class="mb-16 text-24 font-medium"
+          v-html="$t('views.maintenance.title')"
+        ></div>
+
+        <div
+          class="text-16"
+          v-html="$t('views.maintenance.description')"
+        ></div>
+      </div>
+    </div>
+
+    <!--
+    <div class="row flex flex-wrap">
       <div
         class="w-full lg:w-1/2 px-16 pb-32 text-blue-300"
         :class="{'hidden': getAppActive !== ''}"
@@ -328,8 +343,9 @@
         </div>
       </div>
     </div>
+    -->
 
-    <charts-component />
+    <!--<charts-component />-->
     <!--<social-component />-->
   </div>
 </template>
@@ -338,7 +354,7 @@
 
 import { mapGetters } from 'vuex'
 
-import Charts from '@/components/charts/Charts'
+// import Charts from '@/components/charts/Charts'
 // import Social from '@/components/social/Social'
 
 export default {
@@ -390,16 +406,16 @@ export default {
   },
   methods: {
     setGlobal () {
-      localStorage.setItem('covidAppActive', '')
-      this.$router.push('/')
+      // localStorage.setItem('covidAppActive', '')
+      // this.$router.push('/')
     },
     setUSA () {
-      localStorage.setItem('covidAppActive', 'USA')
-      this.$router.push('/USA')
+      // localStorage.setItem('covidAppActive', 'USA')
+      // this.$router.push('/USA')
     }
   },
   components: {
-    'charts-component': Charts
+    // 'charts-component': Charts
     // 'social-component': Social
   }
 }

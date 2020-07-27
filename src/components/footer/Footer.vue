@@ -6,6 +6,7 @@
           <coffee-component />
         </div>
 
+        <!--
         <div class="hidden md:inline-block text-gray-100 mr-16">
           -
         </div>
@@ -29,14 +30,17 @@
 
           Data by covidtracking
         </a>
+        -->
     </div>
 
+      <!--
       <div
         class="text-16 text-blue-300 no-underline"
         v-html="$t('components.footer.refresh')"
       ></div>
+    -->
     </div>
-
+    <!--
     <div class="interval flex items-center flex-shrink-0 h-full px-32">
       <div class="flex text-blue-300 text-20 md:text-24 font-bold">
         <div
@@ -49,6 +53,7 @@
         {{ seconds }}s
       </div>
     </div>
+  -->
   </div>
 </template>
 
