@@ -50,7 +50,7 @@
     "views":{
       "maintenance": {
         "title": "Deze site is in onderhoud",
-        "description":"De COVID-19 uitbraak duurt langer dan ik had gehoopt. De site zal heropgebouwd worden met de laatste officiële databronnen. Deze werkzaamheden zullen afgerond zijn op 31 juli. Hou je contact beperkt en volg de richtlijnen van de lokale overheden. Wees veilig!"
+        "description":"Momenteel kom ik tijd te kort om het project te updaten. Je kan altijd zelf aan de slag hier! <a class='text-blue-200' target='_blank' href='https://github.com/dhondtlaurens/covid19'>https://github.com/dhondtlaurens/covid19</a>"
       },
       "home":{
         "title":"Blijf gewoon <span class='text-blue-200'>thuis</span>",
@@ -114,7 +114,7 @@
     "views":{
       "maintenance": {
         "title": "This site is under maintenance",
-        "description":"The COVID-19 outbreak is taking longer than I hoped. The site will be rebuilt with the latest official data sources. This work will be completed on July 31. Keep your contact limited and follow the guidelines of the local authorities. Be safe!"
+        "description":"I am currently running out of time to update the project. You can always get started here! <a class='text-blue-200' target='_blank' href='https://github.com/dhondtlaurens/covid19'>https://github.com/dhondtlaurens/covid19</a>"
       },
       "home":{
         "title":"Just stay <span class='text-blue-200'>home</span>",
@@ -178,7 +178,7 @@
     "views":{
       "maintenance": {
         "title": "Este sitio esta bajo mantenimiento",
-        "description":"El brote de COVID-19 está tomando más tiempo de lo que esperaba. El sitio será reconstruido con las últimas fuentes de datos oficiales. Este trabajo se completará el 31 de julio. Mantenga su contacto limitado y siga las pautas de las autoridades locales. ¡Cuidate!"
+        "description":"Actualmente me estoy quedando sin tiempo para actualizar el proyecto. ¡Siempre puedes empezar aquí! <a class='text-blue-200' target='_blank' href='https://github.com/dhondtlaurens/covid19'> https://github.com/dhondtlaurens/covid19 </a>"
       },
       "home":{
         "title":"Solo quédate en <span class='text-blue-200'>casa</span>",

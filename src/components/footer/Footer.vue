@@ -2,11 +2,11 @@
   <div class="footer flex fixed w-full h-64 bottom-0 border-t bg-white border-gray-100">
     <div class="flex justify-between items-center flex-grow h-full px-32 flex border-r border-gray-100">
       <div class="flex items-center text-16 text-blue-200">
+        <!--
         <div class='flex items-center mr-16'>
           <coffee-component />
         </div>
 
-        <!--
         <div class="hidden md:inline-block text-gray-100 mr-16">
           -
         </div>
@@ -59,7 +59,7 @@
 
 <script>
 
-import Coffee from '@/components/coffee/Coffee'
+// import Coffee from '@/components/coffee/Coffee'
 
 export default {
   name: 'Chart',
@@ -93,7 +93,7 @@ export default {
     }
   },
   components: {
-    'coffee-component': Coffee
+    // 'coffee-component': Coffee
   }
 }
 
